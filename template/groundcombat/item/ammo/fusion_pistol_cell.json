@@ -1,0 +1,1 @@
+{"version":"0.1.0","asset":{"Parent":{"$content":"GC-::-item/ammo/plasma_pistol_cell.json","$t":"ar_Template"},"_components":[{"$content":"Fusion Pistol Cell","$t":"Name"},{"$content":"fusion","$t":"AmmoID"},{"$content":"fusion_pistol","$t":"AmmoStandard"}],"$t":"4"},"$t":"15"}
