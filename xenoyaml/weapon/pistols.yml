@@ -1,0 +1,661 @@
+$schema: 0.4.0
+$aliases:
+  SnapShot: &SnapShot
+    $mode: snap
+    $name: Snap Shot
+    $percentCost: 20
+    $accuracy: 55
+    $crosshair: GC-::-ui/crosshairs/crosshair_snap
+  NormalShot: &NormalShot
+    $mode: normal
+    $name: Normal Shot
+    $percentCost: 30
+    $accuracy: 95
+    $crosshair: GC-::-ui/crosshairs/crosshair_normal
+  BurstShot: &BurstShot
+    $mode: burst
+    $name: Short Burst
+    $shots: 3
+    $shotDelay: 0.05
+    $percentCost: 35
+    $accuracy: 70
+    $crosshair: GC-::-ui/crosshairs/crosshair_burst
+  LaserShot: &LaserShot
+    $trajectory: Line
+    $shots: 4
+    $shotDelay: 0.05
+
+strategy:
+  item/ammo:
+    plasma_pistol_cell:
+      parent: &STPlasmaCell ST%item/ammo/plasma_pistol_cell
+      $path: ""
+      components: &PlasmaCell
+        $NoLocale: {}
+        :Name: Plasma Pistol Cell
+
+    plasma_pistol_cell_v2:
+      parent: *STPlasmaCell
+      $path: ""
+      components: &AdvPlasmaCell
+        :Name: Advanced Plasma Pistol Cell
+
+    fusion_pistol_cell:
+      parent: *STPlasmaCell
+      $path: ""
+      components: &FusionCell
+        :Name: Fusion Pistol Cell
+
+    fusion_pistol_cell_v2:
+      parent: *STPlasmaCell
+      $path: ""
+      components: &AdvFusionCell
+        :Name: Advanced Fusion Pistol Cell
+
+    alien_mag_clip_small:
+      parent: ST%item/ammo/alien_mag_clip_small
+      $path: ""
+      components: &NeedlerClip
+        $NoLocale: {}
+        :Name: Needler Clip
+
+    alien_plasma_cell_small:
+      parent: ST%item/ammo/alien_plasma_cell_small
+      $path: ""
+      components: &BlasterCell
+        $NoLocale: {}
+        :Name: Blaster Cell
+
+    alien_fusion_cell_small:
+      parent: ST%item/ammo/alien_fusion_cell_small
+      $path: ""
+      components: &HandcannonCell
+        $NoLocale: {}
+        :Name: Handcannon Cell
+
+  item/weapon:
+    ballistic_pistol_v3:
+      parent: ST%item/weapon/ballistic_pistol_v2
+      $path: ""
+      components: &AdvAccPistol
+        $NoLocale: {}
+        :Name: Advanced Accelerated Pistol
+
+    plasma_pistol:
+      parent: ST%item/weapon/plasma_pistol
+      $path: ""
+      components: &PlasmaPistol
+        $NoLocale: {}
+        :Name: Plasma Pistol
+
+    plasma_pistol_v2:
+      parent: ST%item/weapon/plasma_pistol_v2
+      $path: ""
+      components:
+        :DefaultAmmo:
+          $content: ST-::-item/ammo/fusion_pistol_cell.json
+          $valuetypekey: ar_Template
+        $NoLocale: {}
+        :Name: Fusion Pistol
+
+    alien_magnetic_pistol:
+      parent: &STNeedler ST%item/weapon/alien_magnetic_pistol
+      $path: ""
+      components: &Needler
+        $NoLocale: {}
+        :Name: Alien Needler
+
+    xeno_magnetic_pistol:
+      parent: *STNeedler
+      $path: ""
+      components: &XenoNeedler
+        :Name: Needler
+
+    alien_plasma_pistol:
+      parent: &STBlaster ST%item/weapon/alien_plasma_pistol
+      $path: ""
+      components: &Blaster
+        $NoLocale: {}
+        :Name: Alien Blaster
+
+    xeno_plasma_pistol:
+      parent: *STBlaster
+      $path: ""
+      components: &XenoBlaster
+        :Name: Blaster
+
+    alien_fusion_pistol:
+      parent: &STHandcannon ST%item/weapon/alien_fusion_pistol
+      $path: ""
+      components: &Handcannon
+        $NoLocale: {}
+        :Name: Alien Handcannon
+    
+    xeno_fusion_pistol:
+      parent: *STHandcannon
+      $path: ""
+      components: &XenoHandcannon
+        $NoLocale: {}
+        :Name: Handcannon
+
+groundcombat:
+  item/ammo:
+    ballistic_pistol_alloy:
+      parent: GC%item/ammo/ballistic_pistol_alloy
+      $path: ""
+      components:
+        $Weight: 1
+        :DamageModifier:
+          _min: 0
+          _val: 1
+          _max: 3.402823e+38
+        :Modifiers:
+          - $ModSoldierStat: # So that turned out to be a misnomer... oops.
+              $stat: Xenonauts.GroundCombat.ArmourPenetration
+              $amount: 1
+    
+    laser_pistol:
+      parent: GC%item/ammo/laser_pistol
+      $path: ""
+      components:
+        $Shots: 20
+        :GCAbilityDefinitions:
+          - :117:
+              Regenerate: 1
+              Name: Regenerate Ammo
+              Tooltip: false
+
+    laser_pistol_v2:
+      parent: GC%item/ammo/laser_pistol_v2
+      $path: ""
+      components:
+        $Shots: 30
+        :GCAbilityDefinitions:
+          - :117:
+              Regenerate: 2
+              Name: Regenerate Ammo
+              Tooltip: false
+    
+    plasma_pistol_cell:
+      parent: &GCPlasmaCell GC%item/ammo/plasma_pistol_cell
+      $path: ""
+      components:
+        <<: *PlasmaCell
+        :AmmoID: plasma
+        $Shots: 8
+        $ImpactVector:
+          - $SpawnEnvironmentalEffect:
+              $chance: 50
+              $spawnStyles:
+                - SpawnAsGas
+              $effPath: blueprints/common/common/simple/effect/environmental/fire_spreading_1x1
+
+    plasma_pistol_cell_v2:
+      parent: *GCPlasmaCell
+      $path: ""
+      components:
+        <<: *AdvPlasmaCell
+        :AmmoID: plasma
+        # :RecoveredItems:
+        #   - $DropItem: item/ammo/plasma_pistol_cell_v2
+        :GCAbilityDefinitions:
+          - :117:
+              Regenerate: 1
+              Name: Regenerate Ammo
+              Tooltip: false
+    
+    fusion_pistol_cell:
+      parent: *GCPlasmaCell
+      $path: ""
+      components:
+        <<: *FusionCell
+        :AmmoID: fusion
+        :AmmoStandard: fusion_pistol
+        # :RecoveredItems:
+        #   - $DropItem: item/ammo/fusion_pistol_cell
+
+    fusion_pistol_cell_v2:
+      parent: GC%item/ammo/plasma_pistol_cell_v2
+      $path: ""
+      components:
+        <<: *AdvFusionCell
+        :AmmoID: fusion
+        :AmmoStandard: fusion_pistol
+        # :RecoveredItems:
+        #   - $DropItem: item/ammo/fusion_pistol_cell_v2
+
+    gauss_pistol_clip:
+      parent: GC%item/ammo/gauss_pistol_clip
+      $path: ""
+      components:
+        $Shots: 12
+
+    gauss_pistol_clip_v2:
+      parent: GC%item/ammo/gauss_pistol_clip_v2
+      $path: ""
+      components:
+        :Modifiers:
+          - $ModSoldierStat:
+              $stat: Xenonauts.GroundCombat.ArmourDestruction
+              $amount: 1
+          - $ModSoldierStat:
+              $stat: Xenonauts.GroundCombat.ArmourPenetration
+              $amount: 3
+
+    alien_mag_clip_small:
+      parent: GC%item/ammo/alien_mag_clip_small
+      $path: ""
+      components:
+        <<: *NeedlerClip
+        $Shots: 30
+
+    alien_plasma_cell_small:
+      parent: GC%item/ammo/alien_plasma_cell_small
+      $path: ""
+      components:
+        <<: *BlasterCell
+        $Shots: 18
+        $ImpactVector:
+          - $SpawnEnvironmentalEffect:
+              $chance: 50
+              $spawnStyles:
+                - SpawnAsGas
+              $effPath: blueprints/common/common/simple/effect/environmental/fire_spreading_1x1
+
+    alien_fusion_cell_small:
+      parent: GC%item/ammo/alien_fusion_cell_small
+      $path: ""
+      components:
+        <<: *HandcannonCell
+        $Shots: 9
+        $ImpactVector:
+          - $SpawnEnvironmentalEffect:
+              $chance: 50
+              $spawnStyles:
+                - SpawnAsGas
+              $effPath: blueprints/common/common/simple/effect/environmental/fire_spreading_1x1
+
+  item/weapon:
+    ballistic_pistol:
+      parent: &BallPistol GC%item/weapon/ballistic_pistol
+      $path: ""
+      components:
+        # No custom fire modes needed, ballistics are fine as-is.
+        # Ditto for weight, reload cost, size, and ammo standard.
+        $Damage: 25
+        $ArmorDestruction: 1
+        $ArmorPenetration: 5
+        $GCComplexEquipReqs:
+          $cost:
+            $OrPq:
+              - $UnequippedReq: {}
+              - $SlotOwnerPq:
+                  $mode: All
+                  $reqs:
+                    - $NotColossus: {}
+          $unlock:
+            $SlotOwnerPq:
+              $mode: Any
+              $reqs: 
+                - $HasHandsReq: {}
+
+    ballistic_pistol_v2:
+      parent: &AccPistol GC%item/weapon/ballistic_pistol_v2
+      $path: ""
+      components:
+        $Damage: 27
+        $ArmorDestruction: 1
+        $ArmorPenetration: 8
+
+    ballistic_pistol_v3:
+      parent: *AccPistol
+      $path: ""
+      components:
+        <<: *AdvAccPistol
+        $Damage: 29
+        $ArmorDestruction: 2
+        $ArmorPenetration: 11
+        #:RecoveredItems:
+        #  - $DropItem: item/weapon/ballistic_pistol_v3
+
+    laser_pistol:
+      parent: GC%item/weapon/laser_pistol
+      $path: ""
+      components:
+        $Damage: 7
+        $ArmorPenetration: 8
+        $ArmorDestruction: 2
+        $SuppressionDamage: 5
+        :Description: >-
+          Lasers are a unique kind of energy weapon. Like most energy weapons,
+          they inflict more total damage, do not inflict Bleeding Wounds,
+          and have reduced Armour Penetration, but have exceptional Armour Destruction
+          for their size.
+
+          
+          Unlike other energy weapons, lasers fire 4 weaker beams for every shot
+          fired by an equivalent non-laser weapon, and do not require research
+          to regenerate ammunition. Additionally, they are not subject to recoil
+          (except machineguns, which only have half recoil), and have increased accuracy
+          as well as an accuracy bonus for low-accuracy soldiers.
+
+
+          Lasers are not as prone to dissipation as most energy weapons. While they still
+          have a much shorter optimal range than similar ballistic weapons, lasers suffer
+          fairly limited accuracy/damage dropoff allowing them similar range to ballistics;
+          this laser pistol only loses 5% per tile, compared to the 10% of a ballistic pistol.
+        :GCAbilityDefinitions:
+          - $ShotAbility:
+              <<:
+                - *SnapShot
+                - *LaserShot
+              $accuracy: 65
+          - $ShotAbility:
+              <<:
+                - *NormalShot
+                - *LaserShot
+              $accuracy: 105
+        $Recoil: 0
+        $WeaponRange: 5
+        $RangeBonus: 0.08
+        $RangeDropoff: 0.05
+
+    laser_pistol_v2:
+      parent: GC%item/weapon/laser_pistol_v2
+      $path: ""
+      components:
+        $Damage: 9
+        $ArmorPenetration: 10
+        $ArmorDestruction: 3
+
+    plasma_pistol:
+      parent: GC%item/weapon/plasma_pistol
+      $path: ""
+      components:
+        <<: *PlasmaPistol
+        $Damage: 40
+        $ArmorPenetration: 15
+        $ArmorDestruction: 15
+        $BleedChance: 0
+        $SuppressionDamage: 24
+        :WeaponID: plasma
+        $WeaponRange: 8
+        $RangeBonus: 0.06
+        $RangeDropoff: 0.25
+        :Description: >-
+          Plasma weapons are powerful, but short-ranged energy weapons.
+          Like most energy weapons, they inflict more total damage, do not
+          inflict Bleeding Wounds, and have reduced Armour Penetration,
+          but have exceptional Armour Destruction for their size.
+
+
+          Plasma weapons tend to destabilize quickly in atmosphere,
+          resulting in very short optimal ranges and a more rapid
+          accuracy/damage dropoff than ballistic weapons. However,
+          they have somewhat improved ammo economy over lasers,
+          and have a high chance of starting fires wherever they hit.
+
+
+          This plasma pistol has a range dropoff of 25% (ballistics are 10%),
+          and a 50% chance of setting a tile ablaze.
+        
+    plasma_pistol_v2:
+      parent: GC%item/weapon/plasma_pistol_v2
+      $path: ""
+      components:
+        $NoLocale: {}
+        :Name: Fusion Pistol
+        :CompatibleAmmo:
+          - fusion_pistol
+        $Damage: 60
+        $ArmorDestruction: 25
+        $BleedChance: 8
+        $BleedRollMultiplier: 3
+        $SuppressionDamage: 30
+        :WeaponID: fusion
+        :Description: >-
+          Fusion weapons are a powerful variant of plasma weapons.
+          Like most energy weapons, they inflict more total damage
+          and have reduced Armour Penetration, with exceptional
+          Armour Destruction for their size. However, they can
+          also inflict a lot of Bleeding Wounds.
+
+
+          Fusion weapons tend to destabilize quickly in atmosphere,
+          resulting in very short optimal ranges and a more rapid
+          accuracy/damage dropoff than ballistic weapons. However,
+          they have somewhat improved ammo economy over lasers,
+          and have a high chance of starting fires wherever they hit.
+
+
+          This fusion pistol has a range dropoff of 25% (ballistics are 10%),
+          and a 50% chance of setting a tile ablaze.
+
+    electroshock_pistol:
+      parent: GC%item/weapon/electroshock_pistol
+      $path: ""
+      components:
+        $Damage: 15
+        $StunDamage: 25
+        $EMPDamage: 30
+        $ArmorPenetration: 100
+        $WeaponRange: 8
+        $RangeBonus: 0.06
+        $RangeDropoff: 0.25
+        :Description: >-
+          Electroshock weapons are a special kind of plasma weapon.
+          Unlike most energy weapons, they have extremely high Armour Penetration
+          and no Armour Destruction, and do not inflict a lot of direct damage.
+          However, they inflict considerable amounts of Stun and EMP damage,
+          making them useful for capturing living aliens or destroying mechanical units.
+
+
+          Electroshock weapons tend to destabilize quickly in atmosphere,
+          resulting in very short optimal ranges and a more rapid
+          accuracy/damage dropoff than ballistic weapons. Additionally, they
+          have considerably less ammo than plasma weapons, and cannot be upgraded
+          further.
+
+
+          This electroshock pistol has a range dropoff of 25% (ballistics are 10%).
+
+    xeno_magnetic_pistol:
+      parent: *BallPistol
+      $path: ""
+      components:
+        <<: *XenoNeedler
+        $ArmorPenetration: 15
+        $BleedChance: 7.5
+        :GCAbilityDefinitions:
+          - $ShotAbility:
+              <<: *SnapShot
+              $percentCost: 15
+              $accuracy: 65
+          - $ShotAbility:
+              <<: *NormalShot
+              $percentCost: 22
+              $accuracy: 105
+          - $ShotAbility: *BurstShot
+        $Recoil: 0.1
+        $ReloadCost: 25
+        :CompatibleAmmo:
+          - alien_mag_clip_small
+        :FireSounds:
+          single:
+            - GC-::-sfx/weapon/fire/fire_alien_magnetic_rifle.ogg
+          burst:
+            - GC-::-sfx/weapon/fire/fire_alien_magnetic_rifle.ogg
+          empty:
+            - GC-::-sfx/weapon/empty/empty_default.ogg
+          reload:
+            - GC-::-sfx/weapon/reload/reload_ballistic_default_1.ogg
+          meleeHit: []
+          meleeMiss: []
+        :Portrait: GC-::-ui/item/weapon/alien_magnetic_pistol.png
+        :Description: >-
+          Needlers are a special kind of ballistic weapon. They inflict
+          relatively low damage and Armour Destruction compared to
+          accelerated weapons, but are more accurate, fire faster,
+          and have increased Armour Penetration and ammo capacity.
+
+
+          Needlers recovered on the battlefield are DNA-locked
+          and cannot be used by human units. Xenonaut engineers
+          can eventually defeat the DNA lock and create human-usable
+          Needlers, but they cannot be upgraded further.
+        :Prototype:
+          value: GC-::-item/weapon/alien_magnetic_pistol.prefab
+          addColliders: false
+          dontInstantiate: true
+          pool: false
+        #:RecoveredItems:
+        #  - $DropItem: item/weapon/xeno_magnetic_pistol
+
+    alien_magnetic_pistol:
+      parent: &XenoPistol GC%item/weapon/xeno_magnetic_pistol
+      $path: ""
+      components:
+        <<: *Needler
+        $GCComplexEquipReqs: &AlienPistolReqs
+          $cost:
+            $OrPq:
+              - $UnequippedReq: {}
+          $unlock:
+            $SlotOwnerPq:
+              $mode: All
+              $reqs: 
+                - $HasHandsReq: {}
+                - $AlienUnit: {}
+        #:RecoveredItems:
+        #  - $DropItem: item/weapon/alien_magnetic_pistol
+        #  - $DropItem: item/alloys
+
+    xeno_plasma_pistol:
+      parent: *XenoPistol
+      $path: ""
+      components:
+        <<: *XenoBlaster
+        :CompatibleAmmo:
+          - alien_plasmacell_small
+        :FireSounds:
+          single:
+            - GC-::-sfx/weapon/fire/fire_plasma_pistol_0.ogg
+            - GC-::-sfx/weapon/fire/fire_plasma_pistol_1.ogg
+          burst: []
+          empty:
+            - GC-::-sfx/weapon/empty/empty_default.ogg
+          reload:
+            - GC-::-sfx/weapon/reload/reload_plasma_pistol_1.ogg
+            - GC-::-sfx/weapon/reload/reload_plasma_pistol_2.ogg
+          meleeHit: []
+          meleeMiss: []
+        :Portrait: GC-::-ui/item/weapon/alien_plasma_pistol.png
+        :Prototype:
+          value: GC-::-item/weapon/alien_plasma_pistol.prefab
+          addColliders: false
+          dontInstantiate: true
+          pool: false
+        #:RecoveredItems:
+        #  - $DropItem: item/weapon/xeno_plasma_pistol
+        :Description: >-
+          Blasters are a special kind of plasma weapon. They inflict
+          relatively low damage and Armour Destruction compared to
+          plasma weapons, but are more accurate, fire faster,
+          and have increased Armour Penetration and ammo capacity.
+          
+
+          Blaster bolts are more compact than an equivalent plasma
+          bolt, and have a shorter optimal range. However, they
+          are not as heavily affected by range dropoff penalties,
+          and therefore still have a higher maximum range.
+          This blaster has a dropoff rate of 5% per tile.
+
+
+          Blasters recovered on the battlefield are DNA-locked
+          and cannot be used by human units. Xenonaut engineers
+          can eventually defeat the DNA lock and create human-usable
+          Blasters, but they cannot be upgraded further.
+        :WeaponID: plasma
+        :DamageType: energy
+        $Damage: 30
+        $ArmorPenetration: 30
+        $ArmorDestruction: 8
+        $WeaponRange: 8
+        $RangeBonus: 0.04
+        $RangeDropoff: 0.10
+
+    alien_plasma_pistol:
+      parent: &XenoBlaster GC%item/weapon/xeno_plasma_pistol
+      $path: ""
+      components:
+        <<: *Blaster
+        $GCComplexEquipReqs: *AlienPistolReqs
+        # :RecoveredItems:
+        #   - $DropItem: item/weapon/alien_plasma_pistol
+        #   - $DropItem: item/alloys
+        #   - $DropItem: item/alenium
+
+    xeno_fusion_pistol:
+      parent: *XenoBlaster
+      $path: ""
+      components:
+        <<: *XenoHandcannon
+        :GCAbilityDefinitions:
+          - $ShotAbility: 
+              <<: *SnapShot
+              $percentCost: 25
+              $accuracy: 65
+          - $ShotAbility: 
+              <<: *NormalShot
+              $percentCost: 40
+              $accuracy: 105
+        :CompatibleAmmo:
+          - alien_fusion_cell_small
+        :WeaponID: fusion
+        :Description: >-
+          Handcannons are a special kind of fusion weapon. Unlike
+          Blasters, they fire slowly and have limited ammo, but inflict
+          the most damage of any pistol in the game. They also have
+          further reduced range dropoff, increasing their maximum range.
+          
+
+          Alien fusion bolts are more compact than an equivalent fusion
+          bolt, and have a shorter optimal range. However, they
+          are not as heavily affected by range dropoff penalties,
+          and therefore still have a higher maximum range.
+          This handcannon has a dropoff rate of 5% per tile.
+
+
+          Handcannons recovered on the battlefield are DNA-locked
+          and cannot be used by human units. Xenonaut engineers
+          can eventually defeat the DNA lock and create human-usable
+          Handcannons, but they cannot be upgraded further.
+        $Damage: 75
+        $ArmorPenetration: 20
+        $ArmorDestruction: 20
+        $RangeDropoff: 0.05
+        $BleedChance: 6.5
+        $BleedRollMultiplier: 3
+        #:RecoveredItems:
+        #  - $DropItem: item/weapon/xeno_fusion_pistol
+        :Portrait: GC-::-ui/item/weapon/alien_fusion_pistol.png
+        :Prototype:
+          value: GC-::-item/weapon/alien_fusion_pistol.prefab
+          addColliders: false
+          dontInstantiate: true
+          pool: false
+        
+    alien_fusion_pistol:
+      parent: GC%item/weapon/xeno_fusion_pistol
+      $path: ""
+      components:
+        <<: *Handcannon
+        $GCComplexEquipReqs: *AlienPistolReqs
+        # :RecoveredItems:
+        #   - $DropItem: item/weapon/alien_fusion_pistol
+        #   - $DropItem: 
+                # $amount: 2
+                # $item: item/alloys
+        #   - $DropItem:
+                # $amount: 2
+                # $item: item/alenium

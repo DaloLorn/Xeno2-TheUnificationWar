@@ -1,0 +1,54 @@
+$schema: 0.4.0
+$builders:
+  $EnvDamage:
+    $args:
+      - $trigger
+      - $damageType
+      - $direct: 0
+      - $stun: 0
+      - $morale: 0
+      - $suppression: 0
+      - $empDamage: 0
+      - $destruction: 0
+      - $scale: 1
+      - $damageLocation: false
+      - $gibs: Disallow
+      - $destroyItems: false
+      - $spawnOnImpact: null
+    :129:
+      Trigger: $trigger
+      Handler:
+        - :125:
+            Target: Target
+            Damage:
+              :90:
+                damageType: $damageType
+                direct: $direct
+                stun: $stun
+                morale: $morale
+                suppression: $suppression
+                armour: $destruction
+                scale: $scale
+                damageLocation: $damageLocation
+                gibs: $gibs
+                destroyedItemsOnDeath: $destroyItems
+                spawnOnImpact: $spawnOnImpact
+            Origin: null
+
+  $DissipateHandler:
+    $args: $chance
+    :129:
+      Trigger:
+        - $TurnStartTrigger: {}
+      Handler:
+        - :127:
+            ChanceToDissipate: $chance
+
+  $TurnStartTrigger:
+    :131:
+      Triggers:
+        - Common.FSM.Systems.PhaseStepReport`2[[Xenonauts.GroundCombat.GCPhases+RoundBegin,
+          Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null],[Common.FSM.Systems.Steps+End,
+          Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null]]

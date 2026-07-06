@@ -25,15 +25,35 @@ $aliases:
     $shotDelay: 0.05
     $percentCost: 50
     $accuracy: 40
+    $crosshair: GC-::-ui/crosshairs/crosshair_burst
   LaserShot: &LaserShot
     $trajectory: Line
     $shots: 4
     $shotDelay: 0.05
 
 strategy:
+  masters/items:
+    weapon_primary_alien:
+      parent: ST%masters/items/weapon_primary_alien
+      $path: ""
+      components:
+        :SItemMeta: ShowAmmoInArmory,Transferable,Sellable
+
+    weapon_primary_alien_integrated:
+      parent: ST%masters/items/weapon_primary_alien_integrated
+      $path: ""
+      components:
+        :SItemMeta: ExcludeFromBaseStoresSell,ExcludeFromBaseStoresTransfer,ExcludeFromGroundMissionResult,ShowAmmoInArmory
+
+    weapon_secondary_alien:
+      parent: ST%masters/items/weapon_secondary_alien
+      $path: ""
+      components:
+        :SItemMeta: ShowAmmoInArmory,Tranferable,Sellable
+
   item/ammo:
     plasma_rifle_cell:
-      parent: ST%item/ammo/plasma_rifle_cell
+      parent: &STPlasmaCell ST%item/ammo/plasma_rifle_cell
       $path: ""
       components: &PlasmaCell
         $NoLocale: {}
@@ -42,9 +62,42 @@ strategy:
     plasma_rifle_cell_v2:
       parent: ST%item/ammo/plasma_rifle_cell_v2
       $path: ""
-      components: &FusionCell
+      components: &AdvPlasmaCell
         $NoLocale: {}
+        :Name: Advanced Plasma Rifle Cell
+
+    fusion_rifle_cell:
+      parent: *STPlasmaCell
+      $path: ""
+      components: &FusionCell
         :Name: Fusion Rifle Cell
+
+    fusion_rifle_cell_v2:
+      parent: *STPlasmaCell
+      $path: ""
+      components: &AdvFusionCell
+        :Name: Advanced Fusion Rifle Cell
+
+    alien_mag_clip:
+      parent: ST%item/ammo/alien_mag_clip
+      $path: ""
+      components: &HeavyNeedlerClip
+        $NoLocale: {}
+        :Name: Heavy Needler Clip
+
+    alien_plasma_cell:
+      parent: ST%item/ammo/alien_plasma_cell
+      $path: ""
+      components: &HeavyBlasterCell
+        $NoLocale: {}
+        :Name: Heavy Blaster Cell
+
+    alien_fusion_cell:
+      parent: ST%item/ammo/alien_fusion_cell
+      $path: ""
+      components: &FusionCasterCell
+        $NoLocale: {}
+        :Name: Fusion Caster Cell
 
   item/weapon:
     ballistic_rifle_v3:
@@ -64,7 +117,10 @@ strategy:
     plasma_rifle_v2:
       parent: ST%item/weapon/plasma_rifle_v2
       $path: ""
-      components: &FusionRifle
+      components:
+        :DefaultAmmo:
+          $content: ST-::-item/ammo/fusion_rifle_cell.json
+          $valuetypekey: ar_Template
         $NoLocale: {}
         :Name: Fusion Rifle
 
@@ -73,6 +129,46 @@ strategy:
       $path: ""
       components: &ArcCaster
         :Name: Arc Caster
+
+    alien_magnetic_rifle:
+      parent: &HvyNeedler ST%item/weapon/alien_magnetic_rifle
+      $path: ""
+      components: &HeavyNeedler
+        $NoLocale: {}
+        :Name: Alien Heavy Needler
+
+    xeno_magnetic_rifle:
+      parent: *HvyNeedler
+      $path: ""
+      components: &XenoHeavyNeedler
+        :Name: Heavy Needler
+
+    alien_plasma_rifle:
+      parent: &HvyBlaster ST%item/weapon/alien_plasma_rifle
+      $path: ""
+      components: &HeavyBlaster
+        $NoLocale: {}
+        :Name: Alien Heavy Blaster
+
+    xeno_plasma_rifle:
+      parent: *HvyBlaster
+      $path: ""
+      components: &XenoHeavyBlaster
+        :Name: Heavy Blaster
+
+    alien_fusion_rifle:
+      parent: &FsnCaster ST%item/weapon/alien_fusion_rifle
+      $path: ""
+      components: &FusionCaster
+        $NoLocale: {}
+        :Name: Alien Fusion Caster
+    
+    xeno_fusion_rifle:
+      parent: *FsnCaster
+      $path: ""
+      components: &XenoFusionCaster
+        $NoLocale: {}
+        :Name: Fusion Caster
 
 groundcombat:
   item/ammo:
@@ -93,7 +189,7 @@ groundcombat:
           _max: 3.402823e+38
         :Modifiers:
           - $ModSoldierStat: # So that turned out to be a misnomer... oops.
-              $stat: Xenonauts.GroundCombat.ArmourDestruction
+              $stat: Xenonauts.GroundCombat.ArmourPenetration
               $amount: 2
     
     laser_rifle:
@@ -125,19 +221,44 @@ groundcombat:
         <<: *PlasmaCell
         :AmmoID: plasma
         $Shots: 15
-        # TODO: 65% chance of starting fires.
+        $ImpactVector:
+          - $SpawnEnvironmentalEffect:
+              $chance: 65
+              $spawnStyles:
+                - SpawnAsGas
+              $effPath: blueprints/common/common/simple/effect/environmental/fire_spreading_1x1
 
     plasma_rifle_cell_v2:
       parent: GC%item/ammo/plasma_rifle_cell_v2
       $path: ""
       components:
-        <<: *FusionCell
-        :AmmoID: fusion
+        <<: *AdvPlasmaCell
+        :AmmoID: plasma
         :GCAbilityDefinitions:
           - :117:
               Regenerate: 1
               Name: Regenerate Ammo
               Tooltip: false
+    
+    fusion_rifle_cell:
+      parent: GC%item/ammo/plasma_rifle_cell
+      $path: ""
+      components:
+        <<: *FusionCell
+        :AmmoID: fusion
+        :AmmoStandard: fusion_rifle
+        # :RecoveredItems:
+        #   - $DropItem: item/ammo/fusion_rifle_cell
+
+    fusion_rifle_cell_v2:
+      parent: GC%item/ammo/plasma_rifle_cell_v2
+      $path: ""
+      components:
+        <<: *AdvFusionCell
+        :AmmoID: fusion
+        :AmmoStandard: fusion_rifle
+        # :RecoveredItems:
+        #   - $DropItem: item/ammo/fusion_rifle_cell_v2
 
     gauss_rifle_clip:
       parent: GC%item/ammo/gauss_rifle_clip
@@ -157,6 +278,38 @@ groundcombat:
               $stat: Xenonauts.GroundCombat.ArmourPenetration
               $amount: 5
 
+    alien_mag_clip:
+      parent: GC%item/ammo/alien_mag_clip
+      $path: ""
+      components:
+        <<: *HeavyNeedlerClip
+        $Shots: 50
+
+    alien_plasma_cell:
+      parent: GC%item/ammo/alien_plasma_cell
+      $path: ""
+      components:
+        <<: *HeavyBlasterCell
+        $Shots: 30
+        $ImpactVector:
+          - $SpawnEnvironmentalEffect:
+              $chance: 65
+              $spawnStyles:
+                - SpawnAsGas
+              $effPath: blueprints/common/common/simple/effect/environmental/fire_spreading_1x1
+
+    alien_fusion_cell:
+      parent: GC%item/ammo/alien_fusion_cell
+      $path: ""
+      components:
+        <<: *FusionCasterCell
+        $Shots: 15
+        $ImpactVector:
+          - $SpawnEnvironmentalEffect:
+              $chance: 65
+              $spawnStyles:
+                - SpawnAsGas
+              $effPath: blueprints/common/common/simple/effect/environmental/fire_spreading_1x1
 
   item/weapon:
     ballistic_rifle:
@@ -198,8 +351,29 @@ groundcombat:
         $Damage: 36
         $ArmorDestruction: 4
         $ArmorPenetration: 20
-        :RecoveredItems:
-          - $DropItem: item/weapon/ballistic_rifle_v3
+        #:RecoveredItems:
+        #  - $DropItem: item/weapon/ballistic_rifle_v3
+
+    ballistic_smg:
+      parent: GC%item/weapon/ballistic_smg
+      $path: ""
+      components:
+        $Damage: 30
+        $ArmorPenetration: 5
+        $ArmorDestruction: 1
+        $GCComplexEquipReqs:
+          $cost:
+            $OrPq:
+              - $UnequippedReq: {}
+              - $SlotOwnerPq:
+                  $mode: All
+                  $reqs:
+                    - $NotColossus: {}
+          $unlock:
+            $SlotOwnerPq:
+              $mode: Any
+              $reqs: 
+                - $TwoHandedReq: {}
 
     laser_rifle:
       parent: GC%item/weapon/laser_rifle
@@ -298,7 +472,10 @@ groundcombat:
       parent: GC%item/weapon/plasma_rifle_v2
       $path: ""
       components:
-        <<: *FusionRifle
+        $NoLocale: {}
+        :Name: Fusion Rifle
+        :CompatibleAmmo:
+          - fusion_rifle
         $Damage: 60
         $ArmorDestruction: 25
         $BleedChance: 8
@@ -378,4 +555,264 @@ groundcombat:
           - :CombatantSlots: Secondary
         :Portrait: GC-::-ui/item/weapon/electroshock_rifle.png
 
+    xeno_magnetic_rifle:
+      parent: *BallRifle
+      $path: ""
+      components:
+        <<: *XenoHeavyNeedler
+        $ArmorPenetration: 25
+        $BleedChance: 12.5
+        :GCAbilityDefinitions:
+          - $ShotAbility:
+              <<: *SnapShot
+              $percentCost: 16
+              $accuracy: 48
+          - $ShotAbility:
+              <<: *NormalShot
+              $percentCost: 24
+              $accuracy: 82
+          - $ShotAbility:
+              <<: *AimedShot
+              $percentCost: 36
+              $accuracy: 82
+          - $ShotAbility:
+              <<: *BurstShot
+              $percentCost: 40
+              $accuracy: 50
+        $Recoil: 0.1
+        $ReloadCost: 25
+        :CompatibleAmmo:
+          - alien_mag_clip
+        :FireSounds:
+          single:
+            - GC-::-sfx/weapon/fire/fire_alien_magnetic_rifle.ogg
+          burst:
+            - GC-::-sfx/weapon/fire/fire_alien_magnetic_rifle.ogg
+          empty:
+            - GC-::-sfx/weapon/empty/empty_default.ogg
+          reload:
+            - GC-::-sfx/weapon/reload/reload_ballistic_default_1.ogg
+          meleeHit: []
+          meleeMiss: []
+        :Portrait: GC-::-ui/item/weapon/alien_magnetic_rifle.png
+        :Description: >-
+          Needlers are a special kind of ballistic weapon. They inflict
+          relatively low damage and Armour Destruction compared to
+          accelerated weapons, but are more accurate, fire faster,
+          and have increased Armour Penetration and ammo capacity.
+
+
+          Needlers recovered on the battlefield are DNA-locked
+          and cannot be used by human units. Xenonaut engineers
+          can eventually defeat the DNA lock and create human-usable
+          Needlers, but they cannot be upgraded further.
+        :Prototype:
+          value: GC-::-item/weapon/alien_magnetic_rifle.prefab
+          addColliders: false
+          dontInstantiate: true
+          pool: false
+        #:RecoveredItems:
+        #  - $DropItem: item/weapon/xeno_magnetic_rifle
+
+    alien_magnetic_rifle:
+      parent: &XenoRifle GC%item/weapon/xeno_magnetic_rifle
+      $path: ""
+      components:
+        <<: *HeavyNeedler
+        $GCComplexEquipReqs: &AlienRifleReqs
+          $cost:
+            $OrPq:
+              - $UnequippedReq: {}
+          $unlock:
+            $SlotOwnerPq:
+              $mode: All
+              $reqs: 
+                - $TwoHandedReq: {}
+                - $AlienUnit: {}
+        #:RecoveredItems:
+        #  - $DropItem: item/weapon/alien_magnetic_rifle
+        #  - $DropItem: item/alloys
+
+    xeno_plasma_rifle:
+      parent: *XenoRifle
+      $path: ""
+      components:
+        <<: *XenoHeavyBlaster
+        :CompatibleAmmo:
+          - alien_plasmacell
+        :FireSounds:
+          single:
+            - GC-::-sfx/weapon/fire/fire_plasma_rifle_single_0.ogg
+            - GC-::-sfx/weapon/fire/fire_plasma_rifle_single_1.ogg
+          burst:
+            - GC-::-sfx/weapon/fire/fire_plasma_rifle_burst_0.ogg
+            - GC-::-sfx/weapon/fire/fire_plasma_rifle_burst_1.ogg
+          empty:
+            - GC-::-sfx/weapon/empty/empty_default.ogg
+          reload:
+            - GC-::-sfx/weapon/reload/reload_plasma_rifle_1.ogg
+          meleeHit: []
+          meleeMiss: []
+        :Portrait: GC-::-ui/item/weapon/alien_plasma_rifle.png
+        :Prototype:
+          value: GC-::-item/weapon/alien_plasma_rifle.prefab
+          addColliders: false
+          dontInstantiate: true
+          pool: false
+        #:RecoveredItems:
+        #  - $DropItem: item/weapon/xeno_plasma_rifle
+        :Description: >-
+          Blasters are a special kind of plasma weapon. They inflict
+          relatively low damage and Armour Destruction compared to
+          plasma weapons, but are more accurate, fire faster,
+          and have increased Armour Penetration and ammo capacity.
+          
+
+          Blaster bolts are more compact than an equivalent plasma
+          bolt, and have a shorter optimal range. However, they
+          are not as heavily affected by range dropoff penalties,
+          and therefore still have a higher maximum range.
+          This heavy blaster has a dropoff rate of 5% per tile.
+
+
+          Blasters recovered on the battlefield are DNA-locked
+          and cannot be used by human units. Xenonaut engineers
+          can eventually defeat the DNA lock and create human-usable
+          Blasters, but they cannot be upgraded further.
+        :WeaponID: plasma
+        :DamageType: energy
+        $Damage: 35
+        $ArmorPenetration: 35
+        $ArmorDestruction: 15
+        $WeaponRange: 8
+        $RangeBonus: 0.04
+        $RangeDropoff: 0.05
+
+    alien_plasma_rifle:
+      parent: &XenoBlaster GC%item/weapon/xeno_plasma_rifle
+      $path: ""
+      components:
+        <<: *HeavyBlaster
+        $GCComplexEquipReqs: *AlienRifleReqs
+        # :RecoveredItems:
+        #   - $DropItem: item/weapon/alien_plasma_rifle
+        #   - $DropItem: item/alloys
+        #   - $DropItem: item/alenium
+
+    xeno_fusion_rifle:
+      parent: *XenoBlaster
+      $path: ""
+      components:
+        <<: *XenoFusionCaster
+        :GCAbilityDefinitions:
+          - $ShotAbility: 
+              <<: *SnapShot
+              $percentCost: 30
+              $accuracy: 48
+          - $ShotAbility: 
+              <<: *NormalShot
+              $percentCost: 40
+              $accuracy: 82
+          - $ShotAbility: 
+              <<: *AimedShot
+              $percentCost: 50
+              $accuracy: 120
+        :CompatibleAmmo:
+          - alien_fusion_cell
+        :WeaponID: fusion
+        :Description: >-
+          Fusion Casters are a special kind of fusion weapon. Unlike
+          Blasters, they fire slowly and have limited ammo, but inflict
+          the most damage of any rifle in the game. They also have
+          further reduced range dropoff, increasing their maximum range.
+          
+
+          Alien fusion bolts are more compact than an equivalent fusion
+          bolt, and have a shorter optimal range. However, they
+          are not as heavily affected by range dropoff penalties,
+          and therefore still have a higher maximum range.
+          This fusion caster has a dropoff rate of 4% per tile.
+
+
+          Fusion Casters recovered on the battlefield are DNA-locked
+          and cannot be used by human units. Xenonaut engineers
+          can eventually defeat the DNA lock and create human-usable
+          Fusion Casters, but they cannot be upgraded further.
+        $Damage: 85
+        $ArmorPenetration: 20
+        $ArmorDestruction: 25
+        $RangeDropoff: 0.04
+        $BleedChance: 10
+        $BleedRollMultiplier: 3
+        #:RecoveredItems:
+        #  - $DropItem: item/weapon/xeno_fusion_rifle
+        :Portrait: GC-::-ui/item/weapon/alien_fusion_rifle.png
+        :Prototype:
+          value: GC-::-item/weapon/alien_fusion_rifle.prefab
+          addColliders: false
+          dontInstantiate: true
+          pool: false
+        
+    alien_fusion_rifle:
+      parent: GC%item/weapon/xeno_fusion_rifle
+      $path: ""
+      components:
+        <<: *FusionCaster
+        $GCComplexEquipReqs: *AlienRifleReqs
+        # :RecoveredItems:
+        #   - $DropItem: item/weapon/alien_fusion_rifle
+        #   - $DropItem: 
+                # $amount: 2
+                # $item: item/alloys
+        #   - $DropItem:
+                # $amount: 2
+                # $item: item/alenium
+
+    alien_biter_launcher:
+      parent: GC%item/weapon/alien_biter_launcher
+      $path: ""
+      components:
+        $Damage: 30
+        $ArmorPenetration: 20
+        $BleedChance: 10
+        $BleedRollMultiplier: 2
+        $GCComplexEquipReqs:
+          $cost:
+            $OrPq:
+              - $UnequippedReq: {}
+          $unlock:
+            $SlotOwnerPq:
+              $mode: All
+              $reqs: 
+                - $TwoHandedReq: {}
+                - $EnemyUnit: {}
+        :GCAbilityDefinitions:
+          - $ShotAbility:
+              <<: *SnapShot
+              $percentCost: 40
+              $accuracy: 82
+          - $ShotAbility:
+              <<: *NormalShot
+              $percentCost: 50
+              $accuracy: 110
+
+    alien_biter_launcher_v2:
+      parent: GC%item/weapon/alien_biter_launcher_v2
+      $path: ""
+      components:
+        $Damage: 35
+        $ArmorPenetration: 30
+        $ArmorDestruction: 3
+        :GCAbilityDefinitions:
+          - $ShotAbility:
+              <<: *SnapShot
+              $shots: 2
+              $percentCost: 40
+              $accuracy: 82
+          - $ShotAbility:
+              <<: *NormalShot
+              $shots: 2
+              $percentCost: 50
+              $accuracy: 110
+              
     

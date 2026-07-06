@@ -131,15 +131,19 @@ $builders:
           Species: false
           Group:
             $V: xenonauts
-          Ethnicity: ethnicity
-          Gender: gender
+          Ethnicity: false
+          Gender: false
           Variant: Unlocks
           modifierStorage: null
           
-
   $TwoHandedReq:
     $NonePq:
       - $IsSecton: {}
+      - $IsEternal: {}
+      - $NoHandsReq: {}
+
+  $HasHandsReq:
+    $NonePq:
       - $NoHandsReq: {}
 
   $CloakingDevice:
@@ -201,10 +205,8 @@ $builders:
   $ArmorPenetration:
     $args: $val
     :ArmourPenetration:
-      $Range:
-        $min: 0
-        $val: $val
-        $max: 100
+      # Not actually percentile, but has the same min/max for some reason.
+      $PercentileRange: $val
 
   $ArmorDestruction:
     $args: $val
@@ -214,99 +216,64 @@ $builders:
   $SniperRange:
     $args: $range
     :LongRange:
-      $Range: 
-        $min: 0
-        $val: $range
-        $max: &FloatMax 3.402823e+38
+      $MaxInfRange: $range
 
   $RangeDropoff:
     $args: $dropoff
     :LongRangeBonus:
-      $Range:
-        $min: 0
-        $val: $dropoff
-        $max: 1
+      $MaxInfRange: $dropoff
 
   $WeaponRange:
     $args: $range
     :ShortRange:
-      $Range:
-        $min: 0
-        $val: $range
-        $max: *FloatMax
+      $MaxInfRange: $range
     $SniperRange: $range
 
   $RangeBonus:
     $args: $bonus
     :ShortRangeBonus:
-      $Range:
-        $min: 0
-        $val: $bonus
-        $max: 1
+      $NormalRange: $bonus
 
   $Recoil:
     $args: $recoil
     :Recoil:
-      $Range:
-        $min: 0
-        $val: $recoil
-        $max: 1
+      $NormalRange: $recoil
     
   $Damage:
     $args: $dmg
     :Damage:
-      $Range:
-        $min: 0
-        $val: $dmg
-        $max: *FloatMax
+      $MaxInfRange: $dmg
 
   $SuppressionDamage:
     $args: $dmg
     :SuppressionDamage:
-      $Range:
-        $min: 0
-        $val: $dmg
-        $max: *FloatMax
+      $MaxInfRange: $dmg
 
   $StunDamage:
     $args: $dmg
     :StunDamage:
-      $Range:
-        $min: 0
-        $val: $dmg
-        $max: *FloatMax
+      $MaxInfRange: $dmg
 
   $EMPDamage:
     $args: $dmg
     :EMPDamage:
-      $Range:
-        $min: 0
-        $val: $dmg
-        $max: *FloatMax
+      $MaxInfRange: $dmg
 
   $ReloadCost:
     $args: $cost
     :ReloadCost:
-      $Range:
-        $min: 0
-        $val: $cost
-        $max: *FloatMax
+      $MaxInfRange: $cost
 
   $BleedChance:
     $args: $chance
     :BleedChance:
-      $Range:
-        $min: 0
-        $val: $chance
-        $max: 100
+      $PercentileRange: $chance
 
   $BleedRollMultiplier:
     $args: $rolls
     :BleedWoundsInAttack:
-      $Range:
-        $min: 0
-        $val: $rolls
-        $max: 100
+      # Not actually percentile, but has the same min/max.
+      $PercentileRangeRange: $rolls
 
   $Shots:
     $args: $shots
@@ -390,3 +357,40 @@ $builders:
     $template:
       - $weight
       - $result
+
+  $SpawnEnvironmentalEffect:
+    $args:
+      - $pack: $none
+      - $screen: GC
+      - $chance
+      - $quantity: false
+      - $spawnStyles
+      - $effPath
+      - $aiWorth: 0
+    Chance: $chance
+    Quantity: $quantity
+    Template:
+      :ar_Template:
+        pack: $pack
+        screen: $screen
+        path: $effPath
+    SpawnStyles:
+      $V: $spawnStyles
+    AIWorth: $aiWorth
+
+  $ImpactVector:
+    $args: $toSpawn
+    :DamageVector:
+      SpawnOnImpact: $toSpawn
+      $valuetype: Xenonauts.GroundCombat.Components.DamageVectorComponent+SingleTargetVector
+
+  $ExplosionVector:
+    $args:
+      - $radius: 2.5
+      - $force: 500
+      - $toSpawn
+    :DamageVector:
+      Range: $radius
+      Force: $force
+      SpawnOnExplosion: $toSpawn
+      $valueType: Xenonauts.GroundCombat.Components.DamageVectorComponent+ExplosionVector

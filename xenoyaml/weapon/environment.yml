@@ -1,0 +1,183 @@
+$schema: 0.4.0
+$aliases:
+  MoveTrigger: &MoveTrigger
+    - :135:
+        Trigger: Enter,Move
+  StandTrigger: &StandTrigger
+    - :135:
+        Trigger: EndInside
+
+groundcombat:
+  blueprints/common/common/simple/effect/environmental:
+    fire_spreading_1x1:
+      # ... Pun not intended.
+      parent: &FireBase GC%blueprints/common/common/simple/effect/environmental/fire_spreading_1x1
+      $path: ""
+      components:
+        :EnvironmentEffect:
+          - $EnvDamage: &FireEnterDamage
+              $trigger: *MoveTrigger
+              $damageType: energy
+              $direct: 10
+              $morale: 2
+              $gibs: Allow
+              $suppression: 2
+          - $EnvDamage: &FireStandDamage
+              $trigger: *StandTrigger
+              $damageType: energy
+              $direct: 25
+              $morale: 10
+              $gibs: Allow
+              $suppression: 10
+              $destruction: 1
+          - :129: &FireSpread
+              Trigger:
+                - $TurnStartTrigger: {}
+              Handler:
+                - :139:
+                    ChanceToSpread: 100
+                - :127:
+                    ChanceToDissipate: 20
+          - $DissipateHandler: 20
+          
+    fire_static_1x1:
+      parent: *FireBase
+      $path: ""
+      components:
+        :EnvironmentEffect:
+          - *FireEnterDamage
+          - *FireStandDamage
+          - $DissipateHandler: 20
+
+    fire_static_1x1_permanent: 
+      parent: *FireBase
+      $path: ""
+      components:
+        :EnvironmentEffect:
+          - *FireEnterDamage
+          - *FireStandDamage
+          - $DissipateHandler: 20
+
+    smoke_1x1:
+      # Not gonna use $next here because a few other things inherit from it!
+      parent: &ThinSmoke GC%blueprints/common/common/simple/effect/environmental/smoke_1x1
+      $path: ""
+      components:
+        :EnvironmentEffect:
+          - $EnvDamage: &SmokeEnterDamage
+              $trigger: *MoveTrigger
+              $damageType: gas
+              $stun: 2
+          - $EnvDamage: &SmokeStandDamage
+              $trigger: *StandTrigger
+              $damageType: gas
+              $stun: 5
+          - $DissipateHandler: 33
+
+    smoke_1x1_powercore: &PermanentSmoke
+      parent: *ThinSmoke
+      $path: ""
+      components:
+        :EnvironmentEffect:
+          - *SmokeEnterDamage
+          - *SmokeStandDamage
+          - $DissipateHandler: 0
+
+    # Smoke is weird.
+    smoke_1x1_permanent: *PermanentSmoke
+
+    smoke_heavy_1x1:
+      parent: $next
+      $path: ""
+      components:
+        :AccuracyReduction: 20
+        :EnvironmentEffect:
+          - $EnvDamage:
+              $trigger: *MoveTrigger
+              $damageType: gas 
+              $stun: 5
+          - $EnvDamage:
+              $trigger: *StandTrigger
+              $damageType: gas
+              $stun: 20
+          - $DissipateHandler: 25
+
+    stungas_1x1:
+      parent: $next
+      $path: ""
+      components:
+        :AccuracyReduction: 20
+        :EnvironmentEffect:
+          - $EnvDamage:
+              $trigger: *MoveTrigger
+              $damageType: gas
+              $stun: 10
+          - $EnvDamage:
+              $trigger: *StandTrigger
+              $damageType: gas
+              $stun: 40
+          - $DissipateHandler: 33
+
+    poison_1x1:
+      parent: $next
+      $path: ""
+      components:
+        :AccuracyReduction: 20
+        :EnvironmentEffect:
+          - $EnvDamage:
+              $trigger: *MoveTrigger
+              $damageType: gas
+              $stun: 2
+              $direct: 5
+          - $EnvDamage:
+              $trigger: *StandTrigger
+              $damageType: gas
+              $stun: 10
+              $direct: 20
+          - $DissipateHandler: 33
+        :Priority: 105
+        :Prototype:
+          value: GC-::-effects/environmental/poison.prefab
+          addColliders: false
+          dontInstantiate: false
+          pool: false
+
+    corrosive_gas_1x1:
+      parent: *ThinSmoke
+      $path: ""
+      components:
+        :AccuracyReduction: 20
+        :EnvironmentEffect:
+          - $EnvDamage:
+              $trigger: *MoveTrigger
+              $damageType: gas
+              $direct: 35
+              $morale: 4
+              $suppression: 4
+          - $EnvDamage:
+              $trigger: *StandTrigger
+              $damageType: gas
+              $direct: 60
+              $morale: 16
+              $suppression: 16
+          - $EnvDamage:
+              $trigger: *MoveTrigger
+              $damageType: chemical
+              $direct: 5
+              $morale: 1
+              $suppression: 1
+              $destruction: 1
+          - $EnvDamage:
+              $trigger: *StandTrigger
+              $damageType: chemical
+              $direct: 20
+              $morale: 4
+              $suppression: 4
+              $destruction: 4
+          - $DissipateHandler: 20
+        :Priority: 105
+        :Prototype: # In lieu of a better option, I guess I reuse the stun prefab.
+          value: GC-::-effects/environmental/stungas.prefab
+          addColliders: false
+          dontInstantiate: false
+          pool: false
