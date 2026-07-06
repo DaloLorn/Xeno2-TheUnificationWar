@@ -21,6 +21,9 @@ groundcombat:
       components:
         $HitPoints: 80
         $ArmorHardness: 15
+        $GCEquipReqs:
+          $IsPsyon: {}
+        $PsyonRacials: {}
 
     psyon_officer:
       parent:
@@ -30,12 +33,15 @@ groundcombat:
       components:
         $HitPoints: 70
         $ArmorHardness: 20
+        $GCEquipReqs:
+          $IsPsyon: {}
         $NoLocale: {}
         :Description: >-
           The distinctive purple suits favored by Psyon officers
           feature a built-in psionic amplifier, increasing the effectiveness
           of their mental powers. However, the amplifier's weight necessarily
           reduces the amount of armour they can wear.
+        $PsyonRacials: {}
         :Modifiers:
           - $ModSoldierStat:
               $stat: Xenonauts.Common.Stats.PsionicStrength
@@ -49,6 +55,9 @@ groundcombat:
       components:
         $HitPoints: 65
         $ArmorHardness: 15
+        $SectonRacials: {}
+        $GCEquipReqs:
+          $IsSecton: {}
 
     sebillian_warrior:
       parent:
@@ -58,6 +67,9 @@ groundcombat:
       components:
         $HitPoints: 65
         $ArmorHardness: 15
+        $SebillianRacials: 0
+        $GCEquipReqs:
+          $IsSebillian: {}
 
     sebillian_officer:
       parent:
@@ -68,6 +80,8 @@ groundcombat:
         $HitPoints: 65
         $ArmorHardness: 15
         $NoLocale: {}
+        $GCEquipReqs:
+          $IsSebillian: {}
         :Description: >-
           These robust suits of armour, favored by Sebillian officers,
           feature a sealed helmet with a built-in rangefinder to improve their aim.
@@ -75,10 +89,7 @@ groundcombat:
           around the wearer, ensuring superior protection as long as any armour remains;
           however, only the strongest and most disciplined Sebillians could endure
           the discomfort of wearing it over prolonged periods.
-        :Modifiers:
-          - $ModSoldierStat:
-              $stat: Xenonauts.Common.Stats.Accuracy
-              $amount: 10
+        $SebillianRacials: 10
         :Resistances:
           kinetic: &SebOfficerDR
             _min: 0
@@ -102,6 +113,9 @@ groundcombat:
       components:
         $HitPoints: 40
         $ArmorHardness: 10
+        $GCEquipReqs:
+          $IsMantid: {}
+        $MantidRacials: {}
 
     wraith_warrior:
       parent:
@@ -111,8 +125,9 @@ groundcombat:
       components:
         $HitPoints: 80
         $ArmorHardness: 15
-        :Modifiers:
-          - $CloakingDevice: 3
+        $GCEquipReqs:
+          $IsWraith: {}
+        $WraithRacials: 3
 
     wraith_officer:
       parent:
@@ -123,8 +138,9 @@ groundcombat:
         $NoLocale: {}
         $HitPoints: 70
         $ArmorHardness: 20
-        :Modifiers:
-          - $CloakingDevice: 4
+        $GCEquipReqs:
+          $IsWraith: {}
+        $WraithRacials: 4
         :Description: >-
           Wraith officers typically wear armour with a more advanced cloaking device,
           allowing them to more easily avoid harm upon the battlefield.
@@ -138,10 +154,9 @@ groundcombat:
         <<: *AndronWarrior
         $HitPoints: 115
         $ArmorHardness: 15
-        :Modifiers:
-          - $ModSoldierStat:
-              $stat: Xenonauts.Common.Stats.HitPoints
-              $amount: 15
+        $GCEquipReqs:
+          $IsAndron: {}
+        $AndronRacials: 15
         $Weight: 0
         :Description: >-
           The sturdy outer frame of an Andron is covered in thick, disposable plates

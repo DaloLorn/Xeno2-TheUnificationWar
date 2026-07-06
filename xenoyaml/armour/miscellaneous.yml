@@ -1,0 +1,30 @@
+$schema: 0.4.0
+
+groundcombat:
+  item/armour:
+    reaper_reaper:
+      parent:
+        screen: GC
+        path: item/armour/reaper_reaper
+      name: gundrone
+      $path: ""
+      components:
+        $HitPoints: 50
+        $ArmorHardness: 10
+
+    reaper_alpha:
+      parent:
+        screen: GC
+        path: item/armour/reaper_alpha
+      name: gundrone
+      $path: ""
+      components:
+        $HitPoints: 150
+        $ArmorHardness: 20
+
+    spawner_endgame:
+      parent: GC%item/armour/spawner_endgame
+      $path: ""
+      components:
+        $HitPoints: 30
+        $ArmorHardness: 20

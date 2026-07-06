@@ -2,15 +2,31 @@ $schema: 0.4.0
 $aliases:
   SteelPlating: &SteelPlating
     $HitPoints: 45
+    :Modifiers:
+      - $ModSoldierStat:
+          $stat: Xenonauts.Common.Stats.HitPoints
+          $amount: 10
   AlloyPlating: &AlloyPlating
     $HitPoints: 70
     $ArmorHardness: 10
+    :Modifiers:
+      - $ModSoldierStat:
+          $stat: Xenonauts.Common.Stats.HitPoints
+          $amount: 20
   CeramitePlating: &CeramitePlating
     $HitPoints: 105
     $ArmorHardness: 20
+    :Modifiers:
+      - $ModSoldierStat:
+          $stat: Xenonauts.Common.Stats.HitPoints
+          $amount: 30
   ShieldedPlating: &ShieldedPlating
     $HitPoints: 165
     $ArmorHardness: 30
+    :Modifiers:
+      - $ModSoldierStat:
+          $stat: Xenonauts.Common.Stats.HitPoints
+          $amount: 40
   SteelPlatingARES: &SteelPlatingARES
     <<: *SteelPlating
     $HitPoints: 50
@@ -27,10 +43,12 @@ $builders:
   $HeavyPlating:
     $args:
       - $hp
+      - $bonusHp
     $HeavyArmour:
       $hp: $hp
+      $bonusHp: $bonusHp
     :Description: "Heavy Plating is an optional module that increases the
-      {{_context.tooltips.concept filename:\"armour\" text:\"Armour\"}} of this
+      {{_context.tooltips.concept filename:\"armour\" text:\"Armour\"}} and {{_context.tooltips.concept filename:\"hp\" text:\"Hit Points\"}} of this
       vehicle, making it tougher.\r
 
       \r
@@ -42,6 +60,7 @@ $builders:
     $args:
       - $hp
       - $hpType: Additive
+      - $bonusHp: 0
     :Modifiers:
       - $ModSoldierStat:
           $stat: Xenonauts.Common.Stats.HitPoints
@@ -54,6 +73,10 @@ $builders:
             $min: 1
             $amount: 0.8
             $max: 1
+      - $PropagatedModifier:
+        - $ModSoldierStat:
+            $stat: Xenonauts.Common.Stats.HitPoints
+            $amount: $bonusHp
     $NoLocale: {}
     :Description: "Heavy Armour is an optional module that increases the
       {{_context.tooltips.concept filename:\"armour\" text:\"Armour\"}} of this
@@ -272,26 +295,34 @@ groundcombat:
           path: item/attachment/module/simple/vehicle_tier1_heavy
         $path: ""
         components:
-          $HeavyPlating: 25
+          $HeavyPlating: 
+            $hp: 25
+            $bonusHp: 5
       vehicle_tier2_heavy:
         parent:
           screen: GC
           path: item/attachment/module/simple/vehicle_tier2_heavy
         $path: ""
         components:
-          $HeavyPlating: 40
+          $HeavyPlating: 
+            $hp: 40
+            $bonusHp: 10
       vehicle_tier3_heavy:
         parent:
           screen: GC
           path: item/attachment/module/simple/vehicle_tier3_heavy
         $path: ""
         components:
-          $HeavyPlating: 65
+          $HeavyPlating:
+            $hp: 65 
+            $bonusHp: 15
       vehicle_tier4_heavy:
         parent:
           screen: GC
           path: item/attachment/module/simple/vehicle_tier4_heavy
         $path: ""
         components:
-          $HeavyPlating: 70
+          $HeavyPlating:
+            $hp: 70 
+            $bonusHp: 20
       

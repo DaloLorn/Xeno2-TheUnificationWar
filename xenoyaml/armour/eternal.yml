@@ -1,0 +1,80 @@
+$schema: 0.4.0
+
+strategy:
+  item/armour:
+    eternal:
+      parent:
+        screen: ST
+        path: item/armour/eternal
+      name: gundrone
+      $path: ""
+      components: &Eternal
+        :Name: Eternal Regalia
+        $NoLocale: {}
+
+    eternal_archon:
+      parent:
+        screen: ST
+        path: item/armour/eternal_archon
+      name: gundrone
+      $path: ""
+      components: &HighEternal
+        :Name: High Eternal Regalia
+        $NoLocale: {}
+
+groundcombat:
+  item/armour:
+    eternal:
+      parent:
+        screen: GC
+        path: item/armour/eternal
+      name: gundrone
+      $path: ""
+      components:
+        <<: *Eternal
+        $GCEquipReqs: &IsEternal
+          - $IsEternal: {}
+        $HitPoints: 100
+        $ArmorHardness: 20
+        :Resistances:
+          kinetic: &EternalDR
+            _min: 0
+            _val: 25
+            _max: 100
+          shock: *EternalDR
+          chemical: *EternalDR
+          default: *EternalDR
+          thermal: *EternalDR
+          gas: *EternalDR
+          psionic: *EternalDR
+          suppression: *EternalDR
+          alien_atmosphere: *EternalDR
+          energy: *EternalDR
+          fall: *EternalDR
+
+    eternal_archon:
+      parent:
+        screen: GC
+        path: item/armour/eternal_archon
+      name: gundrone
+      $path: ""
+      components:
+        <<: *HighEternal
+        $GCEquipReqs: *IsEternal
+        $HitPoints: 150
+        $ArmorHardness: 30
+        :Resistances:
+          kinetic: &HighEternalDR
+            _min: 0
+            _val: 35
+            _max: 100
+          shock: *HighEternalDR
+          chemical: *HighEternalDR
+          default: *HighEternalDR
+          thermal: *HighEternalDR
+          gas: *HighEternalDR
+          psionic: *HighEternalDR
+          suppression: *HighEternalDR
+          alien_atmosphere: *HighEternalDR
+          energy: *HighEternalDR
+          fall: *HighEternalDR

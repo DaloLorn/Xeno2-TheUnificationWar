@@ -30,6 +30,9 @@ groundcombat:
       components:
         $HitPoints: 225
         $ArmorHardness: 30
+        $GCEquipReqs:
+          $IsPsyon: {}
+        $PsyonRacials: {}
 
     secton_praetorian:
       parent:
@@ -39,6 +42,9 @@ groundcombat:
       components:
         $HitPoints: 200
         $ArmorHardness: 30
+        $GCEquipReqs:
+          $IsSecton: {}
+        $SectonRacials: {}
 
     sebillian_praetorian:
       parent:
@@ -48,6 +54,9 @@ groundcombat:
       components:
         $HitPoints: 200
         $ArmorHardness: 30
+        $GCEquipReqs:
+          $IsSebillian: {}
+        $SebillianRacials: 0
 
     mantid_praetorian:
       parent:
@@ -56,8 +65,11 @@ groundcombat:
       $path: ""
       components:
         <<: *MantidPraetorian
+        $GCEquipReqs:
+          $IsMantid: {}
         $HitPoints: 130
         $ArmorHardness: 20
+        $MantidRacials: {}
 
     wraith_praetorian:
       parent:
@@ -67,6 +79,9 @@ groundcombat:
       components:
         $HitPoints: 225
         $ArmorHardness: 30
+        $GCEquipReqs:
+          $IsWraith: {}
+        $WraithRacials: 3
 
     andron_praetorian:
       parent:
@@ -77,10 +92,9 @@ groundcombat:
         <<: *AndronPraetorian
         $HitPoints: 250
         $ArmorHardness: 30
-        :Modifiers:
-          - $ModSoldierStat:
-              $stat: Xenonauts.Common.Stats.HitPoints
-              $amount: 60
+        $GCEquipReqs:
+          $IsAndron: {}
+        $AndronRacials: 60
         $Weight: 0
         :Description: >-
           The sturdy outer frame of an Andron is covered in thick, disposable plates

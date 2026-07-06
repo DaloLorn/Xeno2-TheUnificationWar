@@ -1,0 +1,91 @@
+$schema: 0.4.0
+$aliases:
+  ModType: &ModType
+    $min: 1
+    $max: 1
+    $modType: Multiplication
+$builders:
+
+  $PsyonRacials: {} # Psyons have no racials requiring special attention at this time.
+
+  $SectonRacials:
+    :Modifiers:
+      - $ModSoldierStat:
+          <<: *ModType
+          $stat: Common.Components.UnmodifiedTimeUnits
+          $amount: 1.1
+      - $ModSoldierStat:
+          <<: *ModType
+          $stat: Xenonauts.Common.Stats.HitPoints
+          $amount: 0.9
+      - $ModSoldierStat:
+          <<: *ModType
+          $stat: Xenonauts.Common.Stats.Strength
+          $amount: 0.9
+      - $ModSoldierStat:
+          <<: *ModType
+          $stat: Xenonauts.Common.Stats.Reflexes
+          $amount: 1.05
+      - $ModSoldierStat:
+          <<: *ModType
+          $stat: Xenonauts.Common.Stats.Bravery
+          $amount: 0.9
+
+  $WraithRacials:
+    $args: $cloak
+    :Modifiers:
+      - $CloakingDevice: $cloak
+      - $ModSoldierStat:
+          <<: *ModType
+          $stat: Xenonauts.Common.Stats.Reflexes
+          $amount: 1.15
+
+  $MantidRacials:
+    :Modifiers:
+      - $ModSoldierStat:
+          <<: *ModType
+          $stat: Common.Components.UnmodifiedTimeUnits
+          $amount: 1.2
+      - $ModSoldierStat:
+          <<: *ModType
+          $stat: Xenonauts.Common.Stats.Accuracy
+          $amount: 1.05
+      - $ModSoldierStat:
+          <<: *ModType
+          $stat: Xenonauts.Common.Stats.Bravery
+          $amount: 0.85
+
+  $SebillianRacials:
+    $args: $accuracy
+    :Modifiers:
+      - $ModSoldierStat:
+          <<: *ModType
+          $stat: Common.Components.UnmodifiedTimeUnits
+          $amount: 0.9
+      - $ModSoldierStat:
+          <<: *ModType
+          $stat: Xenonauts.Common.Stats.HitPoints
+          $amount: 1.15
+      - $ModSoldierStat:
+          <<: *ModType
+          $stat: Xenonauts.Common.Stats.Strength
+          $amount: 1.1
+      - $ModSoldierStat:
+          <<: *ModType
+          $stat: Xenonauts.Common.Stats.Bravery
+          $amount: 1.2
+      - $ModSoldierType:
+          $stat: Xenonauts.Common.Stats.Accuracy
+          $amount: $accuracy
+
+  $AndronRacials:
+    $args: $hp
+    :Modifiers:
+      - $ModSoldierStat:
+          $stat: Xenonauts.Common.Stats.HitPoints
+          $amount: $hp
+      - $ModSoldierStat:
+          <<: *ModType
+          $stat: Xenonauts.Common.Stats.Reflexes
+          $amount: 0.85
+

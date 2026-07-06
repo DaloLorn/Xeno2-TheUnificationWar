@@ -54,6 +54,9 @@ groundcombat:
         $HitPoints: 25
         $ArmorHardness: 5
         $NoLocale: {}
+        $PsyonRacials: {}
+        $GCEquipReqs:
+          $IsPsyon: {}
         :Description: &CaesanJumpsuit >-
           While not technically constituting armour, the jumpsuits worn by
           either Caesan gender are reinforced with sturdy fibers woven from alien alloys, 
@@ -67,8 +70,11 @@ groundcombat:
       $path: ""
       components:
         <<: *MantidNoncom
+        $MantidRacials: {}
+        $GCEquipReqs:
+          $IsMantid: {}
         :Description: >- 
-          Unfortunately, the bare Mantid exoskeleton offers no 
+          Unfortunately, the bare Mantid exoskeleton offers no
           meaningful protection against battlefield hazards.
 
     sebillian_noncom:
@@ -79,9 +85,12 @@ groundcombat:
       components:
         <<: *SebillianNoncom
         $HitPoints: 15
+        $SebillianRacials: 0
+        $GCEquipReqs:
+          $IsSebillian: {}
         :Description: >-
           The thick, leathery scales of a Sebillian afford them a token amount of
-          protection against injuries sustained on the battlefield - and seals
+          protection against injuries sustained on the battlefield - and seal
           their dominance in barroom brawls against many of the softer species.
     
     secton_noncom:
@@ -92,8 +101,11 @@ groundcombat:
       components:
         $HitPoints: 25
         $ArmorHardness: 5
+        $SectonRacials: {}
         $NoLocale: {}
         :Description: *CaesanJumpsuit
+        $GCEquipReqs:
+          $IsSecton: {}
 
     wraith_noncom:
       parent:
@@ -104,8 +116,9 @@ groundcombat:
         <<: *WraithNoncom
         $HitPoints: 25
         $ArmorHardness: 5
-        :Modifiers:
-          - $CloakingDevice: 3
+        $GCEquipReqs:
+          $IsWraith: {}
+        $WraithRacials: 3
         :Description: >-
           Despite their appearance, the greenish vests favored by off-duty
           or noncombatant Wraiths offer no protective benefit, and are worn

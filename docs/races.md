@@ -35,11 +35,11 @@ Basically as humans, but with psi abilities and better eyes.
 Smaller Psyons without psi abilities.
 
 - Vision: as Psyon
-- +10 Unmodified TU
-- -10 HP
-- -10 STR
-- +5 REF
-- -10 BRA
+- +10% Unmodified TU
+- -10% HP
+- -10% STR
+- +5% REF
+- -10% BRA
 - Small
 - Psionic Triangulation
 - Cannot equip two-handed or melee weapons.
@@ -55,7 +55,7 @@ Very agile and perceptive creatures with excellent hearing and night vision.
 - 25% Energy DR
 - Cloaking Field (now activates on turn start again)
 - Glowing
-- +15 REF
+- +15% REF
 - Chance to stop bleeding: 10%
 - Combatants use the Alien Rifle line with a 50% chance of Thermal and 50% chance of Gas Detonators (independent rolls).
 - Officers have a guaranteed Thermal Detonator.
@@ -64,10 +64,10 @@ Very agile and perceptive creatures with excellent hearing and night vision.
 
 Small and quick, but lacking some of the Secton's agility.
 
-- +20 Unmodified TU
+- +20% Unmodified TU
 - Vision: 40/10-30/135
-- +5 ACC
-- -15 BRA
+- +5% ACC
+- -15% BRA
 - Mantid Bite (mandatory secondary weapon)
 - 100% Chemical DR
 - Small
@@ -82,10 +82,10 @@ Tough, lumbering creatures, slow to engage but hard to kill.
 
 - 15% Energy DR
 - 35% Kinetic/Explosive DR
-- +15 HP
-- -10 TU
-- +10 STR (and reduced armor weight to further simulate strength)
-- +20 BRA
+- +15% HP
+- -10% TU
+- +10% STR (and reduced armor weight to further simulate strength)
+- +20% BRA
 - Vision: 20/2-15/40
 - Poor Eyesight (-2 ACC per tile)
 - Sebillian Claws (mandatory secondary weapon)
@@ -116,7 +116,7 @@ Semi-sapient mechanical warriors with little sense for self-preservation.
 - Vision: 20/20-20/45
 - 80 STR (no scaling, but no armor weight either)
 - 60 HP (plus extra +15/15/30 per armor tier)
-- -15 REF
+- -15% REF
 - 50% Suppression DR
 - Mechanical (but with Morale, and REF/ACC/TU/BRA training)
 - Large
