@@ -1,0 +1,73 @@
+$schema: 0.4.0
+
+groundcombat:
+  masters/actor/combatant/mantid:
+    mantid:
+      parent: $next
+      $path: ""
+      components:
+        $HearingRange: 12
+        $NightVisionRange:
+          $min: 10
+          $val: 30
+        $VisionCone: 135
+        $VisionRange: 40
+        :NightVisionIntensity:
+          $Range:
+            $min: 64
+            $val: 255
+        :BleedWoundHealChance:
+          $PercentileRange: 50
+        :Resistances:
+          kinetic: &NoDR
+            $PercentileRange: 0
+          shock: *NoDR
+          chemical:
+            $PercentileRange: 100
+          default: *NoDR
+          thermal: *NoDR
+          gas: *NoDR
+          psionic: *NoDR
+          suppression: *NoDR
+          energy: *NoDR
+          alien_atmosphere:
+            $Range: 100
+          fall: *NoDR
+          heal: *NoDR
+          
+  actor/combatant/mantid/default:
+    noncom/default:
+      parent: $next
+      $path: ""
+      components:
+        $NoncomStats: {}
+
+    soldier/default:
+      parent: $next
+      $path: ""
+      components:
+        $SoldierStats: {}
+        
+    warrior/default:
+      parent: $next
+      $path: ""
+      components:
+        $WarriorStats: {}
+
+    officer/default:
+      parent: $next
+      $path: ""
+      components:
+        $OfficerStats: {}
+
+    elite/default:
+      parent: $next
+      $path: ""
+      components:
+        $EliteStats: {}
+
+    praetorian/default:
+      parent: $next
+      $path: ""
+      components:
+        $PraetorianStats: {}

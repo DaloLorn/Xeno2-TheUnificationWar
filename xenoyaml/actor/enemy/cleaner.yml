@@ -1,0 +1,23 @@
+$schema: 0.4.0
+
+groundcombat:
+  masters/actor/combatant/cleaner:
+    cleaner:
+      parent: GC%masters/actor/combatant/cleaner/cleaner
+      $path: ""
+      components:
+        :HearingRange:
+          $MaxInfRange: 12
+        :NightVisionRange:
+          _min: 2
+          _val: 16
+          $FloatMax: {}
+        # These are redundant because the Cleaners never override them anyway.
+        # :VisionAngle:
+        #   _min: 45
+        #   _val: 45
+        #   _max: 45
+        # :VisionRange:
+        #   _min: 26
+        #   _val: 26
+        #   _max: 26

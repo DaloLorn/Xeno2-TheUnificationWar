@@ -179,26 +179,29 @@ $builders:
       $min: 0
       $val: $val
 
-  # Sets up a body ID for a unit of the given species.
-  $Species:
-    $args: 
-    - $species
-    - $group: default
-    - $ethnicity: default
-    - $gender: default
-    :BodyID:
-      species: $species
-      group: $group
-      ethnicity: $ethnicity
-      gender: $gender
+  $FloatMax:
+    _max: 3.402823e+38
 
-  # Sets up a body ID for a Xenonaut defector unit of the given species.
-  $XenonautSpecies:
-    $args: $species
-    $Species:
-      $species: $species
-      $group: xenonaut
-    :Xenonauts.Common.Components.RoleGroup: default
+  $MaxInfRange:
+    $args: $val
+    $Range:
+      $min: 0
+      $val: $val
+      $FloatMax: {}
+
+  $NormalRange:
+    $args: $val
+    $Range:
+      $min: 0
+      $val: $val
+      $max: 1
+
+  $PercentileRange:
+    $args: $val
+    $Range:
+      $min: 0
+      $val: $val
+      $max: 100
 
   # Builds a prerequisite to check for the actor's rank (e.g. sentry guns).
   $RankPq:

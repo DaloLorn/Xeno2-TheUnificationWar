@@ -1,0 +1,77 @@
+$schema: 0.4.0
+
+groundcombat:
+  masters/actor/combatant/wraith:
+    wraith:
+      parent: $next
+      $path: ""
+      components:
+        $HearingRange: 20
+        $NightVisionRange:
+          $min: 35
+          $val: 35
+        $VisionRange: 35
+        :BleedWoundHealChange:
+          $PercentileRange: 10
+        :GCAbilityDefinitions: &WraithAbilities {}
+        :Resistances:
+          energy:
+            $PercentileRange: 25
+          kinetic: &NoDR
+            $PercentileRange: 0
+          shock: *NoDR
+          chemical: *NoDR
+          default: *NoDR
+          thermal: *NoDR
+          gas: *NoDR
+          psionic: *NoDR
+          suppression: *NoDR
+          alien_atmosphere:
+            $Range: 100
+          fall: *NoDR
+          heal: *NoDR
+          
+  actor/combatant/wraith/default:
+    noncom/default:
+      parent: $next
+      $path: ""
+      components:
+        $NoncomStats: {}
+
+    soldier/default:
+      parent: $next
+      $path: ""
+      components:
+        $SoldierStats: {}
+        
+    warrior/default:
+      parent: $next
+      $path: ""
+      components:
+        $WarriorStats: {}
+
+    officer/default:
+      parent: $next
+      $path: ""
+      components:
+        $OfficerStats: {}
+        :GCAbilityDefinitions: *WraithAbilities
+
+    elite/default:
+      parent: $next
+      $path: ""
+      components:
+        $EliteStats: {}
+
+    leader/default:
+      parent: $next
+      $path: ""
+      components:
+        $LeaderStats: {}
+        :GCAbilityDefinitions: *WraithAbilities
+
+    praetorian/default:
+      parent: $next
+      $path: ""
+      components:
+        $PraetorianStats: {}

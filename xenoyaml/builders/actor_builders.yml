@@ -1,0 +1,190 @@
+$schema: 0.4.0
+$builders:
+  $Bravery:
+    $args: $val
+    :Bravery:
+      $MaxInfRange: $val
+
+  $Accuracy:
+    $args: $val
+    :Accuracy:
+      $MaxInfRange: $val
+
+  $TimeUnits:
+    $args: $val
+    :TimeUnits:
+      $MaxRange: $val
+
+  $Strength:
+    $args: $val
+    :Strength:
+      $PercentileRange: $val
+
+  $Reflexes:
+    $args: $val
+    :Reflexes:
+      $MaxInfRange: $val
+
+  $VisionRange:
+    $args: $val
+    :VisionRange:
+      $MaxInfRange: $val
+
+  $NightVisionRange:
+    $args:
+      - $min
+      - $val
+    :NightVisionRange:
+      $Range:
+        $min: $min
+        $val: $val
+        $FloatMax: {}
+
+  $VisionCone:
+    $args: $val
+    :VisionAngle:
+      $Range:
+        $min: 0
+        $val: $val
+        $max: 360
+
+  $PsionicStrength:
+    $args: $val
+    :PsionicStrength:
+      $MaxInfRange: $val
+
+  $HearingRange:
+    $args: $val
+    :HearingRange:
+      $MaxInfRange: $val
+
+  $RecoveredBody:
+    $args:
+      - $dead
+      - $unconscious: $dead
+    :RecoveredBody:
+      Dead:
+        :ar_Template:
+          screen: GC
+          path: $dead
+      Unconscious:
+        :ar_Template:
+          screen: GC
+          path: $unconscious
+
+  # Sets up a body ID for a unit of the given species.
+  $Species:
+    $args:
+      - $species
+      - $group: default
+      - $ethnicity: default
+      - $gender: default
+    :BodyID:
+      species: $species
+      group: $group
+      ethnicity: $ethnicity
+      gender: $gender
+
+  # Sets up a body ID for a Xenonaut defector unit of the given species.
+  $XenonautSpecies:
+    $args: $species
+    $Species:
+      $species: $species
+      $group: xenonaut
+    :Xenonauts.Common.Components.RoleGroup: default
+
+  $DefectorStats:
+    :TimeUnits:
+      _min: 50
+      _val: 60
+      _max: 80
+    :HitPoints:
+      _min: 45
+      _val: 60
+      _max: 80
+    :UnmodifiedHitPoints:
+      _min: 45
+      _val: 60
+      _max: 80
+    :Accuracy:
+      _min: 45
+      _val: 60
+      _max: 80
+    :Strength:
+      _min: 45
+      _val: 60
+      _max: 80
+    :Reflexes:
+      _min: 40
+      _val: 55
+      _max: 70
+    :Bravery:
+      _min: 40
+      _val: 55
+      _max: 75
+
+  $SalvagedAndronStats:
+    $DefectorStats: {}
+    # The usual builders don't quite fit here.
+    :HitPoints:
+      $Range: 60
+    :Strength:
+      $Range: 80
+
+  # Base statblocks by rank; equipment modifiers are delivered by armor.
+  $NoncomStats:
+    $Bravery: 50
+    $PsionicStrength: 50
+    $TimeUnits: 50
+    $Accuracy: 42
+    $Strength: 50
+    $Reflexes: 50
+    $HitPoints: 40
+
+  $SoldierStats:
+    $TimeUnits: 60
+    $HitPoints: 60
+    $Accuracy: 52
+    $Strength: 60
+    $Reflexes: 55
+    $Bravery: 55
+
+  $WarriorStats:
+    $TimeUnits: 65
+    $HitPoints: 65
+    $Accuracy: 57
+    $Strength: 65
+    $Reflexes: 55
+    $Bravery: 60
+
+  $OfficerStats:
+    $TimeUnits: 65
+    $HitPoints: 60
+    $Accuracy: 57
+    $Strength: 65
+    $Reflexes: 60
+    $Bravery: 65
+
+  $EliteStats:
+    $TimeUnits: 70
+    $HitPoints: 75
+    $Accuracy: 62
+    $Strength: 70
+    $Reflexes: 60
+    $Bravery: 65
+
+  $LeaderStats: 
+    $TimeUnits: 70
+    $HitPoints: 70
+    $Accuracy: 62
+    $Strength: 70
+    $Reflexes: 65
+    $Bravery: 70
+
+  $PraetorianStats:
+    $TimeUnits: 80
+    $HitPoints: 85
+    $Accuracy: 72
+    $Strength: 80
+    $Reflexes: 65
+    $Bravery: 90

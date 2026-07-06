@@ -1,0 +1,33 @@
+$schema: 0.4.0
+
+groundcombat:          
+  actor/combatant/secton/default:
+    noncom/default:
+      parent: $next
+      $path: ""
+      components:
+        $NoncomStats: {}
+
+    soldier/default:
+      parent: $next
+      $path: ""
+      components:
+        $SoldierStats: {}
+        
+    warrior/default:
+      parent: $next
+      $path: ""
+      components:
+        $WarriorStats: {}
+
+    elite/default:
+      parent: $next
+      $path: ""
+      components:
+        $EliteStats: {}
+
+    praetorian/default:
+      parent: $next
+      $path: ""
+      components:
+        $PraetorianStats: {}

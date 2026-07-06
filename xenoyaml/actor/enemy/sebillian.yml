@@ -1,0 +1,91 @@
+$schema: 0.4.0
+
+groundcombat:
+  masters/actor/combatant/sebillian:
+    sebillian:
+      parent: $next
+      $path: ""
+      components:
+        $HearingRange: 12
+        $NightVisionRange:
+          $min: 2
+          $val: 15
+        :NightVisionIntensity:
+          $Range:
+            $min: 64
+            $val: 255
+        $VisionCone: 40
+        $VisionRange: 20
+        :GCAbilityDefinitions: &SebillianAbilities
+          - :118:
+              Regenerate: 50
+              ReduceStun: 0
+              RequiresConsciousness: true
+              SoundFX: null
+              Name: Regenerate HP
+              Tooltip: false
+        :Resistances:
+          energy:
+            $PercentileRange: 15
+          kinetic: &PhysicalDR
+            $PercentileRange: 35
+          shock: &NoDR
+            $PercentileRange: 0
+          chemical: *NoDR
+          default: *NoDR
+          thermal: *PhysicalDR
+          gas: *NoDR
+          psionic: *NoDR
+          suppression: *NoDR
+          alien_atmosphere:
+            $Range: 100
+          fall: *NoDR
+          heal: *NoDR
+          
+  actor/combatant/sebillian/default:
+    noncom/default:
+      parent: $next
+      $path: ""
+      components:
+        $NoncomStats: {}
+
+    soldier/default:
+      parent: $next
+      $path: ""
+      components:
+        $SoldierStats: {}
+        
+    warrior/default:
+      parent: $next
+      $path: ""
+      components:
+        $WarriorStats: {}
+        :GCAbilityDefinitions: *SebillianAbilities
+
+    officer/default:
+      parent: $next
+      $path: ""
+      components:
+        $OfficerStats: {}
+        :GCAbilityDefinitions: *SebillianAbilities
+
+    elite/default:
+      parent: $next
+      $path: ""
+      components:
+        $EliteStats: {}
+        :GCAbilityDefinitions: *SebillianAbilities
+
+    leader/default:
+      parent: $next
+      $path: ""
+      components:
+        $LeaderStats: {}
+        :GCAbilityDefinitions: *SebillianAbilities
+
+    praetorian/default:
+      parent: $next
+      $path: ""
+      components:
+        $PraetorianStats: {}
+        :GCAbilityDefinitions: *SebillianAbilities

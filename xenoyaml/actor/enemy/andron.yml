@@ -1,0 +1,66 @@
+$schema: 0.4.0
+
+groundcombat:
+  masters/actor/combatant/andron:
+    andron:
+      parent: $next
+      $path: ""
+      components:
+        $HearingRange: 12
+        :Morale:
+          $PercentileRange: 100
+        $NightVisionRange:
+          $min: 20
+          $val: 20
+        :GCCombatantMeta: Move,Turn,Interact,Crushing,EMPVulnerable,PsionicInvulnerable,InjuryImmune,Suppressable
+        $VisionCone: 45
+        $VisionRange: 20
+        :Resistances:
+          kinetic: &NoDR
+            $PercentileRange: 0
+          alien_atmosphere: &Immunity
+            $Range: 100
+          shock: *NoDR
+          chemical: *NoDR
+          default: *NoDR
+          thermal: *NoDR
+          gas: *Immunity
+          psionic: *Immunity
+          suppression:
+            $PercentileRange: 50
+          energy: *NoDR
+          fall: *NoDR
+          heal: *NoDR
+          
+  actor/combatant/andron/default:
+    soldier/default:
+      parent: $next
+      $path: ""
+      components:
+        $SoldierStats: {}
+        $HitPoints: 60
+        $Strength: 80
+        
+    warrior/default:
+      parent: $next
+      $path: ""
+      components:
+        $WarriorStats: {}
+        $HitPoints: 60
+        $Strength: 80
+
+    elite/default:
+      parent: $next
+      $path: ""
+      components:
+        $EliteStats: {}
+        $HitPoints: 60
+        $Strength: 80
+
+    praetorian/default:
+      parent: $next
+      $path: ""
+      components:
+        $PraetorianStats: {}
+        $HitPoints: 60
+        $Strength: 80

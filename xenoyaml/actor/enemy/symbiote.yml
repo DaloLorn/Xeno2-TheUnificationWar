@@ -6,52 +6,23 @@ groundcombat:
   name: biter
   $path: masters/actor/combatant/biter/biter
   components:
-    :Resistances: # Added 100% Gas DR so they don't die to Poison Gas.
-      kinetic:
+    # Added 100% Gas DR so they don't die to Poison Gas when spawned by a Symbiote Pod.
+    :Resistances: 
+      kinetic: &NoDR
         _min: 0
         _val: 0
         _max: 100
-      shock:
-        _min: 0
-        _val: 0
-        _max: 100
-      chemical:
+      shock: *NoDR
+      chemical: &Immune
         _min: 0
         _val: 100
         _max: 100
-      default:
-        _min: 0
-        _val: 0
-        _max: 100
-      thermal:
-        _min: 0
-        _val: 0
-        _max: 100
-      gas:
-        _min: 0
-        _val: 100
-        _max: 100
-      psionic:
-        _min: 0
-        _val: 0
-        _max: 100
-      suppression:
-        _min: 0
-        _val: 0
-        _max: 100
-      alien_atmosphere:
-        _min: 100
-        _val: 100
-        _max: 100
-      energy:
-        _min: 0
-        _val: 0
-        _max: 100
-      fall:
-        _min: 0
-        _val: 0
-        _max: 100
-      heal:
-        _min: 0
-        _val: 0
-        _max: 100
+      default: *NoDR
+      thermal: *NoDR
+      gas: *Immune
+      psionic: *NoDR
+      suppression: *NoDR
+      alien_atmosphere: *Immune
+      energy: *NoDR
+      fall: *NoDR
+      heal: *NoDR
