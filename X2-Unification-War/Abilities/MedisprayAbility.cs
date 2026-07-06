@@ -2,12 +2,10 @@ using Artitas;
 using Artitas.Utils;
 using Common;
 using Common.Boards;
-using Common.Boards.System;
 using Common.Content;
 using Common.Mechanics.Factions;
 using Common.RPG;
 using Common.Util;
-using EnumT.Extensions;
 using System;
 using UnityEngine;
 using Xenonauts;
@@ -15,9 +13,7 @@ using Xenonauts.Common.Systems;
 using Xenonauts.GroundCombat;
 using Xenonauts.GroundCombat.Abilities;
 using Xenonauts.GroundCombat.Abilities.Shoot;
-using Xenonauts.GroundCombat.Boards.Natures;
 using Xenonauts.GroundCombat.Systems;
-using Xenonauts.GroundCombat.Utils;
 using Xenonauts.UI;
 
 #nullable disable
@@ -124,16 +120,16 @@ namespace X2UnificationWar.Abilities
       int deltaStun = target.HasStun() ? -target.Stun().DeltaToMinimum().Ceil() : 0;
       DamageSystem.AdjustHpStunAndBleed(state.Target, maximum, deltaStun, DataLoadedEnums.DamageType.Heal(), conflict);
       
-            AddressComponent addressComponent = attacker.Address();
-            AddressComponent targetAddress = target.Address();
-            Vector3 vector3 = Vector3.up * addressComponent.value.boardParam.slotHeight / 2f;
-            Vector3 projectileStart = attacker.Transformation().position + vector3;
-            Vector3 projectileEnd = targetAddress.value.position + vector3;
-              float meta4 = state.GetMeta<float>(GroundCombatConstants.META_DELAY_TO_DESTROY_PROJECTILE);
-              AssetReference<GameObject> meta5 = state.GetMeta<AssetReference<GameObject>>(GroundCombatConstants.META_FX_PREFAB);
-              World world = state.Source.World;
-              if (SightSystem.IsAddressVisibleForAnyLocalPlayer(world, (Address)targetAddress))
-                world.CreateEntity().AddTransformation(projectileStart).AddPrototype(meta5, false, false, true).AddDeleteInSeconds(meta4).GameObject().value.GetComponent<IProjectile>().Spawn(projectileStart, projectileEnd);
+      AddressComponent addressComponent = attacker.Address();
+      AddressComponent targetAddress = target.Address();
+      Vector3 vector3 = Vector3.up * addressComponent.value.boardParam.slotHeight / 2f;
+      Vector3 projectileStart = attacker.Transformation().position + vector3;
+      Vector3 projectileEnd = targetAddress.value.position + vector3;
+        float meta4 = state.GetMeta<float>(GroundCombatConstants.META_DELAY_TO_DESTROY_PROJECTILE);
+        AssetReference<GameObject> meta5 = state.GetMeta<AssetReference<GameObject>>(GroundCombatConstants.META_FX_PREFAB);
+        World world = state.Source.World;
+        if (SightSystem.IsAddressVisibleForAnyLocalPlayer(world, (Address)targetAddress))
+          world.CreateEntity().AddTransformation(projectileStart).AddPrototype(meta5, false, false, true).AddDeleteInSeconds(meta4).GameObject().value.GetComponent<IProjectile>().Spawn(projectileStart, projectileEnd);
 
 
       AssetReference<AudioClip> meta = state.GetMeta<AssetReference<AudioClip>>(GroundCombatConstants.META_AUDIOCLIP, null);

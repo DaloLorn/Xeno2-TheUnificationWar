@@ -25,18 +25,20 @@ namespace X2UnificationWar {
         public void Create(Mod mod, Harmony patcher)
         {
             Log.Warn("[X2-Unification-War] Loaded Unification War!");
+            var TypeRegistry = Traverse.Create(TypeKeyIndexRuntime.Instance);
 
-            var LowercaseKeyToType = (Dictionary<string, Type>) typeof(TypeKeyIndexRuntime).GetField("LowercaseKeyToType", BindingFlags.Static | BindingFlags.NonPublic).GetValue(TypeKeyIndexRuntime.Instance);
-            var TypeToKey = (Dictionary<Type, string>)
-                typeof(TypeKeyIndexRuntime).GetField("TypeToKey", BindingFlags.Static | BindingFlags.NonPublic).GetValue(TypeKeyIndexRuntime.Instance);
-
+            var LowercaseKeyToType = TypeRegistry.Property("LowercaseKeyToType").GetValue<Dictionary<string, Type>>();
+            var TypeToKey = TypeRegistry.Property("TypeToKey").GetValue<Dictionary<Type, string>>();
+            
             RegisterType(LowercaseKeyToType, TypeToKey, ModConstants.MedisprayType, typeof(MedisprayAbilityDefinition));
+            RegisterType(LowercaseKeyToType, TypeToKey, ModConstants.FriendlyMesmerizeType, typeof (FriendlyMesmerizeAbilityDefinition));
         }
 
         void RegisterType(Dictionary<string, Type> LowercaseKeyToType, Dictionary<Type, string> TypeToKey, string Key, Type Type)
         {
             LowercaseKeyToType.Add(Key, Type);
             TypeToKey.Add(Type, Key);
+            Log.Warn($"[X2-Unification-War] Registered type alias ${Key} for type ${Type}");
         }
         
         public void Destroy() {

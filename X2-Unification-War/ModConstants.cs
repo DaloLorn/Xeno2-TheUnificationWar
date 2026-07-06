@@ -16,5 +16,6 @@ namespace X2UnificationWar {
         #endregion
 
         public static readonly string MedisprayType = "DL_X2UW_MedisprayAbility";
+        public static readonly string FriendlyMesmerizeType = "DL_X2UW_MesmerizeAbility";
     }
 }
