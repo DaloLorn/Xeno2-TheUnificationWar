@@ -4,10 +4,14 @@
         <TargetFramework>net48</TargetFramework>
         <Nullable>enable</Nullable>
         <RootNamespace>X2UnificationWar</RootNamespace>
-        <LangVersion>latest</LangVersion>
+        <LangVersion>latest</LangVersion>  
     </PropertyGroup>
-
       <ItemGroup>
+        <ProjectReference Include="Xenonauts2.csproj" 
+                    BuildReference="false" 
+                    ReferenceOutputAssembly="false"
+                    SkipGetTargetFrameworkProperties="true" />
+        <!-- <None Include="$(Decompiled)\**\*.cs" Exclude="$(Decompiled)\bin\**;$(Decompiled)\obj\**;$(Decompiled)\tools\**" Link="DecompiledSource\%(RecursiveDir)%(Filename)%(Extension)"/> -->
         <Reference Include="0Harmony">
           <HintPath>$(GameFolder)\0Harmony.dll</HintPath>
           <Private>False</Private>
@@ -70,8 +74,6 @@
           <BuiltArtifacts Include="$(TargetDir)$(TargetName).pdb" />
         </ItemGroup>
 
-        <Copy SourceFiles="@(BuiltArtifacts)"
-              DestinationFolder="$(ModInstanceFolder)/assembly/common"
-              SkipUnchangedFiles="true" />
+        <Copy SourceFiles="@(BuiltArtifacts)" DestinationFolder="$(ModInstanceFolder)/assembly/common" SkipUnchangedFiles="true" />
       </Target>
 </Project>
