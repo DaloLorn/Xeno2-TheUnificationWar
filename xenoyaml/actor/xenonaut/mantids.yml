@@ -6,6 +6,7 @@ strategy:
   name: mantid_defector
   $path: actor/combatant/mantid/xenonauts/mantid_defector
   components:
+    $DefectorStats: {}
     :DefaultLoadoutProfile:
       Target: ST-::-loadout_profiles/mantid_defector.json
       $valuetype: Xenonauts.Strategy.Components.ReferencedDefaultLoadoutProfileStrategy

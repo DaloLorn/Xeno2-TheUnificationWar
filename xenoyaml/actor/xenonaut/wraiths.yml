@@ -6,6 +6,7 @@ strategy:
   name: wraith_defector
   $path: actor/combatant/wraith/xenonauts/wraith_defector
   components:
+    $DefectorStats: {}
     :DefaultLoadoutProfile:
       Target: ST-::-loadout_profiles/wraith_defector.json
       $valuetype: Xenonauts.Strategy.Components.ReferencedDefaultLoadoutProfileStrategy

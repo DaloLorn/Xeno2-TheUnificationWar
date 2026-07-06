@@ -6,6 +6,7 @@ strategy:
   name: secton_defector
   $path: actor/combatant/secton/xenonauts/secton_defector
   components:
+    $DefectorStats: {}
     :DefaultLoadoutProfile:
       Target: ST-::-loadout_profiles/secton_defector.json
       $valuetype: Xenonauts.Strategy.Components.ReferencedDefaultLoadoutProfileStrategy
