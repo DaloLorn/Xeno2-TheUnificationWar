@@ -25,10 +25,10 @@ Formula extracted from 7.20.4 codebase:
 - Range: 10 (4/10), max 20
 - Special: One-Handed, 1.25x REF
 - Ammo: 15
-- Ammo Weight: 4
+- Ammo Weight: 2
 - Accelerated: 27 Kinetic, 8 Penetration
 - Advanced Accelerated: 29 Kinetic, 11 Penetration, 2 Destruction
-- Alloy Rounds: Ammo Weight 3, +1 Penetration
+- Alloy Rounds: Ammo Weight 1, +1 Penetration
 
 ## Laser
 

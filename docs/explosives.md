@@ -32,7 +32,7 @@ Gas DR resists all Stun effects.
 ## Gas Detonator
 
 - Toxic Detonator: 5 Kinetic, Blast 2.5, 100% Poison Gas, unusable by Xenonaut units
-- Chemical Detonaor: 15 Chemical, replace Poison with Corrosive Gas
+- Chemical Detonator: 15 Chemical, replace Poison with Corrosive Gas
 
 ## Gas Grenade
 

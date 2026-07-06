@@ -248,31 +248,31 @@ Semi-sapient mechanical warriors with little sense for self-preservation.
 
 ## Soldier
 
-- +10 TU, +20 HP, +10 ACC, +5 REF, +5 BRA
+- +10 TU, +20 HP, +10 ACC, +10 STR, +5 REF, +5 BRA
 
 ## Warrior
 
-- +15 TU, +25 HP, +15 ACC, +5 REF, +10 BRA
+- +15 TU, +25 HP, +15 ACC, +15 STR, +5 REF, +10 BRA
 
 ## Officer
 
-- +15 TU, +20 HP, +15 ACC, +10 REF, +15 BRA
+- +15 TU, +20 HP, +15 ACC, +15 STR, +10 REF, +15 BRA
 
 ## Elite
 
-- +20 TU, +35 HP, +20 ACC, +10 REF, +15 BRA
+- +20 TU, +35 HP, +20 ACC, +20 STR, +10 REF, +15 BRA
 
 ## Leader
 
-- +20 TU, +30 HP, +20 ACC, +15 REF, +20 BRA
+- +20 TU, +30 HP, +20 ACC, +20 STR, +15 REF, +20 BRA
 
 ## Praetorian
 
-- +30 TU, +45 HP, +30 ACC, +15 REF, +30 BRA
+- +30 TU, +45 HP, +30 ACC, +30 STR, +15 REF, +30 BRA
 
-- Psyon: 80/85/72/65/90
-- Secton: 90/75/72/70/70
-- Wraith: 80/85/72/85/80
-- Mantid: 100/85/77/65/65
-- Sebillian: 70/100/72/65/100
-- Andron: 80/120/72/50/90
+- Psyon: 80/85/72/80/65/90
+- Secton: 90/75/72/70/70/70
+- Wraith: 80/85/72/80/85/80
+- Mantid: 100/85/77/80/65/65
+- Sebillian: 70/100/72/90/65/100
+- Andron: 80/120/72/80/50/90 (Androns get no STR scaling)

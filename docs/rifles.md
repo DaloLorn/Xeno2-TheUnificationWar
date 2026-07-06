@@ -18,7 +18,7 @@
 
 ## SMG (Cleaner, but also relevant to Autorifles)
 
-- 8 Suppression
+- 5 Penetration, 1 Destruction, 8 Suppression
 - Weight: 8
 - Reload: 15 TU
 - Range: 16 (2.5/10), max 26
@@ -90,6 +90,7 @@
 ## Fusion Caster
 
 - 85 Energy, 20 Penetration, 25 Destruction, 65% Fire, 10% Bleed (x3)
+- Fire modes revert to standard
 - Range: 8 (4/4), max 33
 - Ammo: 15
 
@@ -105,7 +106,7 @@
 
 ## Psi Amp
 
-- 20 Psionic, 30 Stun, 1000 Penetration, 1000% ACC, On Hit: Mind Control
+- 20 Psionic, 30 Stun, 30 Morale, 30 Suppression, 999 Penetration, 1000% ACC
     - Mentarch & Advanced/Eternal Amp have 30/45, Mentokyr & High Eternal Amp have 40/60
 - Range: Visual (100% dropoff; High Eternal Amp has unlimited range)
     - This necessitates different amps for different races due to different visual ranges
