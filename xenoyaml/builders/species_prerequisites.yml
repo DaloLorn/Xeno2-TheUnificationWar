@@ -1,4 +1,4 @@
-$schema: 0.4.0
+$schemaVersion: 1.0.0
 $builders:
   # Builds a BodyIDPq for a given species with all other props omitted.
   # Essentially $Species, but for prerequisites.

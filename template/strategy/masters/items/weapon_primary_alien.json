@@ -1,1 +1,1 @@
-{"version":"0.1.0","asset":{"Parent":{"$content":"xenonauts-:-ST-::-masters/items/weapon_primary_alien.json","$t":"ar_Template"},"_components":[{"$content":"ShowAmmoInArmory,Transferable,Sellable","$t":"SItemMeta"}],"$t":"4"},"$t":"15"}
+{"version":"0.1.0","asset":{"Parent":{"$content":"$next-:-ST-::-masters/items/weapon_primary_alien.json","$t":"ar_Template"},"_components":[{"$content":"ShowAmmoInArmory,Transferable,Sellable","$t":"SItemMeta"}],"$t":"4"},"$t":"15"}
