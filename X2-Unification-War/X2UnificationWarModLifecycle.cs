@@ -4,14 +4,14 @@ using System.Reflection;
 using Artitas;
 using Artitas.Utils;
 using Common.Content;
-using Common.Modding;
+using Common.Content.DataStructures;
+using Common.Content.Lifecycle;
 using HarmonyLib;
 using log4net;
-using X2UnificationWar.Components;
 
 namespace X2UnificationWar {
     
-    public class X2UnificationWarModLifecycle : IModLifecycle {
+    public class X2UnificationWarModLifecycle : IContentPackLifecycle {
         
         #region Logging
 
@@ -22,9 +22,10 @@ namespace X2UnificationWar {
 
         #endregion
         
-        public void Create(Mod mod, Harmony patcher)
+        public void Create(ContentPackState mod, Harmony patcher)
         {
             Log.Warn("[X2-Unification-War] Loaded Unification War!");
+            /*
             var TypeRegistry = Traverse.Create(TypeKeyIndexRuntime.Instance);
 
             var LowercaseKeyToType = TypeRegistry.Property("LowercaseKeyToType").GetValue<Dictionary<string, Type>>();
@@ -39,21 +40,22 @@ namespace X2UnificationWar {
             LowercaseKeyToType.Add(Key, Type);
             TypeToKey.Add(Type, Key);
             Log.Warn($"[X2-Unification-War] Registered type alias ${Key} for type ${Type}");
+            */
         }
         
         public void Destroy() {
             Log.Warn("[X2-Unification-War] Destroyed Unification War! (For peace!)");
         }
         
-        public void OnWorldCreate(IModLifecycle.Section section, WeakReference<World> world) {
+        public void OnWorldCreate(IContentPackLifecycle.Section section, WeakReference<World> world) {
             Log.Warn($"[X2-Unification-War] World Create: {section}");
         }
 
-        public IEnumerable<Descriptor> GetRequiredAssets(IModLifecycle.Section section) {
+        public IEnumerable<Descriptor> GetRequiredAssets(IContentPackLifecycle.Section section) {
             return [];
         }
 
-        public void OnWorldDispose(IModLifecycle.Section section, WeakReference<World> world) {
+        public void OnWorldDispose(IContentPackLifecycle.Section section, WeakReference<World> world) {
             Log.Warn($"[X2-Unification-War] World Dispose: {section}");
         }
     }

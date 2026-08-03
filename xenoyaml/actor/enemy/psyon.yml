@@ -17,7 +17,7 @@ groundcombat:
         $VisionCone: 50
         $VisionRange: 30
         :GCAbilityDefinitions: &PsyonAbilities
-          - :DL_X2UW_MesmerizeAbility:
+          - $X2UW_MesmerizeAbility:
               moraleDamage: 50
               uses: 1
               Name: Mesmerize

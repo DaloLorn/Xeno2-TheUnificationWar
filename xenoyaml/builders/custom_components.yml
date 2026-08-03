@@ -1,0 +1,10 @@
+# This file handles type aliases for all Unification War components.
+$schemaVersion: 1.0.0
+$builders:
+  $X2UW_MedisprayAbility:
+    $args: $params
+    :X2UnificationWar.Components.MedisprayAbilityDefinition: $params
+
+  $X2UW_MesmerizeAbility:
+    $args: $params
+    :X2UnificationWar.Components.FriendlyMesmerizeAbilityDefinition: $params

@@ -1,10 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net48</TargetFramework>
+      <!-- 
+        Note for future reference: System.IO.Compression needs to be copied
+        out of the game folder and into the SDK to suppress a conflict.
+        This also necessitates a change to FrameworkList.xml to specify
+        an AssemblyVersion of 4.2.0.0.
+      -->
+        <TargetFramework>netstandard2.1</TargetFramework>
         <Nullable>enable</Nullable>
         <RootNamespace>X2UnificationWar</RootNamespace>
-        <LangVersion>latest</LangVersion>  
+        <LangVersion>latest</LangVersion>      
     </PropertyGroup>
       <ItemGroup>
         <ProjectReference Include="Xenonauts2.csproj" 

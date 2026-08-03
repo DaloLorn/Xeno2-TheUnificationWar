@@ -56,7 +56,7 @@ groundcombat:
         $reqs:
           - $IsServitor: {}
     :GCAbilityDefinitions:
-      - :DL_X2UW_MedisprayAbility:
+      - $X2UW_MedisprayAbility:
           Range: 5
           LineProjectilePrefab: GC-::-sfx/projectile/auto_heal^default.prefab
           FXDuration: 0.8
