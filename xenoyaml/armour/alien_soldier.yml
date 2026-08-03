@@ -23,7 +23,10 @@ groundcombat:
         $ArmorHardness: 10
         $PsyonRacials: {}
         $GCEquipReqs:
-          $IsPsyon: {}
+          $SlotOwnerPq:
+            $mode: All
+            $reqs:
+              - $IsPsyon: {}
 
     secton_soldier:
       parent:
@@ -35,7 +38,10 @@ groundcombat:
         $ArmorHardness: 10
         $SectonRacials: {}
         $GCEquipReqs:
-          $IsSecton: {}
+          $SlotOwnerPq:
+            $mode: All
+            $reqs:
+              - $IsSecton: {}
 
     sebillian_soldier:
       parent:
@@ -47,7 +53,10 @@ groundcombat:
         $ArmorHardness: 10
         $SebillianRacials: 0
         $GCEquipReqs:
-          $IsSebillian: {}
+          $SlotOwnerPq:
+            $mode: All
+            $reqs:
+              - $IsSebillian: {}
 
     mantid_soldier:
       parent:
@@ -56,7 +65,10 @@ groundcombat:
       $path: ""
       components:
         $GCEquipReqs:
-          $IsMantid: {}
+          $SlotOwnerPq:
+            $mode: All
+            $reqs:
+              - $IsMantid: {}
         $MantidRacials: {}
         $HitPoints: 25
         $ArmorHardness: 5
@@ -70,7 +82,10 @@ groundcombat:
         $HitPoints: 50
         $ArmorHardness: 10
         $GCEquipReqs:
-          $IsWraith: {}
+          $SlotOwnerPq:
+            $mode: All
+            $reqs:
+              - $IsWraith: {}
         $WraithRacials: 3
 
     andron_soldier:
@@ -83,7 +98,10 @@ groundcombat:
         $HitPoints: 60
         $ArmorHardness: 10
         $GCEquipReqs:
-          $IsAndron: {}
+          $SlotOwnerPq:
+            $mode: All
+            $reqs:
+              - $IsAndron: {}
         $AndronRacials: 0
         $Weight: 0
         :Description: >-

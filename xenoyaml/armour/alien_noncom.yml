@@ -56,7 +56,10 @@ groundcombat:
         $NoLocale: {}
         $PsyonRacials: {}
         $GCEquipReqs:
-          $IsPsyon: {}
+          $SlotOwnerPq:
+            $mode: All
+            $reqs:
+              - $IsPsyon: {}
         :Description: &CaesanJumpsuit >-
           While not technically constituting armour, the jumpsuits worn by
           either Caesan gender are reinforced with sturdy fibers woven from alien alloys, 
@@ -72,7 +75,10 @@ groundcombat:
         <<: *MantidNoncom
         $MantidRacials: {}
         $GCEquipReqs:
-          $IsMantid: {}
+          $SlotOwnerPq:
+            $mode: All
+            $reqs:
+              - $IsMantid: {}
         :Description: >- 
           Unfortunately, the bare Mantid exoskeleton offers no
           meaningful protection against battlefield hazards.
@@ -87,7 +93,10 @@ groundcombat:
         $HitPoints: 15
         $SebillianRacials: 0
         $GCEquipReqs:
-          $IsSebillian: {}
+          $SlotOwnerPq:
+            $mode: All
+            $reqs:
+              - $IsSebillian: {}
         :Description: >-
           The thick, leathery scales of a Sebillian afford them a token amount of
           protection against injuries sustained on the battlefield - and seal
@@ -105,7 +114,10 @@ groundcombat:
         $NoLocale: {}
         :Description: *CaesanJumpsuit
         $GCEquipReqs:
-          $IsSecton: {}
+          $SlotOwnerPq:
+            $mode: All
+            $reqs:
+              - $IsSecton: {}
 
     wraith_noncom:
       parent:
@@ -117,7 +129,10 @@ groundcombat:
         $HitPoints: 25
         $ArmorHardness: 5
         $GCEquipReqs:
-          $IsWraith: {}
+          $SlotOwnerPq:
+            $mode: All
+            $reqs:
+              - $IsWraith: {}
         $WraithRacials: 3
         :Description: >-
           Despite their appearance, the greenish vests favored by off-duty

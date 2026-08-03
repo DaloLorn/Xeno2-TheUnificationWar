@@ -22,7 +22,10 @@ groundcombat:
         $HitPoints: 150
         $ArmorHardness: 15
         $GCEquipReqs:
-          $IsPsyon: {}
+          $SlotOwnerPq:
+            $mode: All
+            $reqs:
+              - $IsPsyon: {}
         $PsyonRacials: {}
         
     psyon_leader:
@@ -34,7 +37,10 @@ groundcombat:
         $HitPoints: 135
         $ArmorHardness: 25
         $GCEquipReqs:
-          $IsPsyon: {}
+          $SlotOwnerPq:
+            $mode: All
+            $reqs:
+              - $IsPsyon: {}
         $NoLocale: {}
         :Description: >-
           The distinctive purple suits favored by Psyon officers
@@ -56,7 +62,10 @@ groundcombat:
         $HitPoints: 130
         $ArmorHardness: 20
         $GCEquipReqs:
-          $IsSecton: {}
+          $SlotOwnerPq:
+            $mode: All
+            $reqs:
+              - $IsSecton: {}
         $SectonRacials: {}
 
     sebillian_elite:
@@ -68,7 +77,10 @@ groundcombat:
         $HitPoints: 130
         $ArmorHardness: 20
         $GCEquipReqs:
-          $IsSebillian: {}
+          $SlotOwnerPq:
+            $mode: All
+            $reqs:
+              - $IsSebillian: {}
         $SebillianRacials: 0
         
     sebillian_leader:
@@ -80,7 +92,10 @@ groundcombat:
         $HitPoints: 130
         $ArmorHardness: 20
         $GCEquipReqs:
-          $IsSebillian: {}
+          $SlotOwnerPq:
+            $mode: All
+            $reqs:
+              - $IsSebillian: {}
         $NoLocale: {}
         $SebillianRacials: 20
         :Description: >-
@@ -114,7 +129,10 @@ groundcombat:
         $HitPoints: 80
         $ArmorHardness: 15
         $GCEquipReqs:
-          $IsMantid: {}
+          $SlotOwnerPq:
+            $mode: All
+            $reqs:
+              - $IsMantid: {}
         $MantidRacials: {}
 
     wraith_elite:
@@ -126,7 +144,10 @@ groundcombat:
         $HitPoints: 150
         $ArmorHardness: 20
         $GCEquipReqs:
-          $IsWraith: {}
+          $SlotOwnerPq:
+            $mode: All
+            $reqs:
+              - $IsWraith: {}
         $WraithRacials: 3
 
     wraith_leader:
@@ -139,7 +160,10 @@ groundcombat:
         $HitPoints: 70
         $ArmorHardness: 20
         $GCEquipReqs:
-          $IsWraith: {}
+          $SlotOwnerPq:
+            $mode: All
+            $reqs:
+              - $IsWraith: {}
         $WraithRacials: 5
         :Description: >-
           The cloaking device integrated into this Wraith officer's armor
@@ -156,7 +180,10 @@ groundcombat:
         $HitPoints: 180
         $ArmorHardness: 20
         $GCEquipReqs:
-          $IsAndron: {}
+          $SlotOwnerPq:
+            $mode: All
+            $reqs:
+              - $IsAndron: {}
         $AndronRacials: 30
         $Weight: 0
         :Description: >-

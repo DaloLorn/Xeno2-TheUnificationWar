@@ -31,7 +31,10 @@ groundcombat:
         $HitPoints: 225
         $ArmorHardness: 30
         $GCEquipReqs:
-          $IsPsyon: {}
+          $SlotOwnerPq:
+            $mode: All
+            $reqs:
+              - $IsPsyon: {}
         $PsyonRacials: {}
 
     secton_praetorian:
@@ -43,7 +46,10 @@ groundcombat:
         $HitPoints: 200
         $ArmorHardness: 30
         $GCEquipReqs:
-          $IsSecton: {}
+          $SlotOwnerPq:
+            $mode: All
+            $reqs:
+              - $IsSecton: {}
         $SectonRacials: {}
 
     sebillian_praetorian:
@@ -55,7 +61,10 @@ groundcombat:
         $HitPoints: 200
         $ArmorHardness: 30
         $GCEquipReqs:
-          $IsSebillian: {}
+          $SlotOwnerPq:
+            $mode: All
+            $reqs:
+              - $IsSebillian: {}
         $SebillianRacials: 0
 
     mantid_praetorian:
@@ -66,7 +75,10 @@ groundcombat:
       components:
         <<: *MantidPraetorian
         $GCEquipReqs:
-          $IsMantid: {}
+          $SlotOwnerPq:
+            $mode: All
+            $reqs:
+              - $IsMantid: {}
         $HitPoints: 130
         $ArmorHardness: 20
         $MantidRacials: {}
@@ -80,7 +92,10 @@ groundcombat:
         $HitPoints: 225
         $ArmorHardness: 30
         $GCEquipReqs:
-          $IsWraith: {}
+          $SlotOwnerPq:
+            $mode: All
+            $reqs:
+              - $IsWraith: {}
         $WraithRacials: 3
 
     andron_praetorian:
@@ -93,7 +108,10 @@ groundcombat:
         $HitPoints: 250
         $ArmorHardness: 30
         $GCEquipReqs:
-          $IsAndron: {}
+          $SlotOwnerPq:
+            $mode: All
+            $reqs:
+              - $IsAndron: {}
         $AndronRacials: 60
         $Weight: 0
         :Description: >-

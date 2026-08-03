@@ -79,8 +79,8 @@ groundcombat:
       $path: ""
       components:
         :EnvironmentEffect:
-          - *SmokeEnterDamage
-          - *SmokeStandDamage
+          - $EnvDamage: *SmokeEnterDamage
+          - $EnvDamage: *SmokeStandDamage
           - $DissipateHandler: 0
 
     # Smoke is weird.

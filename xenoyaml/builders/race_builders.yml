@@ -74,7 +74,7 @@ $builders:
           <<: *ModType
           $stat: Xenonauts.Common.Stats.Bravery
           $amount: 1.2
-      - $ModSoldierType:
+      - $ModSoldierStat:
           $stat: Xenonauts.Common.Stats.Accuracy
           $amount: $accuracy
 

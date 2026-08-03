@@ -33,7 +33,10 @@ groundcombat:
       components:
         <<: *Eternal
         $GCEquipReqs: &IsEternal
-          - $IsEternal: {}
+          $SlotOwnerPq:
+            $mode: All
+            $reqs:
+              - $IsEternal: {}
         $HitPoints: 100
         $ArmorHardness: 20
         :Resistances:
