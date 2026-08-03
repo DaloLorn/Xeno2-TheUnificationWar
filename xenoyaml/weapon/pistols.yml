@@ -196,8 +196,8 @@ groundcombat:
       components:
         <<: *AdvPlasmaCell
         :AmmoID: plasma
-        # :RecoveredItems:
-        #   - $DropItem: item/ammo/plasma_pistol_cell_v2
+        :RecoveredItems:
+          - $DropItem: item/ammo/plasma_pistol_cell_v2
         :GCAbilityDefinitions:
           - :117:
               Regenerate: 1
@@ -211,8 +211,8 @@ groundcombat:
         <<: *FusionCell
         :AmmoID: fusion
         :AmmoStandard: fusion_pistol
-        # :RecoveredItems:
-        #   - $DropItem: item/ammo/fusion_pistol_cell
+        :RecoveredItems:
+          - $DropItem: item/ammo/fusion_pistol_cell
 
     fusion_pistol_cell_v2:
       parent: GC%item/ammo/plasma_pistol_cell_v2
@@ -221,8 +221,8 @@ groundcombat:
         <<: *AdvFusionCell
         :AmmoID: fusion
         :AmmoStandard: fusion_pistol
-        # :RecoveredItems:
-        #   - $DropItem: item/ammo/fusion_pistol_cell_v2
+        :RecoveredItems:
+          - $DropItem: item/ammo/fusion_pistol_cell_v2
 
     gauss_pistol_clip:
       parent: GC%item/ammo/gauss_pistol_clip
@@ -315,8 +315,8 @@ groundcombat:
         $Damage: 29
         $ArmorDestruction: 2
         $ArmorPenetration: 11
-        #:RecoveredItems:
-        #  - $DropItem: item/weapon/ballistic_pistol_v3
+        :RecoveredItems:
+         - $DropItem: item/weapon/ballistic_pistol_v3
 
     laser_pistol:
       parent: GC%item/weapon/laser_pistol
@@ -508,8 +508,8 @@ groundcombat:
           addColliders: false
           dontInstantiate: true
           pool: false
-        #:RecoveredItems:
-        #  - $DropItem: item/weapon/xeno_magnetic_pistol
+        :RecoveredItems:
+          - $DropItem: item/weapon/xeno_magnetic_pistol
 
     alien_magnetic_pistol:
       parent: &XenoPistol GC%item/weapon/xeno_magnetic_pistol
@@ -526,9 +526,9 @@ groundcombat:
               $reqs: 
                 - $HasHandsReq: {}
                 - $AlienUnit: {}
-        #:RecoveredItems:
-        #  - $DropItem: item/weapon/alien_magnetic_pistol
-        #  - $DropItem: item/alloys
+        :RecoveredItems:
+          - $DropItem: item/weapon/alien_magnetic_pistol
+          - $DropItem: item/alloys
 
     xeno_plasma_pistol:
       parent: *XenoPistol
@@ -555,8 +555,8 @@ groundcombat:
           addColliders: false
           dontInstantiate: true
           pool: false
-        #:RecoveredItems:
-        #  - $DropItem: item/weapon/xeno_plasma_pistol
+        :RecoveredItems:
+          - $DropItem: item/weapon/xeno_plasma_pistol
         :Description: >-
           Blasters are a special kind of plasma weapon. They inflict
           relatively low damage and Armour Destruction compared to
@@ -590,10 +590,10 @@ groundcombat:
       components:
         <<: *Blaster
         $GCComplexEquipReqs: *AlienPistolReqs
-        # :RecoveredItems:
-        #   - $DropItem: item/weapon/alien_plasma_pistol
-        #   - $DropItem: item/alloys
-        #   - $DropItem: item/alenium
+        :RecoveredItems:
+          - $DropItem: item/weapon/alien_plasma_pistol
+          - $DropItem: item/alloys
+          - $DropItem: item/alenium
 
     xeno_fusion_pistol:
       parent: *XenoBlaster
@@ -636,8 +636,8 @@ groundcombat:
         $RangeDropoff: 0.05
         $BleedChance: 6.5
         $BleedRollMultiplier: 3
-        #:RecoveredItems:
-        #  - $DropItem: item/weapon/xeno_fusion_pistol
+        :RecoveredItems:
+          - $DropItem: item/weapon/xeno_fusion_pistol
         :Portrait: GC-::-ui/item/weapon/alien_fusion_pistol.png
         :Prototype:
           value: GC-::-item/weapon/alien_fusion_pistol.prefab
@@ -651,11 +651,11 @@ groundcombat:
       components:
         <<: *Handcannon
         $GCComplexEquipReqs: *AlienPistolReqs
-        # :RecoveredItems:
-        #   - $DropItem: item/weapon/alien_fusion_pistol
-        #   - $DropItem: 
-                # $amount: 2
-                # $item: item/alloys
-        #   - $DropItem:
-                # $amount: 2
-                # $item: item/alenium
+        :RecoveredItems:
+          - $DropItem: item/weapon/alien_fusion_pistol
+          - $DropItem: 
+                $amount: 2
+                $item: item/alloys
+          - $DropItem:
+                $amount: 2
+                $item: item/alenium

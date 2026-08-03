@@ -247,8 +247,8 @@ groundcombat:
         <<: *FusionCell
         :AmmoID: fusion
         :AmmoStandard: fusion_rifle
-        # :RecoveredItems:
-        #   - $DropItem: item/ammo/fusion_rifle_cell
+        :RecoveredItems:
+          - $DropItem: item/ammo/fusion_rifle_cell
 
     fusion_rifle_cell_v2:
       parent: GC%item/ammo/plasma_rifle_cell_v2
@@ -257,8 +257,8 @@ groundcombat:
         <<: *AdvFusionCell
         :AmmoID: fusion
         :AmmoStandard: fusion_rifle
-        # :RecoveredItems:
-        #   - $DropItem: item/ammo/fusion_rifle_cell_v2
+        :RecoveredItems:
+          - $DropItem: item/ammo/fusion_rifle_cell_v2
 
     gauss_rifle_clip:
       parent: GC%item/ammo/gauss_rifle_clip
@@ -351,8 +351,8 @@ groundcombat:
         $Damage: 36
         $ArmorDestruction: 4
         $ArmorPenetration: 20
-        #:RecoveredItems:
-        #  - $DropItem: item/weapon/ballistic_rifle_v3
+        :RecoveredItems:
+          - $DropItem: item/weapon/ballistic_rifle_v3
 
     ballistic_smg:
       parent: GC%item/weapon/ballistic_smg
@@ -611,8 +611,8 @@ groundcombat:
           addColliders: false
           dontInstantiate: true
           pool: false
-        #:RecoveredItems:
-        #  - $DropItem: item/weapon/xeno_magnetic_rifle
+        :RecoveredItems:
+          - $DropItem: item/weapon/xeno_magnetic_rifle
 
     alien_magnetic_rifle:
       parent: &XenoRifle GC%item/weapon/xeno_magnetic_rifle
@@ -629,9 +629,9 @@ groundcombat:
               $reqs: 
                 - $TwoHandedReq: {}
                 - $AlienUnit: {}
-        #:RecoveredItems:
-        #  - $DropItem: item/weapon/alien_magnetic_rifle
-        #  - $DropItem: item/alloys
+        :RecoveredItems:
+          - $DropItem: item/weapon/alien_magnetic_rifle
+          - $DropItem: item/alloys
 
     xeno_plasma_rifle:
       parent: *XenoRifle
@@ -659,8 +659,8 @@ groundcombat:
           addColliders: false
           dontInstantiate: true
           pool: false
-        #:RecoveredItems:
-        #  - $DropItem: item/weapon/xeno_plasma_rifle
+        :RecoveredItems:
+          - $DropItem: item/weapon/xeno_plasma_rifle
         :Description: >-
           Blasters are a special kind of plasma weapon. They inflict
           relatively low damage and Armour Destruction compared to
@@ -694,10 +694,10 @@ groundcombat:
       components:
         <<: *HeavyBlaster
         $GCComplexEquipReqs: *AlienRifleReqs
-        # :RecoveredItems:
-        #   - $DropItem: item/weapon/alien_plasma_rifle
-        #   - $DropItem: item/alloys
-        #   - $DropItem: item/alenium
+        :RecoveredItems:
+          - $DropItem: item/weapon/alien_plasma_rifle
+          - $DropItem: item/alloys
+          - $DropItem: item/alenium
 
     xeno_fusion_rifle:
       parent: *XenoBlaster
@@ -744,8 +744,8 @@ groundcombat:
         $RangeDropoff: 0.04
         $BleedChance: 10
         $BleedRollMultiplier: 3
-        #:RecoveredItems:
-        #  - $DropItem: item/weapon/xeno_fusion_rifle
+        :RecoveredItems:
+         - $DropItem: item/weapon/xeno_fusion_rifle
         :Portrait: GC-::-ui/item/weapon/alien_fusion_rifle.png
         :Prototype:
           value: GC-::-item/weapon/alien_fusion_rifle.prefab
@@ -759,14 +759,14 @@ groundcombat:
       components:
         <<: *FusionCaster
         $GCComplexEquipReqs: *AlienRifleReqs
-        # :RecoveredItems:
-        #   - $DropItem: item/weapon/alien_fusion_rifle
-        #   - $DropItem: 
-                # $amount: 2
-                # $item: item/alloys
-        #   - $DropItem:
-                # $amount: 2
-                # $item: item/alenium
+        :RecoveredItems:
+          - $DropItem: item/weapon/alien_fusion_rifle
+          - $DropItem: 
+                $amount: 2
+                $item: item/alloys
+          - $DropItem:
+                $amount: 2
+                $item: item/alenium
 
     alien_biter_launcher:
       parent: GC%item/weapon/alien_biter_launcher
