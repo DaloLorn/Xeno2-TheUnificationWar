@@ -11,7 +11,7 @@ groundcombat:
           $min: 35
           $val: 35
         $VisionRange: 35
-        :BleedWoundHealChange:
+        :BleedWoundHealChance:
           $PercentileRange: 10
         :GCAbilityDefinitions: &WraithAbilities {}
         :Resistances:
