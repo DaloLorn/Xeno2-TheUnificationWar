@@ -33,6 +33,7 @@ Unlike other laser weapons, the LMG still has (reduced) recoil due to a gatling-
 - 55 Energy, 15 Penetration, 15 Destruction, 50% Fire, 40 Suppression
 - Micro-Fusion Chamber: 65 Damage, 20 Destruction, 10% Bleed (x3), 50 Suppression
 - Atmospheric Feeds: Regenerate 3/turn
+- Range: 12 (3/12.5), max 20
 - Reload: 35 TU
 - Ammo: 30
 
@@ -69,6 +70,6 @@ Unlike other laser weapons, the LMG still has (reduced) recoil due to a gatling-
 - 20 Energy, 10 Penetration, 5 Destruction, 15% Fire, 20 Suppression
     - Fusion Cutter: 30 Energy, 15 Penetration, 10 Destruction, 25% Fire, 30 Suppression
 - Burst x10: 55% TU, 40% ACC, 10% Recoil
-- Range: 5 (8/10), max 15 (as pistol)
+- Range: 5 (8/20), max 10
 - 999 Ammo
 - Cannot Overwatch

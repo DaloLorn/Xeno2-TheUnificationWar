@@ -1,0 +1,666 @@
+$schemaVersion: 1.0.0
+$aliases:
+  ShortBurst: &ShortBurst
+    $mode: burst3
+    $name: Short Burst
+    $percentCost: 51
+    $accuracy: 45
+    $crosshair: GC-::-ui/crosshairs/crosshair_burst3.prefab
+  LongBurst: &LongBurst
+    $mode: burst10
+    $name: Short Burst
+    $shots: 3
+    $shotDelay: 0.05
+    $percentCost: 75
+    $accuracy: 45
+    $crosshair: GC-::-ui/crosshairs/crosshair_burst10.prefab
+  ShortLaser: &ShortLaser
+    $trajectory: Line
+    $shots: 12
+    $shotDelay: 0.025
+    $accuracy: 55
+  LongLaser: &LongLaser
+    <<: *ShortLaser
+    $shots: 40
+    $shotDelay: 0.0125
+
+strategy:
+  item/ammo:
+    plasma_lmg_cell:
+      parent: &STPlasmaCell ST%item/ammo/plasma_lmg_cell
+      $path: ""
+      components: &PlasmaCell
+        $NoLocale: {}
+        :Name: Plasma Machinegun Cell
+
+    plasma_lmg_cell_v2:
+      parent: ST%item/ammo/plasma_lmg_cell_v2
+      $path: ""
+      components: &AdvPlasmaCell
+        $NoLocale: {}
+        :Name: Advanced Plasma Machinegun Cell
+
+    fusion_lmg_cell:
+      parent: *STPlasmaCell
+      $path: ""
+      components: &FusionCell
+        :Name: Fusion Machinegun Cell
+
+    fusion_lmg_cell_v2:
+      parent: *STPlasmaCell
+      $path: ""
+      components: &AdvFusionCell
+        :Name: Advanced Fusion Machinegun Cell
+
+    alien_mag_clip_large:
+      parent: &STNeedlerClip ST%item/ammo/alien_mag_clip_large
+      $path: ""
+      components: &AutoNeedlerClip
+        $NoLocale: {}
+        :Name: Auto-Needler Clip
+
+    alien_plasma_cell_large:
+      parent: *STNeedlerClip
+      $path: ""
+      components: &AutoBlasterCell
+        $NoLocale: {}
+        :Name: Auto-Blaster Cell
+
+    alien_fusion_cell_large:
+      parent: *STNeedlerClip
+      $path: ""
+      components: &FusionMinigunCell
+        $NoLocale: {}
+        :Name: Fusion Minigun Cell
+
+  item/weapon:
+    ballistic_lmg_v3:
+      parent: ST%item/weapon/ballistic_lmg_v2
+      $path: ""
+      components: &AdvAccLmg
+        $NoLocale: {}
+        :Name: Advanced Accelerated Machinegun
+
+    plasma_lmg:
+      parent: ST%item/weapon/plasma_lmg
+      $path: ""
+      components: &PlasmaLmg
+        $NoLocale: {}
+        :Name: Plasma Machinegun
+
+    plasma_lmg_v2:
+      parent: ST%item/weapon/plasma_lmg_v2
+      $path: ""
+      components:
+        :DefaultAmmo:
+          $content: ST-::-item/ammo/fusion_lmg_cell.json
+          $valuetypekey: ar_Template
+        $NoLocale: {}
+        :Name: Fusion Machinegun
+
+    alien_magnetic_lmg:
+      parent: &NeedlerLmg ST%item/weapon/alien_magnetic_lmg
+      $path: ""
+      components: &AutoNeedler
+        $NoLocale: {}
+        :Name: Alien Auto-Needler
+
+    xeno_magnetic_lmg:
+      parent: *NeedlerLmg
+      $path: ""
+      components: &XenoAutoNeedler
+        :Name: Auto-Needler
+
+    alien_plasma_lmg:
+      parent: &BlasterLmg ST%item/weapon/alien_plasma_lmg
+      $path: ""
+      components: &AutoBlaster
+        $NoLocale: {}
+        :Name: Alien Auto-Blaster
+
+    xeno_plasma_lmg:
+      parent: *BlasterLmg
+      $path: ""
+      components: &XenoAutoBlaster
+        :Name: Auto-Blaster
+
+    alien_fusion_lmg:
+      parent: &FsnMinigun ST%item/weapon/alien_fusion_lmg
+      $path: ""
+      components: &FusionMinigun
+        $NoLocale: {}
+        :Name: Alien Fusion Minigun
+    
+    xeno_fusion_lmg:
+      parent: *FsnMinigun
+      $path: ""
+      components: &XenoFusionMinigun
+        $NoLocale: {}
+        :Name: Fusion Minigun
+
+groundcombat:
+  item/ammo:
+    ballistic_lmg:
+      parent: GC%item/ammo/ballistic_lmg
+      $path: ""
+      components: 
+        :InventorySlotAddPrerequisites: []
+
+    ballistic_lmg_alloy:
+      parent: GC%item/ammo/ballistic_lmg_alloy
+      $path: ""
+      components:
+        $Weight: 6
+        :DamageModifier:
+          _min: 0
+          _val: 1
+          _max: 3.402823e+38
+        :Modifiers:
+          - $ModSoldierStat: # So that turned out to be a misnomer... oops.
+              $stat: Xenonauts.GroundCombat.ArmourPenetration
+              $amount: 2
+    
+    laser_lmg:
+      parent: GC%item/ammo/laser_lmg
+      $path: ""
+      components:
+        $Shots: 120
+        :GCAbilityDefinitions:
+          - :117:
+              Regenerate: 15
+              Name: Regenerate Ammo
+              Tooltip: false
+
+    laser_lmg_v2:
+      parent: GC%item/ammo/laser_lmg_v2
+      $path: ""
+      components:
+        $Shots: 180
+        :GCAbilityDefinitions:
+          - :117:
+              Regenerate: 30
+              Name: Regenerate Ammo
+              Tooltip: false
+    
+    plasma_lmg_cell:
+      parent: GC%item/ammo/plasma_lmg_cell
+      $path: ""
+      components:
+        <<: *PlasmaCell
+        :AmmoID: plasma
+        $Shots: 30
+        $ImpactVector:
+          - $SpawnEnvironmentalEffect:
+              $chance: 50
+              $spawnStyles:
+                - SpawnAsGas
+              $effPath: blueprints/common/common/simple/effect/environmental/fire_spreading_1x1
+
+    plasma_lmg_cell_v2:
+      parent: GC%item/ammo/plasma_lmg_cell_v2
+      $path: ""
+      components:
+        <<: *AdvPlasmaCell
+        :AmmoID: plasma
+        :GCAbilityDefinitions:
+          - :117:
+              Regenerate: 3
+              Name: Regenerate Ammo
+              Tooltip: false
+    
+    fusion_lmg_cell:
+      parent: GC%item/ammo/plasma_lmg_cell
+      $path: ""
+      components:
+        <<: *FusionCell
+        :AmmoID: fusion
+        :AmmoStandard: fusion_lmg
+        :RecoveredItems:
+          - $DropItem: item/ammo/fusion_lmg_cell
+
+    fusion_lmg_cell_v2:
+      parent: GC%item/ammo/plasma_lmg_cell_v2
+      $path: ""
+      components:
+        <<: *AdvFusionCell
+        :AmmoID: fusion
+        :AmmoStandard: fusion_lmg
+        :RecoveredItems:
+          - $DropItem: item/ammo/fusion_lmg_cell_v2
+
+    gauss_lmg_clip:
+      parent: GC%item/ammo/gauss_lmg_clip
+      $path: ""
+      components:
+        $Shots: 40
+
+    gauss_lmg_clip_v2:
+      parent: GC%item/ammo/gauss_lmg_clip_v2
+      $path: ""
+      components:
+        :Modifiers:
+          - $ModSoldierStat:
+              $stat: Xenonauts.GroundCombat.ArmourDestruction
+              $amount: 2
+          - $ModSoldierStat:
+              $stat: Xenonauts.GroundCombat.ArmourPenetration
+              $amount: 5
+
+    alien_mag_clip_large:
+      parent: GC%item/ammo/ballistic_lmg
+      $path: ""
+      components:
+        <<: *AutoNeedlerClip
+        :AmmoStandard: alien_mag_clip_large
+        :Portrait: GC-::-ui/item/ammo/ammo_alien_mag.png
+        :Prototype:
+          value: GC-::-item/ammo/alien_mag_clip.prefab
+          addColliders: false
+          dontInstantiate: true
+          pool: false
+        :RecoveredItems:
+          - $DropItem: item/ammo/alien_mag_clip_large
+        $Shots: 70
+
+    alien_plasma_cell_large:
+      parent: GC%item/ammo/plasma_lmg_cell
+      $path: ""
+      components:
+        <<: *AutoBlasterCell
+        :AmmoStandard: alien_plasmacell_large
+        :Portrait: GC-::-ui/item/ammo/ammo_alien_plasma.png
+        :Prototype:
+          value: GC-::-item/ammo/alien_plasma_cell.prefab
+          addColliders: false
+          dontInstantiate: true
+          pool: false
+        :RecoveredItems:
+          - $DropItem: item/ammo/alien_plasma_cell_large
+        $Shots: 50
+        $ImpactVector:
+          - $SpawnEnvironmentalEffect:
+              $chance: 65
+              $spawnStyles:
+                - SpawnAsGas
+              $effPath: blueprints/common/common/simple/effect/environmental/fire_spreading_1x1
+
+    alien_fusion_cell_large:
+      parent: GC%item/ammo/fusion_lmg_cell
+      $path: ""
+      components:
+        <<: *FusionMinigunCell
+        :AmmoStandard: alien_fusion_cell_large
+        :Portrait: GC-::-ui/item/ammo/ammo_alien_fusion.png
+        :Prototype:
+          value: GC-::-item/ammo/alien_fusion_cell.prefab
+          addColliders: false
+          dontInstantiate: true
+          pool: false
+        :RecoveredItems:
+          - $DropItem: item/ammo/alien_fusion_cell_large
+        $Shots: 30
+        $ImpactVector:
+          - $SpawnEnvironmentalEffect:
+              $chance: 50
+              $spawnStyles:
+                - SpawnAsGas
+              $effPath: blueprints/common/common/simple/effect/environmental/fire_spreading_1x1
+
+  item/weapon:
+    ballistic_lmg:
+      parent: &BallLmg GC%item/weapon/ballistic_lmg
+      $path: ""
+      components:
+        # No custom fire modes needed, ballistics are fine as-is.
+        # Ditto for weight, reload cost, size, and ammo standard.
+        $Damage: 35
+        $ArmorDestruction: 2
+        $ArmorPenetration: 5
+        $BleedChance: 15
+        $GCEquipReqs:
+          $SlotOwnerPq:
+            $mode: Any
+            $reqs: 
+              - $TwoHandedReq: {}
+
+    ballistic_lmg_v2:
+      parent: &AccLmg GC%item/weapon/ballistic_lmg_v2
+      $path: ""
+      components:
+        $Damage: 33
+        $ArmorDestruction: 3
+        $ArmorPenetration: 15
+
+    ballistic_lmg_v3:
+      parent: *AccLmg
+      $path: ""
+      components:
+        <<: *AdvAccLmg
+        $Damage: 36
+        $ArmorDestruction: 4
+        $ArmorPenetration: 20
+        :RecoveredItems:
+          - $DropItem: item/weapon/ballistic_lmg_v3
+
+    gauss_lmg:
+      parent: GC%item/weapon/gauss_lmg
+      $path: ""
+      components:
+        $Damage: 50
+        $ArmorPenetration: 20
+        $ArmorDestruction: 4
+
+    gauss_lmg_v2:
+      parent: GC%item/weapon/gauss_lmg_v2
+      $path: ""
+      components:
+        $Damage: 54
+        $ArmorPenetration: 25
+        $ArmorDestruction: 6
+        $SuppressionDamage: 50
+
+    laser_lmg:
+      parent: GC%item/weapon/laser_lmg
+      $path: ""
+      components:
+        $Damage: 9
+        $ArmorPenetration: 10
+        $ArmorDestruction: 3
+        $SuppressionDamage: 6
+        :Description: >-
+          Lasers are a unique kind of energy weapon. Like most energy weapons,
+          they inflict more total damage, do not inflict Bleeding Wounds,
+          and have reduced Armour Penetration, but have exceptional Armour Destruction
+          for their size.
+
+          
+          Unlike other energy weapons, lasers fire 4 weaker beams for every shot
+          fired by an equivalent non-laser weapon, and do not require research
+          to regenerate ammunition. Additionally, they are not subject to recoil
+          (except machineguns, which only have half recoil), and have increased accuracy
+          as well as an accuracy bonus for low-accuracy soldiers.
+
+
+          Lasers are not as prone to dissipation as most energy weapons. While they still
+          have a much shorter optimal range than similar ballistic weapons, lasers suffer
+          fairly limited accuracy/damage dropoff allowing them similar range to ballistics;
+          this laser machinegun only loses 5% per tile, compared to the 10% of a ballistic machinegun.
+        :GCAbilityDefinitions:
+          - $ShotAbility:
+              <<:
+                - *ShortBurst
+                - *ShortLaser
+          - $ShotAbility:
+              <<:
+                - *LongBurst
+                - *LongLaser
+              $shots: 12
+              $shotDelay: 0.0125
+              $accuracy: 50
+        $WeaponRange: 10
+        $RangeBonus: 0.04
+        $RangeDropoff: 0.05
+
+    laser_lmg_v2:
+      parent: GC%item/weapon/laser_lmg_v2
+      $path: ""
+      components:
+        $Damage: 13
+        $ArmorPenetration: 13
+        $ArmorDestruction: 5
+
+    plasma_lmg:
+      parent: GC%item/weapon/plasma_lmg
+      $path: ""
+      components:
+        <<: *PlasmaLmg
+        $Damage: 55
+        $ArmorPenetration: 15
+        $ArmorDestruction: 15
+        $BleedChance: 0
+        $SuppressionDamage: 40
+        :WeaponID: plasma
+        $WeaponRange: 12
+        $RangeBonus: 0.03
+        $RangeDropoff: 0.125
+        :Description: >-
+          Plasma weapons are powerful, but short-ranged energy weapons.
+          Like most energy weapons, they inflict more total damage, do not
+          inflict Bleeding Wounds, and have reduced Armour Penetration,
+          but have exceptional Armour Destruction for their size.
+
+
+          Plasma weapons tend to destabilize quickly in atmosphere,
+          resulting in very short optimal ranges and a more rapid
+          accuracy/damage dropoff than ballistic weapons. However,
+          they have somewhat improved ammo economy over lasers,
+          and have a high chance of starting fires wherever they hit.
+
+
+          This plasma machinegun has a range dropoff of 12.5% (ballistics are 10%),
+          and a 50% chance of setting a tile ablaze.
+        
+    plasma_lmg_v2:
+      parent: GC%item/weapon/plasma_lmg_v2
+      $path: ""
+      components:
+        $NoLocale: {}
+        :Name: Fusion Machinegun
+        :CompatibleAmmo:
+          - fusion_lmg
+        $Damage: 65
+        $ArmorDestruction: 20
+        $BleedChance: 10
+        $BleedRollMultiplier: 3
+        $SuppressionDamage: 50
+        :WeaponID: fusion
+        :Description: >-
+          Fusion weapons are a powerful variant of plasma weapons.
+          Like most energy weapons, they inflict more total damage
+          and have reduced Armour Penetration, with exceptional
+          Armour Destruction for their size. However, they can
+          also inflict a lot of Bleeding Wounds.
+
+
+          Fusion weapons tend to destabilize quickly in atmosphere,
+          resulting in very short optimal ranges and a more rapid
+          accuracy/damage dropoff than ballistic weapons. However,
+          they have somewhat improved ammo economy over lasers,
+          and have a high chance of starting fires wherever they hit.
+
+
+          This fusion machinegun has a range dropoff of 12.5% (ballistics are 10%),
+          and a 50% chance of setting a tile ablaze.
+
+    xeno_magnetic_lmg:
+      parent: *BallLmg
+      $path: ""
+      components:
+        <<: *XenoAutoNeedler
+        $Damage: 30
+        $ArmorPenetration: 25
+        $ArmorDestruction: 1
+        $SuppressionDamage: 25
+        $BleedChance: 12
+        :GCAbilityDefinitions:
+          - $ShotAbility:
+              <<: *ShortBurst
+              $percentCost: 45
+          - $ShotAbility:
+              <<: *LongBurst
+              $percentCost: 60
+        $Recoil: 0.1
+        $ReloadCost: 30
+        :CompatibleAmmo:
+          - alien_mag_clip_large
+        :FireSounds:
+          single:
+            - GC-::-sfx/weapon/fire/fire_alien_magnetic_rifle.ogg
+          burst:
+            - GC-::-sfx/weapon/fire/fire_mag_lmg.ogg
+          empty:
+            - GC-::-sfx/weapon/empty/empty_default.ogg
+          reload:
+            - GC-::-sfx/weapon/reload/reload_magstorm_1.ogg
+          meleeHit: []
+          meleeMiss: []
+        :Portrait: GC-::-ui/item/weapon/alien_magnetic_lmg.png
+        :Description: >-
+          Needlers are a special kind of ballistic weapon. They inflict
+          relatively low damage and Armour Destruction compared to
+          accelerated weapons, but are more accurate, fire faster,
+          and have increased Armour Penetration and ammo capacity.
+
+
+          Needlers recovered on the battlefield are DNA-locked
+          and cannot be used by human units. Xenonaut engineers
+          can eventually defeat the DNA lock and create human-usable
+          Needlers, but they cannot be upgraded further.
+        :Prototype:
+          value: GC-::-item/weapon/alien_magnetic_lmg.prefab
+          addColliders: false
+          dontInstantiate: true
+          pool: false
+        :RecoveredItems:
+          - $DropItem: item/weapon/xeno_magnetic_lmg
+
+    alien_magnetic_lmg:
+      parent: &XenoLmg GC%item/weapon/xeno_magnetic_lmg
+      $path: ""
+      components:
+        <<: *AutoNeedler
+        $GCEquipReqs: &AlienLmgReqs
+          $SlotOwnerPq:
+            $mode: All
+            $reqs: 
+              - $TwoHandedReq: {}
+              - $AlienUnit: {}
+        :RecoveredItems:
+          - $DropItem: item/weapon/alien_magnetic_lmg
+          - $DropItem: item/alloys
+
+    xeno_plasma_lmg:
+      parent: *XenoLmg
+      $path: ""
+      components:
+        <<: *XenoAutoBlaster
+        :CompatibleAmmo:
+          - alien_plasmacell_large
+        :FireSounds:
+          single:
+            - GC-::-sfx/weapon/fire/fire_plasma_rifle_single_0.ogg
+            - GC-::-sfx/weapon/fire/fire_plasma_rifle_single_1.ogg
+          burst:
+            - GC-::-sfx/weapon/fire/fire_plasma_lmg_burst_0.ogg
+            - GC-::-sfx/weapon/fire/fire_plasma_lmg_burst_1.ogg
+          empty:
+            - GC-::-sfx/weapon/empty/empty_default.ogg
+          reload:
+            - GC-::-sfx/weapon/reload/reload_plasma_caster_2.ogg
+          meleeHit: []
+          meleeMiss: []
+        :Portrait: GC-::-ui/item/weapon/alien_plasma_lmg.png
+        :Prototype:
+          value: GC-::-item/weapon/alien_plasma_lmg.prefab
+          addColliders: false
+          dontInstantiate: true
+          pool: false
+        :RecoveredItems:
+          - $DropItem: item/weapon/xeno_plasma_lmg
+        :Description: >-
+          Blasters are a special kind of plasma weapon. They inflict
+          relatively low damage and Armour Destruction compared to
+          plasma weapons, but are more accurate, fire faster,
+          and have increased Armour Penetration and ammo capacity.
+          
+
+          Blaster bolts are more compact than an equivalent plasma
+          bolt, and have a shorter optimal range. However, they
+          are not as heavily affected by range dropoff penalties,
+          and therefore still have a higher maximum range.
+          This auto-blaster has a dropoff rate of 5% per tile.
+
+
+          Blasters recovered on the battlefield are DNA-locked
+          and cannot be used by human units. Xenonaut engineers
+          can eventually defeat the DNA lock and create human-usable
+          Blasters, but they cannot be upgraded further.
+        :WeaponID: plasma
+        :DamageType: energy
+        $Damage: 35
+        $ArmorPenetration: 35
+        $ArmorDestruction: 20
+        $SuppressionDamage: 30
+        $WeaponRange: 8
+        $RangeBonus: 0.04
+        $RangeDropoff: 0.05
+
+    alien_plasma_lmg:
+      parent: &XenoBlaster GC%item/weapon/xeno_plasma_lmg
+      $path: ""
+      components:
+        <<: *AutoBlaster
+        $GCEquipReqs: *AlienLmgReqs
+        :RecoveredItems:
+          - $DropItem: item/weapon/alien_plasma_lmg
+          - $DropItem: item/alloys
+          - $DropItem: item/alenium
+
+    xeno_fusion_lmg:
+      parent: *XenoBlaster
+      $path: ""
+      components:
+        <<: *XenoFusionMinigun
+        :CompatibleAmmo:
+          - alien_fusion_cell_large
+        :WeaponID: fusion
+        :Description: >-
+          Fusion Miniguns are a special kind of fusion weapon. Unlike
+          Blasters, they fire slowly and have limited ammo, but inflict
+          the most damage of any machinegun in the game. They also have
+          further reduced range dropoff, increasing their maximum range.
+          
+
+          Alien fusion bolts are more compact than an equivalent fusion
+          bolt, and have a shorter optimal range. However, they
+          are not as heavily affected by range dropoff penalties,
+          and therefore still have a higher maximum range.
+          This fusion minigun has a dropoff rate of 4% per tile.
+
+
+          Fusion Miniguns recovered on the battlefield are DNA-locked
+          and cannot be used by human units. Xenonaut engineers
+          can eventually defeat the DNA lock and create human-usable
+          Fusion Miniguns, but they cannot be upgraded further.
+        $Damage: 85
+        $ArmorPenetration: 20
+        $ArmorDestruction: 20
+        $SuppressionDamage: 60
+        $RangeDropoff: 0.04
+        $BleedChance: 13
+        $BleedRollMultiplier: 3
+        :RecoveredItems:
+         - $DropItem: item/weapon/xeno_fusion_lmg
+        :Portrait: GC-::-ui/item/weapon/alien_fusion_lmg.png
+        :Prototype:
+          value: GC-::-item/weapon/alien_fusion_lmg.prefab
+          addColliders: false
+          dontInstantiate: true
+          pool: false
+        
+    alien_fusion_lmg:
+      parent: GC%item/weapon/xeno_fusion_lmg
+      $path: ""
+      components:
+        <<: *FusionMinigun
+        $GCEquipReqs: *AlienLmgReqs
+        :RecoveredItems:
+          - $DropItem: item/weapon/alien_fusion_lmg
+          - $DropItem: 
+                $amount: 2
+                $item: item/alloys
+          - $DropItem:
+                $amount: 2
+                $item: item/alenium
+              
+    

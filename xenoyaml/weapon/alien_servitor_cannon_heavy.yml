@@ -2,26 +2,62 @@ $schemaVersion: 1.0.0
 $aliases:
   Shared: &Shared
     $NoLocale: {}
-    :Name: Harbinger Burst Cannon
+    :Name: Fusion Cutter
 
 strategy:
-  parent:
-    pack: xenonauts
-    screen: ST
-    path: item/weapon/alien_servitor_cannon_heavy
+  parent: $next
   name: alien_gundrone_cannon
   $path: item/weapon/alien_servitor_cannon_heavy
   components:
     <<: *Shared
     :SItemMeta: ExcludeFromBaseStoresSell,ExcludeFromBaseStoresTransfer
 groundcombat:
-  parent:
-    pack: xenonauts
-    screen: GC
-    path: item/weapon/alien_servitor_cannon_heavy
-  name: alien_gundrone_cannon
-  $path: item/weapon/alien_servitor_cannon_heavy
-  components:
-    <<: *Shared
-    :Portrait: GC-::-ui/item/weapon/alien_fusion_rifle.png
-    $HeavyServitorOnly: {}
+  item:
+    ammo/alien_servitor_cell_heavy:
+      parent: $next
+      $path: ""
+      components:
+        $ImpactVector:
+          - $SpawnEnvironmentalEffect:
+              $chance: 25
+              $spawnStyles:
+                - SpawnAsGas
+              $effPath: blueprints/common/common/simple/effect/environmental/fire_spreading_1x1
+
+    weapon/alien_servitor_cannon_heavy:
+      parent: $next
+      name: alien_gundrone_cannon
+      $path: ""
+      components:
+        <<: *Shared
+        :Portrait: GC-::-ui/item/weapon/alien_fusion_rifle.png
+        $HeavyServitorOnly: {}
+        $Damage: 30
+        $ArmorPenetration: 15
+        $ArmorDestruction: 10
+        $SuppressionDamage: 30
+        :GCAbilityDefinitions:
+          - $ShotAbility:
+              $mode: burst
+              $name: Burst Fire
+              $percentCost: 55
+              $accuracy: 40
+              $shots: 10
+              $crosshair: GC-::-ui/crosshairs/crosshair_burst10
+              $useAmmo: false
+        $WeaponRange: 5
+        $RangeBonus: 0.08
+        $RangeDropoff: 0.20
+        :Description: >-
+          A fusion-grade variant of the plasma cutter mounted aboard alien Herald drones,
+          this enhanced cutting tool doubles as an awesome terror weapon, potentially
+          carving through entire squads of lesser beings at close range.
+
+
+          Fusion cutters are a special kind of plasma weapon unique to the Herald,
+          featuring unlimited ammo and excellent suppression and anti-armor damage,
+          at the cost of extremely low range, no overwatch capability, and low damage per hit.
+
+
+          This fusion cutter has a range dropoff of 20% (ballistics are 10%), and a 25%
+          chance of starting a fire with each shot.

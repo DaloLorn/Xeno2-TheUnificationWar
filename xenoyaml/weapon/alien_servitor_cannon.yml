@@ -2,26 +2,63 @@ $schemaVersion: 1.0.0
 $aliases:
   Shared: &Shared
     $NoLocale: {}
-    :Name: Herald Burst Cannon
+    :Name: Plasma Cutter
 
 strategy:
-  parent:
-    pack: xenonauts
-    screen: ST
-    path: item/weapon/alien_servitor_cannon
+  parent: $next
   name: alien_gundrone_cannon
   $path: item/weapon/alien_servitor_cannon
   components:
     <<: *Shared
     :SItemMeta: ExcludeFromBaseStoresSell,ExcludeFromBaseStoresTransfer
 groundcombat:
-  parent:
-    pack: xenonauts
-    screen: GC
-    path: item/weapon/alien_servitor_cannon
-  name: alien_gundrone_cannon
-  $path: item/weapon/alien_servitor_cannon
-  components:
-    <<: *Shared
-    :Portrait: GC-::-ui/item/weapon/alien_plasma_rifle.png
-    $ServitorOnly: {}
+  item:
+    ammo/alien_servitor_cell:
+      parent: $next
+      $path: ""
+      components:
+        $ImpactVector:
+          - $SpawnEnvironmentalEffect:
+              $chance: 15
+              $spawnStyles:
+                - SpawnAsGas
+              $effPath: blueprints/common/common/simple/effect/environmental/fire_spreading_1x1
+
+
+    weapon/alien_servitor_cannon:
+      parent: $next
+      name: alien_gundrone_cannon
+      $path: ""
+      components:
+        <<: *Shared
+        :Portrait: GC-::-ui/item/weapon/alien_plasma_rifle.png
+        $ServitorOnly: {}
+        $Damage: 20
+        $ArmorPenetration: 10
+        $ArmorDestruction: 5
+        $SuppressionDamage: 20
+        :GCAbilityDefinitions:
+          - $ShotAbility:
+              $mode: burst
+              $name: Burst Fire
+              $percentCost: 55
+              $accuracy: 40
+              $shots: 10
+              $crosshair: GC-::-ui/crosshairs/crosshair_burst10
+              $useAmmo: false
+        $WeaponRange: 5
+        $RangeBonus: 0.08
+        $RangeDropoff: 0.20
+        :Description: >-
+          Originally intended as a utility tool to cut through inanimate
+          objects comprised of anything up to and including hardened alien alloys,
+          the Servitor's plasma cutter can double as a devastating short-range plasma weapon.
+
+
+          Plasma cutters are a special kind of plasma weapon unique to the Servitor,
+          featuring unlimited ammo and excellent suppression and anti-armor damage,
+          at the cost of extremely low range, no overwatch capability, and low damage per hit.
+
+
+          This plasma cutter has a range dropoff of 20% (ballistics are 10%), and a 15%
+          chance of starting a fire with each shot.
