@@ -318,6 +318,23 @@ groundcombat:
         :RecoveredItems:
          - $DropItem: item/weapon/ballistic_pistol_v3
 
+    gauss_pistol:
+      parent: GC%item/weapon/gauss_pistol
+      $path: ""
+      components:
+        $Damage: 30
+        $ArmorPenetration: 15
+        $ArmorDestruction: 2
+
+    gauss_pistol_v2:
+      parent: GC%item/weapon/gauss_pistol_v2
+      $path: ""
+      components:
+        $Damage: 32
+        $ArmorPenetration: 18
+        $ArmorDestruction: 3
+        $SuppressionDamage: 30
+
     laser_pistol:
       parent: GC%item/weapon/laser_pistol
       $path: ""
@@ -466,6 +483,7 @@ groundcombat:
         <<: *XenoNeedler
         $ArmorPenetration: 15
         $BleedChance: 7.5
+        $SuppressionDamage: 15
         :GCAbilityDefinitions:
           - $ShotAbility:
               <<: *SnapShot
@@ -520,6 +538,10 @@ groundcombat:
           $cost:
             $OrPq:
               - $UnequippedReq: {}
+              - $SlotOwnerPq:
+                  $mode: All
+                  $reqs:
+                    - $NotColossus: {}
           $unlock:
             $SlotOwnerPq:
               $mode: All
@@ -580,6 +602,7 @@ groundcombat:
         $Damage: 30
         $ArmorPenetration: 30
         $ArmorDestruction: 8
+        $SuppressionDamage: 20
         $WeaponRange: 8
         $RangeBonus: 0.04
         $RangeDropoff: 0.10
@@ -633,6 +656,7 @@ groundcombat:
         $Damage: 75
         $ArmorPenetration: 20
         $ArmorDestruction: 20
+        $SuppressionDamage: 35
         $RangeDropoff: 0.05
         $BleedChance: 6.5
         $BleedRollMultiplier: 3

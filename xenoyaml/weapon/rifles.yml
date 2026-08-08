@@ -171,6 +171,13 @@ strategy:
         :Name: Fusion Caster
 
 groundcombat:
+  masters/item:
+    ammo:
+      parent: $next
+      $path: ""
+      components: 
+        :InventorySlotAddPrerequisites: []
+
   item/ammo:
     ballistic_rifle:
       parent: GC%item/ammo/ballistic_rifle
@@ -321,6 +328,7 @@ groundcombat:
         $Damage: 30
         $ArmorDestruction: 2
         $ArmorPenetration: 10
+        $BleedChance: 15
         $GCComplexEquipReqs:
           $cost:
             $OrPq:
@@ -361,6 +369,7 @@ groundcombat:
         $Damage: 30
         $ArmorPenetration: 5
         $ArmorDestruction: 1
+        $BleedChance: 10
         $GCComplexEquipReqs:
           $cost:
             $OrPq:
@@ -374,6 +383,23 @@ groundcombat:
               $mode: Any
               $reqs: 
                 - $TwoHandedReq: {}
+
+    gauss_rifle:
+      parent: GC%item/weapon/gauss_rifle
+      $path: ""
+      components:
+        $Damage: 45
+        $ArmorPenetration: 25
+        $ArmorDestruction: 4
+
+    gauss_rifle_v2:
+      parent: GC%item/weapon/gauss_rifle_v2
+      $path: ""
+      components:
+        $Damage: 48
+        $ArmorPenetration: 30
+        $ArmorDestruction: 6
+        $SuppressionDamage: 38
 
     laser_rifle:
       parent: GC%item/weapon/laser_rifle
@@ -623,6 +649,10 @@ groundcombat:
           $cost:
             $OrPq:
               - $UnequippedReq: {}
+              - $SlotOwnerPq:
+                  $mode: All
+                  $reqs:
+                    - $NotColossus: {}
           $unlock:
             $SlotOwnerPq:
               $mode: All
@@ -684,6 +714,7 @@ groundcombat:
         $Damage: 35
         $ArmorPenetration: 35
         $ArmorDestruction: 15
+        $SuppressionDamage: 25
         $WeaponRange: 8
         $RangeBonus: 0.04
         $RangeDropoff: 0.05
@@ -744,6 +775,7 @@ groundcombat:
         $RangeDropoff: 0.04
         $BleedChance: 10
         $BleedRollMultiplier: 3
+        $SuppressionDamage: 42
         :RecoveredItems:
          - $DropItem: item/weapon/xeno_fusion_rifle
         :Portrait: GC-::-ui/item/weapon/alien_fusion_rifle.png
@@ -776,16 +808,12 @@ groundcombat:
         $ArmorPenetration: 20
         $BleedChance: 10
         $BleedRollMultiplier: 2
-        $GCComplexEquipReqs:
-          $cost:
-            $OrPq:
-              - $UnequippedReq: {}
-          $unlock:
-            $SlotOwnerPq:
-              $mode: All
-              $reqs: 
-                - $TwoHandedReq: {}
-                - $EnemyUnit: {}
+        $GCEquipReqs:
+          $SlotOwnerPq:
+            $mode: All
+            $reqs: 
+              - $TwoHandedReq: {}
+              - $EnemyUnit: {}
         :GCAbilityDefinitions:
           - $ShotAbility:
               <<: *SnapShot
