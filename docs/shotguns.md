@@ -40,7 +40,7 @@
 - Stiletto Rounds: +2 Penetration, +1 Destruction
 - Ammo: 6
 
-## Assault Needler (ancestor of all alien shotguns; currently unused)
+## Assault Needler (ancestor of all alien shotguns)
 
 - 15 Kinetic, 15 Penetration, 1 Destruction, 6.5% Bleed, 7 Suppression
 - Snap Shot: 24% TU, 42% ACC

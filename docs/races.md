@@ -90,7 +90,7 @@ Tough, lumbering creatures, slow to engage but hard to kill.
 - Poor Eyesight (-2 ACC per tile)
 - Sebillian Claws (mandatory secondary weapon)
 - Regeneration (50)
-- Combatants use the Alien Rifle and Alien LMG lines. (Except Elites, apparently, which are LMG-only.)
+- Combatants use the Alien Shotgun and Alien LMG lines.
 - Combatants have a 75% chance of Thermal Detonators, 50% Gas Detonators.
 - Officers use the Alien LMG line and a guaranteed Thermal Detonator.
 
