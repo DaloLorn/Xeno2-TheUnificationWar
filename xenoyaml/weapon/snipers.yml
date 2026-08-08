@@ -1,0 +1,669 @@
+$schemaVersion: 1.0.0
+$aliases:
+  AimedShot: &AimedShot
+    $mode: aimed
+    $name: Snap Shot
+    $percentCost: 48
+    $accuracy: 80
+    $stationaryBonus:
+      $FlatRange: 20
+    $crosshair: GC-::-ui/crosshairs/crosshair_aimed
+  ScopedShot: &ScopedShot
+    $mode: scoped
+    $name: Scoped Shot
+    $percentCost: 64
+    $stationaryBonus:
+      $FlatRange: 30
+    $accuracy: 160
+    $crosshair: GC-::-ui/crosshairs/crosshair_scoped
+  LaserShot: &LaserShot
+    $trajectory: Line
+    $shots: 4
+    $shotDelay: 0.05
+
+strategy:
+  item/ammo:
+    plasma_sniper_cell:
+      parent: &STPlasmaCell ST%item/ammo/plasma_sniper_cell
+      $path: ""
+      components: &PlasmaCell
+        $NoLocale: {}
+        :Name: Plasma Sniper Cell
+
+    plasma_sniper_cell_v2:
+      parent: *STPlasmaCell
+      $path: ""
+      components: &AdvPlasmaCell
+        :Name: Advanced Plasma Sniper Cell
+
+    fusion_sniper_cell:
+      parent: *STPlasmaCell
+      $path: ""
+      components: &FusionCell
+        :Name: Fusion Sniper Cell
+
+    fusion_sniper_cell_v2:
+      parent: *STPlasmaCell
+      $path: ""
+      components: &AdvFusionCell
+        :Name: Advanced Fusion Sniper Cell
+
+    alien_mag_clip_sniper:
+      parent: ST%item/ammo/alien_mag_clip
+      $path: ""
+      components: &LongNeedlerClip
+        $NoLocale: {}
+        :Name: Long Needler Clip
+
+    alien_plasma_cell_sniper:
+      parent: ST%item/ammo/alien_plasma_cell
+      $path: ""
+      components: &LongBlasterCell
+        $NoLocale: {}
+        :Name: Long Blaster Cell
+
+    alien_fusion_cell_sniper:
+      parent: ST%item/ammo/alien_fusion_cell
+      $path: ""
+      components: &NovaGunCell
+        $NoLocale: {}
+        :Name: Disintegrator Cell
+
+  item/weapon:
+    ballistic_sniper_v3:
+      parent: ST%item/weapon/ballistic_sniper_v2
+      $path: ""
+      components: &AdvAccSniper
+        $NoLocale: {}
+        :Name: Advanced Accelerated Sniper
+
+    plasma_sniper:
+      parent: ST%item/weapon/plasma_sniper
+      $path: ""
+      components: &PlasmaSniper
+        $NoLocale: {}
+        :Name: Plasma Sniper
+
+    plasma_sniper_v2:
+      parent: ST%item/weapon/plasma_sniper_v2
+      $path: ""
+      components:
+        :DefaultAmmo:
+          $content: ST-::-item/ammo/fusion_sniper_cell.json
+          $valuetypekey: ar_Template
+        $NoLocale: {}
+        :Name: Fusion Sniper
+
+    alien_magnetic_sniper:
+      parent: &STNeedler ST%item/weapon/alien_magnetic_sniper
+      $path: ""
+      components: &Needler
+        :DefaultAmmo:
+          $content: ST-::-item/ammo/alien_mag_clip_sniper.json
+          $valuetypekey: ar_Template
+        $NoLocale: {}
+        :Name: Alien Long Needler
+
+    xeno_magnetic_sniper:
+      parent: *STNeedler
+      $path: ""
+      components: &XenoNeedler
+        :Name: Long Needler
+
+    alien_plasma_sniper:
+      parent: *STNeedler
+      $path: ""
+      components: &Blaster
+        :DefaultAmmo:
+          $content: ST-::-item/ammo/alien_plasma_cell_sniper.json
+          $valuetypekey: ar_Template
+        $NoLocale: {}
+        :Name: Alien Long Blaster
+
+    xeno_plasma_sniper:
+      parent: ST%item/weapon/alien_plasma_sniper
+      $path: ""
+      components: &XenoBlaster
+        :Name: Long Blaster
+
+    alien_fusion_sniper:
+      parent: *STNeedler
+      $path: ""
+      components: &Disintegrator
+        :DefaultAmmo:
+          $content: ST-::-item/ammo/alien_fusion_cell_sniper.json
+          $valuetypekey: ar_Template
+        $NoLocale: {}
+        :Name: Alien Disintegrator
+    
+    xeno_fusion_sniper:
+      parent: ST%item/weapon/alien_fusion_sniper
+      $path: ""
+      components: &XenoDisintegrator
+        $NoLocale: {}
+        :Name: Disintegrator
+
+groundcombat:
+  item/ammo:
+    ballistic_sniper_alloy:
+      parent: GC%item/ammo/ballistic_sniper_alloy
+      $path: ""
+      components:
+        $Weight: 3
+        :DamageModifier:
+          _min: 0
+          _val: 1
+          _max: 3.402823e+38
+        :Modifiers:
+          - $ModSoldierStat: # So that turned out to be a misnomer... oops.
+              $stat: Xenonauts.GroundCombat.ArmourPenetration
+              $amount: 4
+    
+    laser_sniper:
+      parent: GC%item/ammo/laser_sniper
+      $path: ""
+      components:
+        $Shots: 12
+        :GCAbilityDefinitions:
+          - :117:
+              Regenerate: 1
+              Name: Regenerate Ammo
+              Tooltip: false
+
+    laser_sniper_v2:
+      parent: GC%item/ammo/laser_sniper_v2
+      $path: ""
+      components:
+        $Shots: 18
+        :GCAbilityDefinitions:
+          - :117:
+              Regenerate: 2
+              Name: Regenerate Ammo
+              Tooltip: false
+    
+    plasma_sniper_cell:
+      parent: &GCPlasmaCell GC%item/ammo/plasma_sniper_cell
+      $path: ""
+      components:
+        <<: *PlasmaCell
+        :AmmoID: plasma
+        $Shots: 3
+        $ImpactVector:
+          - $SpawnEnvironmentalEffect:
+              $chance: 85
+              $spawnStyles:
+                - SpawnAsGas
+              $effPath: blueprints/common/common/simple/effect/environmental/fire_spreading_1x1
+
+    plasma_sniper_cell_v2:
+      parent: *GCPlasmaCell
+      $path: ""
+      components:
+        <<: *AdvPlasmaCell
+        :AmmoID: plasma
+        :RecoveredItems:
+          - $DropItem: item/ammo/plasma_sniper_cell_v2
+        :GCAbilityDefinitions:
+          - :117:
+              Regenerate: 1
+              Name: Regenerate Ammo
+              Tooltip: false
+    
+    fusion_sniper_cell:
+      parent: *GCPlasmaCell
+      $path: ""
+      components:
+        <<: *FusionCell
+        :AmmoID: fusion
+        :AmmoStandard: fusion_sniper
+        :RecoveredItems:
+          - $DropItem: item/ammo/fusion_sniper_cell
+
+    fusion_sniper_cell_v2:
+      parent: GC%item/ammo/plasma_sniper_cell_v2
+      $path: ""
+      components:
+        <<: *AdvFusionCell
+        :AmmoID: fusion
+        :AmmoStandard: fusion_sniper
+        :RecoveredItems:
+          - $DropItem: item/ammo/fusion_sniper_cell_v2
+
+    gauss_sniper_clip:
+      parent: GC%item/ammo/gauss_sniper_clip
+      $path: ""
+      components:
+        $Shots: 6
+
+    gauss_sniper_clip_v2:
+      parent: GC%item/ammo/gauss_sniper_clip_v2
+      $path: ""
+      components:
+        :Modifiers:
+          - $ModSoldierStat:
+              $stat: Xenonauts.GroundCombat.ArmourDestruction
+              $amount: 4
+          - $ModSoldierStat:
+              $stat: Xenonauts.GroundCombat.ArmourPenetration
+              $amount: 10
+
+    alien_mag_clip_sniper:
+      parent: GC%item/ammo/alien_mag_clip
+      $path: ""
+      components:
+        <<: *LongNeedlerClip
+        :RecoveredItems:
+          - $DropItem: item/ammo/alien_mag_clip_sniper
+        $Shots: 8
+
+    alien_plasma_cell_sniper:
+      parent: GC%item/ammo/alien_plasma_cell
+      $path: ""
+      components:
+        <<: *LongBlasterCell
+        $Shots: 6
+        :RecoveredItems:
+          - $DropItem: item/ammo/alien_plasma_cell_sniper
+        $ImpactVector:
+          - $SpawnEnvironmentalEffect:
+              $chance: 80
+              $spawnStyles:
+                - SpawnAsGas
+              $effPath: blueprints/common/common/simple/effect/environmental/fire_spreading_1x1
+
+    alien_fusion_cell_sniper:
+      parent: GC%item/ammo/alien_fusion_cell
+      $path: ""
+      components:
+        <<: *NovaGunCell
+        :RecoveredItems:
+          - $DropItem: item/ammo/alien_fusion_cell_sniper
+        $Shots: 4
+        $ImpactVector:
+          - $SpawnEnvironmentalEffect:
+              $chance: 85
+              $spawnStyles:
+                - SpawnAsGas
+              $effPath: blueprints/common/common/simple/effect/environmental/fire_spreading_1x1
+
+  item/weapon:
+    ballistic_sniper:
+      parent: &BallSniper GC%item/weapon/ballistic_sniper
+      $path: ""
+      components:
+        # No custom fire modes needed, ballistics are fine as-is.
+        # Ditto for weight, reload cost, size, and ammo standard.
+        $Damage: 40
+        $ArmorDestruction: 4
+        $ArmorPenetration: 15
+        $BleedChance: 15
+        $GCComplexEquipReqs:
+          $cost:
+            $OrPq:
+              - $UnequippedReq: {}
+              - $SlotOwnerPq:
+                  $mode: All
+                  $reqs:
+                    - $NotColossus: {}
+          $unlock:
+            $SlotOwnerPq:
+              $mode: Any
+              $reqs: 
+                - $TwoHandedReq: {}
+
+    ballistic_sniper_v2:
+      parent: &AccSniper GC%item/weapon/ballistic_sniper_v2
+      $path: ""
+      components:
+        $Damage: 45
+        $ArmorDestruction: 6
+        $ArmorPenetration: 25
+
+    ballistic_sniper_v3:
+      parent: *AccSniper
+      $path: ""
+      components:
+        <<: *AdvAccSniper
+        $Damage: 50
+        $ArmorDestruction: 8
+        $ArmorPenetration: 35
+        :RecoveredItems:
+         - $DropItem: item/weapon/ballistic_sniper_v3
+
+    gauss_sniper:
+      parent: GC%item/weapon/gauss_sniper
+      $path: ""
+      components:
+        $Damage: 65
+        $ArmorPenetration: 15
+        $ArmorDestruction: 40
+
+    gauss_sniper_v2:
+      parent: GC%item/weapon/gauss_sniper_v2
+      $path: ""
+      components:
+        $Damage: 70
+        $ArmorPenetration: 50
+        $ArmorDestruction: 12
+        $SuppressionDamage: 63
+
+    laser_sniper:
+      parent: GC%item/weapon/laser_sniper
+      $path: ""
+      components:
+        $Damage: 12
+        $ArmorPenetration: 25
+        $ArmorDestruction: 6
+        $SuppressionDamage: 10
+        :Description: >-
+          Lasers are a unique kind of energy weapon. Like most energy weapons,
+          they inflict more total damage, do not inflict Bleeding Wounds,
+          and have reduced Armour Penetration, but have exceptional Armour Destruction
+          for their size.
+
+          
+          Unlike other energy weapons, lasers fire 4 weaker beams for every shot
+          fired by an equivalent non-laser weapon, and do not require research
+          to regenerate ammunition. Additionally, they are not subject to recoil
+          (except machineguns, which only have half recoil), and have increased accuracy
+          as well as an accuracy bonus for low-accuracy soldiers.
+
+
+          Lasers are not as prone to dissipation as most energy weapons. While they still
+          have a much shorter optimal range than similar ballistic weapons, lasers suffer
+          fairly limited accuracy/damage dropoff allowing them similar range to ballistics;
+          this laser sniper only loses 4% per tile, compared to the 10% of a ballistic sniper.
+        :GCAbilityDefinitions:
+          - $ShotAbility:
+              <<:
+                - *AimedShot
+                - *LaserShot
+              $accuracy: 100
+          - $ShotAbility:
+              <<:
+                - *ScopedShot
+                - *LaserShot
+              $accuracy: 190
+        $Recoil: 0
+        $WeaponRange: 13
+        $RangeDropoff: 0.04
+
+    laser_sniper_v2:
+      parent: GC%item/weapon/laser_sniper_v2
+      $path: ""
+      components:
+        $Damage: 17
+        $ArmorPenetration: 30
+        $ArmorDestruction: 10
+
+    plasma_sniper:
+      parent: GC%item/weapon/plasma_sniper
+      $path: ""
+      components:
+        <<: *PlasmaSniper
+        $Damage: 60
+        $ArmorPenetration: 15
+        $ArmorDestruction: 40
+        $BleedChance: 0
+        $SuppressionDamage: 50
+        :WeaponID: plasma
+        $WeaponRange: 18
+        $RangeDropoff: 0.125
+        :Description: >-
+          Plasma weapons are powerful, but short-ranged energy weapons.
+          Like most energy weapons, they inflict more total damage, do not
+          inflict Bleeding Wounds, and have reduced Armour Penetration,
+          but have exceptional Armour Destruction for their size.
+
+
+          Plasma weapons tend to destabilize quickly in atmosphere,
+          resulting in very short optimal ranges and a more rapid
+          accuracy/damage dropoff than ballistic weapons. However,
+          they have somewhat improved ammo economy over lasers,
+          and have a high chance of starting fires wherever they hit.
+
+
+          This plasma sniper has a range dropoff of 12.5% (ballistics are 10%),
+          and an 85% chance of setting a tile ablaze.
+        
+    plasma_sniper_v2:
+      parent: GC%item/weapon/plasma_sniper_v2
+      $path: ""
+      components:
+        $NoLocale: {}
+        :Name: Fusion Sniper
+        :CompatibleAmmo:
+          - fusion_sniper
+        $Damage: 80
+        $ArmorDestruction: 50
+        $BleedChance: 15
+        $BleedRollMultiplier: 3
+        $SuppressionDamage: 63
+        :WeaponID: fusion
+        :Description: >-
+          Fusion weapons are a powerful variant of plasma weapons.
+          Like most energy weapons, they inflict more total damage
+          and have reduced Armour Penetration, with exceptional
+          Armour Destruction for their size. However, they can
+          also inflict a lot of Bleeding Wounds.
+
+
+          Fusion weapons tend to destabilize quickly in atmosphere,
+          resulting in very short optimal ranges and a more rapid
+          accuracy/damage dropoff than ballistic weapons. However,
+          they have somewhat improved ammo economy over lasers,
+          and have a high chance of starting fires wherever they hit.
+
+
+          This fusion sniper has a range dropoff of 12.5% (ballistics are 10%),
+          and an 85% chance of setting a tile ablaze.
+
+    xeno_magnetic_sniper:
+      parent: *BallSniper
+      $path: ""
+      components:
+        <<: *XenoNeedler
+        $Damage: 65
+        $ArmorPenetration: 40
+        $ArmorDestruction: 2
+        $BleedChance: 12
+        $SuppressionDamage: 30
+        :GCAbilityDefinitions:
+          - $ShotAbility:
+              <<: *AimedShot
+              $stationaryBonus: false
+              $accuracy: 100
+          - $ShotAbility:
+              <<: *ScopedShot
+              $stationaryBonus: false
+              $accuracy: 190
+        $Recoil: 0.1
+        $ReloadCost: 20
+        :CompatibleAmmo:
+          - alien_mag_clip_sniper
+        :FireSounds:
+          single:
+            - GC-::-sfx/weapon/fire/fire_mag_sniper.ogg
+          burst:
+            - GC-::-sfx/weapon/fire/fire_alien_magnetic_rifle.ogg
+          empty:
+            - GC-::-sfx/weapon/empty/empty_default.ogg
+          reload:
+            - GC-::-sfx/weapon/reload/reload_mag_precision_1.ogg
+          meleeHit: []
+          meleeMiss: []
+        :Portrait: GC-::-ui/item/weapon/alien_magnetic_rifle.png
+        :Description: >-
+          Needlers are a special kind of ballistic weapon. They inflict
+          relatively low damage and Armour Destruction compared to
+          accelerated weapons, but are more accurate, fire faster,
+          and have increased Armour Penetration and ammo capacity.
+          Instead of firing faster, long needlers receive no Accuracy penalty
+          for moving and shooting on the same turn.
+
+
+          Needlers recovered on the battlefield are DNA-locked
+          and cannot be used by human units. Xenonaut engineers
+          can eventually defeat the DNA lock and create human-usable
+          Needlers, but they cannot be upgraded further.
+        :Prototype:
+          value: GC-::-item/weapon/alien_magnetic_rifle.prefab
+          addColliders: false
+          dontInstantiate: true
+          pool: false
+        :RecoveredItems:
+          - $DropItem: item/weapon/xeno_magnetic_sniper
+
+    alien_magnetic_sniper:
+      parent: &XenoSniper GC%item/weapon/xeno_magnetic_sniper
+      $path: ""
+      components:
+        <<: *Needler
+        $GCComplexEquipReqs: &AlienSniperReqs
+          $cost:
+            $OrPq:
+              - $UnequippedReq: {}
+              - $SlotOwnerPq:
+                  $mode: All
+                  $reqs:
+                    - $NotColossus: {}
+          $unlock:
+            $SlotOwnerPq:
+              $mode: All
+              $reqs: 
+                - $TwoHandedReq: {}
+                - $AlienUnit: {}
+        :RecoveredItems:
+          - $DropItem: item/weapon/alien_magnetic_sniper
+          - $DropItem: item/alloys
+
+    xeno_plasma_sniper:
+      parent: *XenoSniper
+      $path: ""
+      components:
+        <<: *XenoBlaster
+        :CompatibleAmmo:
+          - alien_plasmacell_sniper
+        :FireSounds:
+          single:
+            - GC-::-sfx/weapon/fire/fire_plasma_sniper_0.ogg
+            - GC-::-sfx/weapon/fire/fire_plasma_sniper_1.ogg
+          burst: []
+          empty:
+            - GC-::-sfx/weapon/empty/empty_default.ogg
+          reload:
+            - GC-::-sfx/weapon/reload/reload_plasma_sniper_1.ogg
+          meleeHit: []
+          meleeMiss: []
+        :Portrait: GC-::-ui/item/weapon/alien_plasma_sniper.png
+        :Prototype:
+          value: GC-::-item/weapon/alien_plasma_sniper.prefab
+          addColliders: false
+          dontInstantiate: true
+          pool: false
+        :RecoveredItems:
+          - $DropItem: item/weapon/xeno_plasma_sniper
+        :Description: >-
+          Blasters are a special kind of plasma weapon. They inflict
+          relatively low damage and Armour Destruction compared to
+          plasma weapons, but are more accurate, fire faster,
+          and have increased Armour Penetration and ammo capacity.
+          Instead of firing faster, long blasters receive no Accuracy penalty
+          for moving and shooting on the same turn.
+          
+
+          Blaster bolts are more compact than an equivalent plasma
+          bolt, and have a shorter optimal range. However, they
+          are not as heavily affected by range dropoff penalties,
+          and therefore still have a higher maximum range.
+          This long blaster has a dropoff rate of 6.25% per tile.
+
+
+          Blasters recovered on the battlefield are DNA-locked
+          and cannot be used by human units. Xenonaut engineers
+          can eventually defeat the DNA lock and create human-usable
+          Blasters, but they cannot be upgraded further.
+        :WeaponID: plasma
+        :DamageType: energy
+        $Damage: 20
+        $ArmorPenetration: 20
+        $ArmorDestruction: 5
+        $SuppressionDamage: 50
+        $WeaponRange: 16
+        $RangeBonus: 0.25
+        $RangeDropoff: 0.10
+
+    alien_plasma_sniper:
+      parent: &XenoBlaster GC%item/weapon/xeno_plasma_sniper
+      $path: ""
+      components:
+        <<: *Blaster
+        $GCComplexEquipReqs: *AlienSniperReqs
+        :RecoveredItems:
+          - $DropItem: item/weapon/alien_plasma_sniper
+          - $DropItem: item/alloys
+          - $DropItem: item/alenium
+
+    xeno_fusion_sniper:
+      parent: *XenoBlaster
+      $path: ""
+      components:
+        <<: *XenoDisintegrator
+        :GCAbilityDefinitions:
+          - $ShotAbility: 
+              <<: *AimedShot
+          - $ShotAbility: 
+              <<: *ScopedShot
+        :CompatibleAmmo:
+          - alien_fusion_cell_sniper
+        :WeaponID: fusion
+        :Description: >-
+          Disintegrators are a special kind of fusion weapon. Unlike
+          Blasters, they fire slowly and have limited ammo, but inflict
+          the most damage of any sniper in the game. They also have
+          further reduced range dropoff, increasing their maximum range.
+          Unlike other alien snipers, disintegrators are subject
+          to the same movement penalties as Xenonaut snipers.
+          
+
+          Alien fusion bolts are more compact than an equivalent fusion
+          bolt, and have a shorter optimal range. However, they
+          are not as heavily affected by range dropoff penalties,
+          and therefore still have a higher maximum range.
+          This disintegrator has a dropoff rate of 5% per tile.
+
+
+          Disintegrators recovered on the battlefield are DNA-locked
+          and cannot be used by human units. Xenonaut engineers
+          can eventually defeat the DNA lock and create human-usable
+          Disintegrators, but they cannot be upgraded further.
+        $Damage: 120
+        $ArmorPenetration: 30
+        $ArmorDestruction: 40
+        $RangeDropoff: 0.05
+        $SuppressionDamage: 70
+        $BleedChance: 16
+        $BleedRollMultiplier: 3
+        :RecoveredItems:
+          - $DropItem: item/weapon/xeno_fusion_sniper
+        :Portrait: GC-::-ui/item/weapon/alien_fusion_rifle.png
+        :Prototype:
+          value: GC-::-item/weapon/alien_fusion_rifle.prefab
+          addColliders: false
+          dontInstantiate: true
+          pool: false
+        
+    alien_fusion_sniper:
+      parent: GC%item/weapon/xeno_fusion_sniper
+      $path: ""
+      components:
+        <<: *Disintegrator
+        $GCComplexEquipReqs: *AlienSniperReqs
+        :RecoveredItems:
+          - $DropItem: item/weapon/alien_fusion_sniper
+          - $DropItem: 
+                $amount: 2
+                $item: item/alloys
+          - $DropItem:
+                $amount: 2
+                $item: item/alenium

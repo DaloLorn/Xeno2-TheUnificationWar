@@ -1,0 +1,665 @@
+$schemaVersion: 1.0.0
+$aliases:
+  SnapShot: &SnapShot
+    $mode: snap
+    $name: Snap Shot
+    $percentCost: 30
+    $accuracy: 36
+    $crosshair: GC-::-ui/crosshairs/crosshair_snap
+  NormalShot: &NormalShot
+    $mode: normal
+    $name: Normal Shot
+    $percentCost: 43
+    $accuracy: 68
+    $crosshair: GC-::-ui/crosshairs/crosshair_normal
+  LaserShot: &LaserShot
+    $trajectory: Line
+    $shots: 4
+    $shotDelay: 0.05
+
+strategy:
+  item/ammo:
+    plasma_shotgun_cell:
+      parent: &STPlasmaCell ST%item/ammo/plasma_shotgun_cell
+      $path: ""
+      components: &PlasmaCell
+        $NoLocale: {}
+        :Name: Plasma Shotgun Cell
+
+    plasma_shotgun_cell_v2:
+      parent: *STPlasmaCell
+      $path: ""
+      components: &AdvPlasmaCell
+        :Name: Advanced Plasma Shotgun Cell
+
+    fusion_shotgun_cell:
+      parent: *STPlasmaCell
+      $path: ""
+      components: &FusionCell
+        :Name: Fusion Shotgun Cell
+
+    fusion_shotgun_cell_v2:
+      parent: *STPlasmaCell
+      $path: ""
+      components: &AdvFusionCell
+        :Name: Advanced Fusion Shotgun Cell
+
+    alien_mag_clip_shotgun:
+      parent: ST%item/ammo/alien_mag_clip
+      $path: ""
+      components: &AssaultNeedlerClip
+        $NoLocale: {}
+        :Name: Assault Needler Clip
+
+    alien_plasma_cell_shotgun:
+      parent: ST%item/ammo/alien_plasma_cell
+      $path: ""
+      components: &AssaultBlasterCell
+        $NoLocale: {}
+        :Name: Assault Blaster Cell
+
+    alien_fusion_cell_shotgun:
+      parent: ST%item/ammo/alien_fusion_cell
+      $path: ""
+      components: &NovaGunCell
+        $NoLocale: {}
+        :Name: Nova Gun Cell
+
+  item/weapon:
+    ballistic_shotgun_v3:
+      parent: ST%item/weapon/ballistic_shotgun_v2
+      $path: ""
+      components: &AdvAccShotgun
+        $NoLocale: {}
+        :Name: Advanced Accelerated Shotgun
+
+    plasma_shotgun:
+      parent: ST%item/weapon/plasma_shotgun
+      $path: ""
+      components: &PlasmaShotgun
+        $NoLocale: {}
+        :Name: Plasma Shotgun
+
+    plasma_shotgun_v2:
+      parent: ST%item/weapon/plasma_shotgun_v2
+      $path: ""
+      components:
+        :DefaultAmmo:
+          $content: ST-::-item/ammo/fusion_shotgun_cell.json
+          $valuetypekey: ar_Template
+        $NoLocale: {}
+        :Name: Fusion Shotgun
+
+    alien_magnetic_shotgun:
+      parent: &STNeedler ST%item/weapon/alien_magnetic_shotgun
+      $path: ""
+      components: &Needler
+        :DefaultAmmo:
+          $content: ST-::-item/ammo/alien_mag_clip_shotgun.json
+          $valuetypekey: ar_Template
+        $NoLocale: {}
+        :Name: Alien Assault Needler
+
+    xeno_magnetic_shotgun:
+      parent: *STNeedler
+      $path: ""
+      components: &XenoNeedler
+        :Name: Assault Needler
+
+    alien_plasma_shotgun:
+      parent: *STNeedler
+      $path: ""
+      components: &Blaster
+        :DefaultAmmo:
+          $content: ST-::-item/ammo/alien_plasma_cell_shotgun.json
+          $valuetypekey: ar_Template
+        $NoLocale: {}
+        :Name: Alien Assault Blaster
+
+    xeno_plasma_shotgun:
+      parent: ST%item/weapon/alien_plasma_shotgun
+      $path: ""
+      components: &XenoBlaster
+        :Name: Assault Blaster
+
+    alien_fusion_shotgun:
+      parent: *STNeedler
+      $path: ""
+      components: &NovaGun
+        :DefaultAmmo:
+          $content: ST-::-item/ammo/alien_fusion_cell_shotgun.json
+          $valuetypekey: ar_Template
+        $NoLocale: {}
+        :Name: Alien Nova Gun
+    
+    xeno_fusion_shotgun:
+      parent: ST%item/weapon/alien_fusion_shotgun
+      $path: ""
+      components: &XenoNovaGun
+        $NoLocale: {}
+        :Name: Nova Gun
+
+groundcombat:
+  item/ammo:
+    ballistic_shotgun_alloy:
+      parent: GC%item/ammo/ballistic_shotgun_alloy
+      $path: ""
+      components:
+        $Weight: 3
+        :DamageModifier:
+          _min: 0
+          _val: 1
+          _max: 3.402823e+38
+        :Modifiers:
+          - $ModSoldierStat: # So that turned out to be a misnomer... oops.
+              $stat: Xenonauts.GroundCombat.ArmourPenetration
+              $amount: 1
+    
+    laser_shotgun:
+      parent: GC%item/ammo/laser_shotgun
+      $path: ""
+      components:
+        $Shots: 16
+        :GCAbilityDefinitions:
+          - :117:
+              Regenerate: 2
+              Name: Regenerate Ammo
+              Tooltip: false
+
+    laser_shotgun_v2:
+      parent: GC%item/ammo/laser_shotgun_v2
+      $path: ""
+      components:
+        $Shots: 24
+        :GCAbilityDefinitions:
+          - :117:
+              Regenerate: 4
+              Name: Regenerate Ammo
+              Tooltip: false
+    
+    plasma_shotgun_cell:
+      parent: &GCPlasmaCell GC%item/ammo/plasma_shotgun_cell
+      $path: ""
+      components:
+        <<: *PlasmaCell
+        :AmmoID: plasma
+        $Shots: 4
+        $ImpactVector:
+          - $SpawnEnvironmentalEffect:
+              $chance: 25
+              $spawnStyles:
+                - SpawnAsGas
+              $effPath: blueprints/common/common/simple/effect/environmental/fire_spreading_1x1
+
+    plasma_shotgun_cell_v2:
+      parent: *GCPlasmaCell
+      $path: ""
+      components:
+        <<: *AdvPlasmaCell
+        :AmmoID: plasma
+        :RecoveredItems:
+          - $DropItem: item/ammo/plasma_shotgun_cell_v2
+        :GCAbilityDefinitions:
+          - :117:
+              Regenerate: 1
+              Name: Regenerate Ammo
+              Tooltip: false
+    
+    fusion_shotgun_cell:
+      parent: *GCPlasmaCell
+      $path: ""
+      components:
+        <<: *FusionCell
+        :AmmoID: fusion
+        :AmmoStandard: fusion_shotgun
+        :RecoveredItems:
+          - $DropItem: item/ammo/fusion_shotgun_cell
+
+    fusion_shotgun_cell_v2:
+      parent: GC%item/ammo/plasma_shotgun_cell_v2
+      $path: ""
+      components:
+        <<: *AdvFusionCell
+        :AmmoID: fusion
+        :AmmoStandard: fusion_shotgun
+        :RecoveredItems:
+          - $DropItem: item/ammo/fusion_shotgun_cell_v2
+
+    gauss_shotgun_clip:
+      parent: GC%item/ammo/gauss_shotgun_clip
+      $path: ""
+      components:
+        $Shots: 6
+
+    gauss_shotgun_clip_v2:
+      parent: GC%item/ammo/gauss_shotgun_clip_v2
+      $path: ""
+      components:
+        :Modifiers:
+          - $ModSoldierStat:
+              $stat: Xenonauts.GroundCombat.ArmourDestruction
+              $amount: 1
+          - $ModSoldierStat:
+              $stat: Xenonauts.GroundCombat.ArmourPenetration
+              $amount: 2
+
+    alien_mag_clip_shotgun:
+      parent: GC%item/ammo/alien_mag_clip
+      $path: ""
+      components:
+        <<: *AssaultNeedlerClip
+        :RecoveredItems:
+          - $DropItem: item/ammo/alien_mag_clip_shotgun
+        $Shots: 12
+
+    alien_plasma_cell_shotgun:
+      parent: GC%item/ammo/alien_plasma_cell
+      $path: ""
+      components:
+        <<: *AssaultBlasterCell
+        $Shots: 8
+        :RecoveredItems:
+          - $DropItem: item/ammo/alien_plasma_cell_shotgun
+        $ImpactVector:
+          - $SpawnEnvironmentalEffect:
+              $chance: 35
+              $spawnStyles:
+                - SpawnAsGas
+              $effPath: blueprints/common/common/simple/effect/environmental/fire_spreading_1x1
+
+    alien_fusion_cell_shotgun:
+      parent: GC%item/ammo/alien_fusion_cell
+      $path: ""
+      components:
+        <<: *NovaGunCell
+        :RecoveredItems:
+          - $DropItem: item/ammo/alien_fusion_cell_shotgun
+        $Shots: 6
+        $ImpactVector:
+          - $SpawnEnvironmentalEffect:
+              $chance: 35
+              $spawnStyles:
+                - SpawnAsGas
+              $effPath: blueprints/common/common/simple/effect/environmental/fire_spreading_1x1
+
+  item/weapon:
+    ballistic_shotgun:
+      parent: &BallShotgun GC%item/weapon/ballistic_shotgun
+      $path: ""
+      components:
+        # No custom fire modes needed, ballistics are fine as-is.
+        # Ditto for weight, reload cost, size, and ammo standard.
+        $Damage: 20
+        $ArmorDestruction: 1
+        $ArmorPenetration: 3
+        :Pellets:
+          $MaxRange: 4
+        $GCComplexEquipReqs:
+          $cost:
+            $OrPq:
+              - $UnequippedReq: {}
+              - $SlotOwnerPq:
+                  $mode: All
+                  $reqs:
+                    - $NotColossus: {}
+          $unlock:
+            $SlotOwnerPq:
+              $mode: Any
+              $reqs: 
+                - $TwoHandedReq: {}
+
+    ballistic_shotgun_v2:
+      parent: &AccShotgun GC%item/weapon/ballistic_shotgun_v2
+      $path: ""
+      components:
+        $Damage: 21
+        $ArmorDestruction: 1
+        $ArmorPenetration: 5
+
+    ballistic_shotgun_v3:
+      parent: *AccShotgun
+      $path: ""
+      components:
+        <<: *AdvAccShotgun
+        $Damage: 22
+        $ArmorDestruction: 2
+        $ArmorPenetration: 7
+        :RecoveredItems:
+         - $DropItem: item/weapon/ballistic_shotgun_v3
+
+    gauss_shotgun:
+      parent: GC%item/weapon/gauss_shotgun
+      $path: ""
+      components:
+        $Damage: 25
+        $ArmorPenetration: 10
+        $ArmorDestruction: 2
+
+    gauss_shotgun_v2:
+      parent: GC%item/weapon/gauss_shotgun_v2
+      $path: ""
+      components:
+        $Damage: 26
+        $ArmorPenetration: 12
+        $ArmorDestruction: 3
+        $SuppressionDamage: 13
+
+    laser_shotgun:
+      parent: GC%item/weapon/laser_shotgun
+      $path: ""
+      components:
+        $Damage: 6
+        $ArmorPenetration: 5
+        $ArmorDestruction: 2
+        $SuppressionDamage: 2
+        :Description: >-
+          Lasers are a unique kind of energy weapon. Like most energy weapons,
+          they inflict more total damage, do not inflict Bleeding Wounds,
+          and have reduced Armour Penetration, but have exceptional Armour Destruction
+          for their size.
+
+          
+          Unlike other energy weapons, lasers fire 4 weaker beams for every shot
+          fired by an equivalent non-laser weapon, and do not require research
+          to regenerate ammunition. Additionally, they are not subject to recoil
+          (except machineguns, which only have half recoil), and have increased accuracy
+          as well as an accuracy bonus for low-accuracy soldiers.
+
+
+          Lasers are not as prone to dissipation as most energy weapons. While they still
+          have a much shorter optimal range than similar ballistic weapons, lasers suffer
+          fairly limited accuracy/damage dropoff allowing them similar range to ballistics;
+          this laser shotgun only loses 10% per tile, compared to the 20% of a ballistic shotgun.
+        :GCAbilityDefinitions:
+          - $ShotAbility:
+              <<:
+                - *SnapShot
+                - *LaserShot
+              $accuracy: 46
+          - $ShotAbility:
+              <<:
+                - *NormalShot
+                - *LaserShot
+              $accuracy: 78
+        $Recoil: 0
+        $WeaponRange: 5
+        $RangeBonus: 0.12
+        $RangeDropoff: 0.1
+
+    laser_shotgun_v2:
+      parent: GC%item/weapon/laser_shotgun_v2
+      $path: ""
+      components:
+        $Damage: 7
+        $ArmorPenetration: 6
+        $ArmorDestruction: 3
+
+    plasma_shotgun:
+      parent: GC%item/weapon/plasma_shotgun
+      $path: ""
+      components:
+        <<: *PlasmaShotgun
+        $Damage: 30
+        $ArmorPenetration: 15
+        $ArmorDestruction: 10
+        $BleedChance: 0
+        $SuppressionDamage: 10
+        :WeaponID: plasma
+        $WeaponRange: 3
+        $RangeBonus: 0.2
+        $RangeDropoff: 0.2
+        :Description: >-
+          Plasma weapons are powerful, but short-ranged energy weapons.
+          Like most energy weapons, they inflict more total damage, do not
+          inflict Bleeding Wounds, and have reduced Armour Penetration,
+          but have exceptional Armour Destruction for their size.
+
+
+          Plasma weapons tend to destabilize quickly in atmosphere,
+          resulting in very short optimal ranges and a more rapid
+          accuracy/damage dropoff than ballistic weapons. However,
+          they have somewhat improved ammo economy over lasers,
+          and have a high chance of starting fires wherever they hit.
+
+
+          This plasma shotgun has a range dropoff of 20% (ballistics are 20%),
+          and a 25% chance of setting a tile ablaze.
+        
+    plasma_shotgun_v2:
+      parent: GC%item/weapon/plasma_shotgun_v2
+      $path: ""
+      components:
+        $NoLocale: {}
+        :Name: Fusion Shotgun
+        :CompatibleAmmo:
+          - fusion_shotgun
+        $Damage: 35
+        $ArmorDestruction: 12
+        $BleedChance: 3
+        $BleedRollMultiplier: 3
+        $SuppressionDamage: 13
+        :WeaponID: fusion
+        :Description: >-
+          Fusion weapons are a powerful variant of plasma weapons.
+          Like most energy weapons, they inflict more total damage
+          and have reduced Armour Penetration, with exceptional
+          Armour Destruction for their size. However, they can
+          also inflict a lot of Bleeding Wounds.
+
+
+          Fusion weapons tend to destabilize quickly in atmosphere,
+          resulting in very short optimal ranges and a more rapid
+          accuracy/damage dropoff than ballistic weapons. However,
+          they have somewhat improved ammo economy over lasers,
+          and have a high chance of starting fires wherever they hit.
+
+
+          This fusion shotgun has a range dropoff of 20% (ballistics are 20%),
+          and a 25% chance of setting a tile ablaze.
+
+    xeno_magnetic_shotgun:
+      parent: *BallShotgun
+      $path: ""
+      components:
+        <<: *XenoNeedler
+        $Damage: 15
+        $ArmorPenetration: 15
+        $BleedChance: 6.5
+        $SuppressionDamage: 7
+        :GCAbilityDefinitions:
+          - $ShotAbility:
+              <<: *SnapShot
+              $percentCost: 24
+              $accuracy: 42
+          - $ShotAbility:
+              <<: *NormalShot
+              $percentCost: 32
+              $accuracy: 76
+        $Recoil: 0.1
+        $ReloadCost: 20
+        :CompatibleAmmo:
+          - alien_mag_clip_shotgun
+        :FireSounds:
+          single:
+            - GC-::-sfx/weapon/fire/fire_alien_magnetic_rifle.ogg
+          burst:
+            - GC-::-sfx/weapon/fire/fire_alien_magnetic_rifle.ogg
+          empty:
+            - GC-::-sfx/weapon/empty/empty_default.ogg
+          reload:
+            - GC-::-sfx/weapon/reload/reload_mag_precision_1.ogg
+          meleeHit: []
+          meleeMiss: []
+        :Portrait: GC-::-ui/item/weapon/alien_magnetic_rifle.png
+        :Description: >-
+          Needlers are a special kind of ballistic weapon. They inflict
+          relatively low damage and Armour Destruction compared to
+          accelerated weapons, but are more accurate, fire faster,
+          and have increased Armour Penetration and ammo capacity.
+
+
+          Needlers recovered on the battlefield are DNA-locked
+          and cannot be used by human units. Xenonaut engineers
+          can eventually defeat the DNA lock and create human-usable
+          Needlers, but they cannot be upgraded further.
+        :Prototype:
+          value: GC-::-item/weapon/alien_magnetic_rifle.prefab
+          addColliders: false
+          dontInstantiate: true
+          pool: false
+        :RecoveredItems:
+          - $DropItem: item/weapon/xeno_magnetic_shotgun
+
+    alien_magnetic_shotgun:
+      parent: &XenoShotgun GC%item/weapon/xeno_magnetic_shotgun
+      $path: ""
+      components:
+        <<: *Needler
+        $GCComplexEquipReqs: &AlienShotgunReqs
+          $cost:
+            $OrPq:
+              - $UnequippedReq: {}
+              - $SlotOwnerPq:
+                  $mode: All
+                  $reqs:
+                    - $NotColossus: {}
+          $unlock:
+            $SlotOwnerPq:
+              $mode: All
+              $reqs: 
+                - $TwoHandedReq: {}
+                - $AlienUnit: {}
+        :RecoveredItems:
+          - $DropItem: item/weapon/alien_magnetic_shotgun
+          - $DropItem: item/alloys
+
+    xeno_plasma_shotgun:
+      parent: *XenoShotgun
+      $path: ""
+      components:
+        <<: *XenoBlaster
+        :CompatibleAmmo:
+          - alien_plasmacell_shotgun
+        :FireSounds:
+          single:
+            - GC-::-sfx/weapon/fire/fire_plasma_shotgun_0.ogg
+            - GC-::-sfx/weapon/fire/fire_plasma_shotgun_1.ogg
+          burst: []
+          empty:
+            - GC-::-sfx/weapon/empty/empty_default.ogg
+          reload:
+            - GC-::-sfx/weapon/reload/reload_plasma_caster_1.ogg
+          meleeHit: []
+          meleeMiss: []
+        :Portrait: GC-::-ui/item/weapon/alien_plasma_torch.png
+        :Prototype:
+          value: GC-::-item/weapon/alien_plasma_shotgun.prefab
+          addColliders: false
+          dontInstantiate: true
+          pool: false
+        :RecoveredItems:
+          - $DropItem: item/weapon/xeno_plasma_shotgun
+        :Description: >-
+          Blasters are a special kind of plasma weapon. They inflict
+          relatively low damage and Armour Destruction compared to
+          plasma weapons, but are more accurate, fire faster,
+          and have increased Armour Penetration and ammo capacity.
+          
+
+          Blaster bolts are more compact than an equivalent plasma
+          bolt, and have a shorter optimal range. However, they
+          are not as heavily affected by range dropoff penalties,
+          and therefore still have a higher maximum range.
+          This assault blaster has a dropoff rate of 10% per tile.
+
+
+          Blasters recovered on the battlefield are DNA-locked
+          and cannot be used by human units. Xenonaut engineers
+          can eventually defeat the DNA lock and create human-usable
+          Blasters, but they cannot be upgraded further.
+        :WeaponID: plasma
+        :DamageType: energy
+        $Damage: 20
+        $ArmorPenetration: 20
+        $ArmorDestruction: 5
+        $SuppressionDamage: 10
+        $WeaponRange: 2
+        $RangeBonus: 0.25
+        $RangeDropoff: 0.10
+
+    alien_plasma_shotgun:
+      parent: &XenoBlaster GC%item/weapon/xeno_plasma_shotgun
+      $path: ""
+      components:
+        <<: *Blaster
+        $GCComplexEquipReqs: *AlienShotgunReqs
+        :RecoveredItems:
+          - $DropItem: item/weapon/alien_plasma_shotgun
+          - $DropItem: item/alloys
+          - $DropItem: item/alenium
+
+    xeno_fusion_shotgun:
+      parent: *XenoBlaster
+      $path: ""
+      components:
+        <<: *XenoNovaGun
+        :GCAbilityDefinitions:
+          - $ShotAbility: 
+              <<: *SnapShot
+              $percentCost: 40
+              $accuracy: 42
+          - $ShotAbility: 
+              <<: *NormalShot
+              $percentCost: 52
+              $accuracy: 76
+        :CompatibleAmmo:
+          - alien_fusion_cell_shotgun
+        :WeaponID: fusion
+        :Description: >-
+          Nova Guns are a special kind of fusion weapon. Unlike
+          Blasters, they fire slowly and have limited ammo, but inflict
+          the most damage of any shotgun in the game. They also have
+          further reduced range dropoff, increasing their maximum range.
+          
+
+          Alien fusion bolts are more compact than an equivalent fusion
+          bolt, and have a shorter optimal range. However, they
+          are not as heavily affected by range dropoff penalties,
+          and therefore still have a higher maximum range.
+          This nova gun has a dropoff rate of 6.25% per tile.
+
+
+          Nova Guns recovered on the battlefield are DNA-locked
+          and cannot be used by human units. Xenonaut engineers
+          can eventually defeat the DNA lock and create human-usable
+          Nova Guns, but they cannot be upgraded further.
+        $Damage: 45
+        $ArmorPenetration: 20
+        $ArmorDestruction: 15
+        $RangeDropoff: 0.0625
+        $SuppressionDamage: 15
+        $BleedChance: 4
+        $BleedRollMultiplier: 3
+        :RecoveredItems:
+          - $DropItem: item/weapon/xeno_fusion_shotgun
+        :Portrait: GC-::-ui/item/weapon/alien_fusion_rifle.png
+        :Prototype:
+          value: GC-::-item/weapon/alien_fusion_rifle.prefab
+          addColliders: false
+          dontInstantiate: true
+          pool: false
+        
+    alien_fusion_shotgun:
+      parent: GC%item/weapon/xeno_fusion_shotgun
+      $path: ""
+      components:
+        <<: *NovaGun
+        $GCComplexEquipReqs: *AlienShotgunReqs
+        :RecoveredItems:
+          - $DropItem: item/weapon/alien_fusion_shotgun
+          - $DropItem: 
+                $amount: 2
+                $item: item/alloys
+          - $DropItem:
+                $amount: 2
+                $item: item/alenium
