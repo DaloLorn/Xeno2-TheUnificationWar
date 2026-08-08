@@ -1,0 +1,1 @@
+{"version":"0.1.0","asset":{"Parent":{"$content":"$next-:-GC-::-item/weapon/gauss_lmg.json","$t":"ar_Template"},"_components":[{"_min":0,"_val":50,"_max":3.402823e+38,"$t":"Damage"},{"_min":0,"_val":20,"_max":100,"$t":"ArmourPenetration"},{"_min":0,"_val":4,"_max":4,"$t":"ArmourDestruction"}],"$t":"4"},"$t":"15"}

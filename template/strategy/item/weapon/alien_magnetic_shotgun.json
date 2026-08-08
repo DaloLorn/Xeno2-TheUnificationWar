@@ -1,0 +1,1 @@
+{"version":"0.1.0","asset":{"Parent":{"$content":"$next-:-ST-::-item/weapon/alien_magnetic_shotgun.json","$t":"ar_Template"},"_components":[{"$content":"ST-::-item/ammo/alien_mag_clip_shotgun.json","$valuetypekey":"ar_Template","$t":"DefaultAmmo"},{"$content":[],"$t":"LocalizableGUID"},{"$content":"Alien Assault Needler","$t":"Name"}],"$t":"4"},"$t":"15"}

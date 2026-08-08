@@ -1,0 +1,1 @@
+{"version":"0.1.0","asset":{"Parent":{"$content":"$next-:-GC-::-item/weapon/ballistic_sniper_v2.json","$t":"ar_Template"},"_components":[{"_min":0,"_val":45,"_max":3.402823e+38,"$t":"Damage"},{"_min":0,"_val":6,"_max":6,"$t":"ArmourDestruction"},{"_min":0,"_val":25,"_max":100,"$t":"ArmourPenetration"}],"$t":"4"},"$t":"15"}

@@ -1,0 +1,1 @@
+{"version":"0.1.0","asset":{"Parent":{"$content":"$next-:-GC-::-item/ammo/laser_sniper.json","$t":"ar_Template"},"_components":[{"_min":0,"_val":12,"_max":12,"$t":"Shots"},{"$content":[{"Regenerate":1,"Name":"Regenerate Ammo","Tooltip":false,"$t":"117"}],"$t":"GCAbilityDefinitions"}],"$t":"4"},"$t":"15"}

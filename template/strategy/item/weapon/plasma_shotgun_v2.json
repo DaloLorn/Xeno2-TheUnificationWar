@@ -1,0 +1,1 @@
+{"version":"0.1.0","asset":{"Parent":{"$content":"$next-:-ST-::-item/weapon/plasma_shotgun_v2.json","$t":"ar_Template"},"_components":[{"$content":"ST-::-item/ammo/fusion_shotgun_cell.json","$valuetypekey":"ar_Template","$t":"DefaultAmmo"},{"$content":[],"$t":"LocalizableGUID"},{"$content":"Fusion Shotgun","$t":"Name"}],"$t":"4"},"$t":"15"}

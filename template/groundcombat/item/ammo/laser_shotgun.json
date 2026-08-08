@@ -1,0 +1,1 @@
+{"version":"0.1.0","asset":{"Parent":{"$content":"$next-:-GC-::-item/ammo/laser_shotgun.json","$t":"ar_Template"},"_components":[{"_min":0,"_val":16,"_max":16,"$t":"Shots"},{"$content":[{"Regenerate":2,"Name":"Regenerate Ammo","Tooltip":false,"$t":"117"}],"$t":"GCAbilityDefinitions"}],"$t":"4"},"$t":"15"}
