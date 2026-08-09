@@ -108,6 +108,10 @@ strategy:
       parent: *STNeedler
       $path: ""
       components: &XenoNeedler
+        :DefaultAmmo:
+          $content: ST-::-item/ammo/alien_mag_clip_sniper.json
+          $valuetypekey: ar_Template
+        $NoLocale: {}
         :Name: Long Needler
 
     alien_plasma_sniper:
@@ -124,6 +128,7 @@ strategy:
       parent: ST%item/weapon/alien_plasma_sniper
       $path: ""
       components: &XenoBlaster
+        $NoLocale: {}
         :Name: Long Blaster
 
     alien_fusion_sniper:
@@ -252,6 +257,7 @@ groundcombat:
       $path: ""
       components:
         <<: *LongNeedlerClip
+        :AmmoStandard: alien_mag_clip_sniper
         :RecoveredItems:
           - $DropItem: item/ammo/alien_mag_clip_sniper
         $Shots: 8
@@ -261,6 +267,7 @@ groundcombat:
       $path: ""
       components:
         <<: *LongBlasterCell
+        :AmmoStandard: alien_plasmacell_sniper
         $Shots: 6
         :RecoveredItems:
           - $DropItem: item/ammo/alien_plasma_cell_sniper
@@ -276,6 +283,7 @@ groundcombat:
       $path: ""
       components:
         <<: *NovaGunCell
+        :AmmoStandard: alien_fusion_cell_sniper
         :RecoveredItems:
           - $DropItem: item/ammo/alien_fusion_cell_sniper
         $Shots: 4

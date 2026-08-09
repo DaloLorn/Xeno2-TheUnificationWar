@@ -1,1 +1,1 @@
-{"version":"0.1.0","asset":{"Parent":{"$content":"ST-::-item/weapon/alien_magnetic_sniper.json","$t":"ar_Template"},"_components":[{"$content":"Long Needler","$t":"Name"}],"$t":"4"},"$t":"15"}
+{"version":"0.1.0","asset":{"Parent":{"$content":"ST-::-item/weapon/alien_magnetic_sniper.json","$t":"ar_Template"},"_components":[{"$content":"ST-::-item/ammo/alien_mag_clip_sniper.json","$valuetypekey":"ar_Template","$t":"DefaultAmmo"},{"$content":[],"$t":"LocalizableGUID"},{"$content":"Long Needler","$t":"Name"}],"$t":"4"},"$t":"15"}

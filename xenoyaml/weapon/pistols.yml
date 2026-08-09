@@ -109,6 +109,7 @@ strategy:
       parent: *STNeedler
       $path: ""
       components: &XenoNeedler
+        $NoLocale: {}
         :Name: Needler
 
     alien_plasma_pistol:
@@ -122,6 +123,7 @@ strategy:
       parent: *STBlaster
       $path: ""
       components: &XenoBlaster
+        $NoLocale: {}
         :Name: Blaster
 
     alien_fusion_pistol:

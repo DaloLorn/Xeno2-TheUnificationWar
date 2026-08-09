@@ -53,6 +53,11 @@ $builders:
       Variant: Cost
       modifierStorage: null
 
+  # Forbids X at all times, whatever X is.
+  $Forbidden:
+    :BlockPq:
+      Variant: Unlocks
+
   # Generates and recruits new actors at the selected base.
   $RecruitActor:
     $args:

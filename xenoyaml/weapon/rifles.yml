@@ -141,6 +141,7 @@ strategy:
       parent: *HvyNeedler
       $path: ""
       components: &XenoHeavyNeedler
+        $NoLocale: {}
         :Name: Heavy Needler
 
     alien_plasma_rifle:
@@ -154,6 +155,7 @@ strategy:
       parent: *HvyBlaster
       $path: ""
       components: &XenoHeavyBlaster
+        $NoLocale: {}
         :Name: Heavy Blaster
 
     alien_fusion_rifle:

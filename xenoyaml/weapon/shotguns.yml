@@ -104,6 +104,7 @@ strategy:
       parent: *STNeedler
       $path: ""
       components: &XenoNeedler
+        $NoLocale: {}
         :Name: Assault Needler
 
     alien_plasma_shotgun:
@@ -120,6 +121,7 @@ strategy:
       parent: ST%item/weapon/alien_plasma_shotgun
       $path: ""
       components: &XenoBlaster
+        $NoLocale: {}
         :Name: Assault Blaster
 
     alien_fusion_shotgun:
@@ -248,6 +250,7 @@ groundcombat:
       $path: ""
       components:
         <<: *AssaultNeedlerClip
+        :AmmoStandard: alien_mag_clip_shotgun
         :RecoveredItems:
           - $DropItem: item/ammo/alien_mag_clip_shotgun
         $Shots: 12
@@ -258,6 +261,7 @@ groundcombat:
       components:
         <<: *AssaultBlasterCell
         $Shots: 8
+        :AmmoStandard: alien_plasmacell_shotgun
         :RecoveredItems:
           - $DropItem: item/ammo/alien_plasma_cell_shotgun
         $ImpactVector:
@@ -272,6 +276,7 @@ groundcombat:
       $path: ""
       components:
         <<: *NovaGunCell
+        :AmmoStandard: alien_fusion_cell_shotgun
         :RecoveredItems:
           - $DropItem: item/ammo/alien_fusion_cell_shotgun
         $Shots: 6

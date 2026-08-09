@@ -109,12 +109,16 @@ strategy:
       parent: *NeedlerLmg
       $path: ""
       components: &XenoAutoNeedler
+        $NoLocale: {}
         :Name: Auto-Needler
 
     alien_plasma_lmg:
       parent: &BlasterLmg ST%item/weapon/alien_plasma_lmg
       $path: ""
       components: &AutoBlaster
+        :DefaultAmmo:
+          $content: ST-::-item/ammo/alien_plasma_cell_large.json
+          $valuetypekey: ar_Template
         $NoLocale: {}
         :Name: Alien Auto-Blaster
 
@@ -122,12 +126,16 @@ strategy:
       parent: *BlasterLmg
       $path: ""
       components: &XenoAutoBlaster
+        $NoLocale: {}
         :Name: Auto-Blaster
 
     alien_fusion_lmg:
       parent: &FsnMinigun ST%item/weapon/alien_fusion_lmg
       $path: ""
       components: &FusionMinigun
+        :DefaultAmmo:
+          $content: ST-::-item/ammo/alien_fusion_cell_large.json
+          $valuetypekey: ar_Template
         $NoLocale: {}
         :Name: Alien Fusion Minigun
     
