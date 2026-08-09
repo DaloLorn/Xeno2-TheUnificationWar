@@ -45,8 +45,8 @@ groundcombat:
       $path: ""
       components:
         :EnvironmentEffect:
-          - *FireEnterDamage
-          - *FireStandDamage
+          - $EnvDamage: *FireEnterDamage
+          - $EnvDamage: *FireStandDamage
           - $DissipateHandler: 20
 
     fire_static_1x1_permanent: 
@@ -54,8 +54,8 @@ groundcombat:
       $path: ""
       components:
         :EnvironmentEffect:
-          - *FireEnterDamage
-          - *FireStandDamage
+          - $EnvDamage: *FireEnterDamage
+          - $EnvDamage: *FireStandDamage
           - $DissipateHandler: 20
 
     smoke_1x1:

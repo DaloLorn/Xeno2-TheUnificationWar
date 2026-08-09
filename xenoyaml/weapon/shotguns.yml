@@ -293,7 +293,7 @@ groundcombat:
         $ArmorDestruction: 1
         $ArmorPenetration: 3
         :Pellets:
-          $MaxRange: 4
+          $MaxInfRange: 4
         $GCComplexEquipReqs:
           $cost:
             $OrPq:

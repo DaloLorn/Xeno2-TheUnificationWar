@@ -6,14 +6,14 @@ $aliases:
     $percentCost: 48
     $accuracy: 80
     $stationaryBonus:
-      $FlatRange: 20
+      $StationaryBonus: 20
     $crosshair: GC-::-ui/crosshairs/crosshair_aimed
   ScopedShot: &ScopedShot
     $mode: scoped
     $name: Scoped Shot
     $percentCost: 64
     $stationaryBonus:
-      $FlatRange: 30
+      $StationaryBonus: 30
     $accuracy: 160
     $crosshair: GC-::-ui/crosshairs/crosshair_scoped
   LaserShot: &LaserShot

@@ -273,7 +273,7 @@ $builders:
     $args: $rolls
     :BleedWoundsInAttack:
       # Not actually percentile, but has the same min/max.
-      $PercentileRangeRange: $rolls
+      $PercentileRange: $rolls
 
   $Shots:
     $args: $shots
@@ -282,9 +282,8 @@ $builders:
 
   $StationaryBonus:
     $args: $val
-    NoMoveAccuracyBonus:
-      "&v":
-        $Range: $val
+    "&v":
+      $Range: $val
 
   $ShotAbility:
     $args:
