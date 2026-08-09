@@ -1,0 +1,227 @@
+$schemaVersion: 1.0.0
+
+strategy:
+  item/weapon:
+    melee_knife_energy:
+      parent: $next
+      $path: ""
+      components: &Vibroknife
+        $NoLocale: {}
+        :Name: Vibroknife
+
+groundcombat:
+  item/weapon:
+    melee_knife:
+      parent: $next
+      $path: ""
+      components:
+        $BleedChance: 10
+        $BleedRollMultiplier: 3
+        $Weight: 4
+        $Damage: 15
+        $ArmorPenetration: 40
+        $ArmorDestruction: 0
+        :Reflexes:
+          $MaxInfRange: 2
+        :GCAbilityDefinitions:
+          - $MeleeAbility:
+              $name: Melee
+              $percentCost: 10
+              $accuracy: 100
+              $tooltip: Slash
+        :GCItemMeta: Reloadable,HideAmmoSlot,NeverGibs
+      
+    melee_knife_energy:
+      parent: $next
+      $path: ""
+      components: 
+        <<: *Vibroknife
+        $Damage: 25
+        $ArmorPenetration: 60
+        $ArmorDestruction: 4
+        $BleedRollMultiplier: 5
+
+    baton:
+      parent: $next
+      $path: ""
+      components:
+        $Damage: 5
+        :DamageType: shock
+        $StunDamage: 20
+        $EMPDamage: 30
+        $ArmorPenetration: 75
+        :Reflexes:
+          $MaxInfRange: 1.5
+        $Weight: 6
+        :GCAbilityDefinitions:
+          - $MeleeAbility:
+              $name: Melee
+              $percentCost: 15
+              $accuracy: 80
+              $tooltip: Melee (Stun)
+        :GCItemMeta: Reloadable,HideAmmoSlot,NeverGibs
+
+    baton_v2:
+      parent: $next
+      $path: ""
+      components:
+        $StunDamage: 30
+        $EMPDamage: 45
+        $ArmorPenetration: 125
+        
+    melee_colossus:
+      parent: $next
+      $path: ""
+      components:
+        $Damage: 60
+        :DamageType: thermal
+        $StunDamage: 40
+        $ArmorPenetration: 75
+        $ArmorDestruction: 0
+        :GCAbilityDefinitions:
+          - $MeleeAbility:
+              $name: Melee
+              $percentCost: 25
+              $accuracy: 100
+              $tooltip: Smash
+        
+    alien_mentarch_melee:
+      parent: $next
+      $path: ""
+      components:
+        $Damage: 20
+        :DamageType: thermal
+        $StunDamage: 15
+        $ArmorPenetration: 60
+        $ArmorDestruction: 0
+        :GCAbilityDefinitions:
+          - $MeleeAbility:
+              $name: Melee
+              $percentCost: 15
+              $accuracy: 100
+              $tooltip: Smash
+        $GCEquipReqs:
+          $SlotOwnerPq:
+            $mode: All
+            $reqs:
+              - $IsMentarch: {}
+        :RecoveredItems:
+          - $DropItem: item/weapon/alien_mentarch_melee
+        :InventorySlotType:
+          - :CombatantSlots: Secondary
+        :Portrait: &FistImage GC-::-ui/item/weapon/melee_fist.png
+        :GCItemMeta: Reloadable,Integrated,HideAmmoSlot,NeverGibs
+
+    alien_sebillian_melee:
+      parent: $next
+      $path: ""
+      components:
+        $Damage: 40
+        $StunDamage: 10
+        $ArmorPenetration: 40
+        $ArmorDestruction: 2
+        :GCAbilityDefinitions:
+          - $MeleeAbility:
+              $name: Melee
+              $percentCost: 20
+              $accuracy: 100
+              $tooltip: Slash
+        $GCEquipReqs:
+          $SlotOwnerPq:
+            $mode: All
+            $reqs:
+              - $IsSebillian: {}
+        :RecoveredItems:
+          - $DropItem: item/weapon/alien_sebillian_melee
+        :InventorySlotType:
+          - :CombatantSlots: Secondary
+        :Portrait: *FistImage
+        :GCItemMeta: Reloadable,Integrated,HideAmmoSlot,NeverGibs
+
+    alien_mantid_melee:
+      parent: $next
+      $path: ""
+      components:
+        $Damage: 40
+        $ArmorPenetration: 20
+        $ArmorDestruction: 1
+        :GCAbilityDefinitions:
+          - $MeleeAbility:
+              $name: Melee
+              $percentCost: 15
+              $accuracy: 100
+              $tooltip: Bite
+        $GCEquipReqs:
+          $SlotOwnerPq:
+            $mode: All
+            $reqs:
+              - $IsMantid: {}
+        :RecoveredItems:
+          - $DropItem: item/weapon/alien_mantid_melee
+        :InventorySlotType:
+          - :CombatantSlots: Secondary
+        :Portrait: *FistImage
+        :GCItemMeta: Reloadable,Integrated,HideAmmoSlot,NeverGibs
+
+    alien_reaper_melee:
+      parent: $next
+      $path: ""
+      components:
+        $Damage: 40
+        $ArmorPenetration: 60
+        $ArmorDestruction: 4
+        $BleedChance: 8.5
+        $BleedRollMultiplier: 6
+        :GCAbilityDefinitions:
+          - $ReaperMeleeAbility: &ReaperMelee
+              $name: Melee
+              $percentCost: 15
+              $accuracy: 100
+              $tooltip: Inject Larva
+        :Portrait: *FistImage
+        :GCItemMeta: Reloadable,Integrated,NeverGibs,HideAmmoSlot
+
+    alien_reaper_alpha_melee:
+      parent: $next
+      $path: ""
+      components:
+        $Damage: 60
+        $ArmorPenetration: 80
+        $ArmorDestruction: 6
+        $BleedChance: 10
+        $BleedRollMultiplier: 6
+        :GCAbilityDefinitions:
+          - $ReaperMeleeAbility: *ReaperMelee
+        :Portrait: *FistImage
+        :GCItemMeta: Reloadable,Integrated,NeverGibs,HideAmmoSlot
+
+    alien_zombie_melee:
+      parent: $next
+      $path: ""
+      components:
+        $Damage: 10
+        :DamageType: thermal
+        $StunDamage: 10
+        $ArmorPenetration: 40
+        $ArmorDestruction: 0
+        :Portrait: *FistImage
+        :GCItemMeta: Reloadable,Integrated,NeverGibs,HideAmmoSlot
+
+    alien_biter_melee:
+      parent: $next
+      $path: ""
+      components:
+        $Damage: 10
+        $ArmorPenetration: 80
+        $ArmorDestruction: 4
+        :Reflexes:
+          $MaxInfRange: 3
+        $BleedChance: 50
+        $BleedRollMultiplier: 1
+        :GCAbilityDefinitions:
+          - $MeleeAbility:
+              $name: Melee
+              $percentCost: 10
+              $accuracy: 100
+              $tooltip: Bite
+        :GCItemMeta: Reloadable,Integrated,NeverGibs,HideAmmoSlot

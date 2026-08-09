@@ -317,6 +317,65 @@ $builders:
       Accuracy: $accuracy
       Tooltip: $tooltip
 
+  $MeleeAbility:
+    $args:
+      - $name
+      - $absoluteCost: 0
+      - $percentCost
+      - $importanceScale: 1
+      - $crosshair: GC-::-ui/crosshairs/crosshair_melee
+      - $accuracy
+      - $tooltip
+    :105:
+      Name: $name
+      AbsoluteCostTimeUnits: $absoluteCost
+      PercentageCostTimeUnits: $percentCost
+      ImportanceScale: $importanceScale
+      Crosshair: $crosshair
+      Accuracy: $accuracy
+      Tooltip:
+        "&v": $tooltip
+
+  $ReaperMeleeAbility:
+    $args:
+      - $actor: GC-::-actor/combatant/reaper/zombie/zombie/default.json
+      - $armor: GC-::-item/armour/reaper_zombie.json
+      - $weapon: GC-::-item/weapon/alien_zombie_melee.json
+      - $aiArchetype: aggressive,defend,passive
+      - $restrictMinimumMove: false
+      - $restrictMaximumMove: false
+      - $restrictRetention: false
+      - $restrictNearest: false
+      - $restrictAllowedNextTargets: false
+      - $spawnTarget: false
+      - $name
+      - $absoluteCost: 0
+      - $percentCost
+      - $importanceScale: 1
+      - $crosshair: GC-::-ui/crosshairs/crosshair_melee
+      - $accuracy
+      - $tooltip
+    :102:
+      ActorTemplate: $actor
+      ArmourTemplate: $armor
+      WeaponTemplate: $weapon
+      AiArchetype: $aiArchetype
+      Restriction:
+        MinimumMove: $restrictMinimumMove
+        MaximumMove: $restrictMaximumMove
+        Retention: $restrictRetention
+        Nearest: $restrictNearest
+        AllowedNextTargets: $restrictAllowedNextTargets
+      SpawnTarget: $spawnTarget
+      Name: $name
+      AbsoluteCostTimeUnits: $absoluteCost
+      PercentageCostTimeUnits: $percentCost
+      ImportanceScale: $importanceScale
+      Crosshair: $crosshair
+      Accuracy: $accuracy
+      Tooltip:
+        "&v": $tooltip
+
   $DropItem:
     $args:
       - $pack: $none
