@@ -129,6 +129,9 @@ strategy:
       $path: ""
       components: &ArcCaster
         :Name: Arc Caster
+        :DefaultAmmo:
+          $content: ST-::-item/ammo/arc_caster.json
+          $valuetypekey: ar_Template
 
     alien_magnetic_rifle:
       parent: &HvyNeedler ST%item/weapon/alien_magnetic_rifle
@@ -567,6 +570,8 @@ groundcombat:
         $EMPDamage: 5
         $ArmorPenetration: 80
         :DisableReactionFire: true
+        :CompatibleAmmo:
+          - arc_caster
         $GCEquipReqs:
           $SlotOwnerPq:
             $mode: All

@@ -19,7 +19,7 @@ strategy:
               Variant: Cost
               modifierStorage: null
         :InventoryTemplate:
-          $content: ST-::-loadout/combatant/psyon^default^noncom^default.json
+          $content: ST-::-loadout/combatant/psyon_defector.json
           <<: *InventoryTemplateValueType
         $NoLocale: {}
         :Name: Psyon Defector
@@ -39,11 +39,11 @@ strategy:
               Variant: Cost
               modifierStorage: null
         :InventoryTemplate:
-          $content: ST-::-loadout/combatant/mantid^default^noncom^default.json
+          $content: ST-::-loadout/combatant/mantid_defector.json
           <<: *InventoryTemplateValueType
         $NoLocale: {}
         :Name: Mantid Defector
-        :Portrait: ST-::-loadout_profile/rifleman.png
+        :Portrait: ST-::-loadout_profile/grenadier.png
 
     # Sebillian Loadout
     sebillian_defector:
@@ -59,11 +59,11 @@ strategy:
               Variant: Cost
               modifierStorage: null
         :InventoryTemplate:
-          $content: ST-::-loadout/combatant/sebillian^default^noncom^default.json
+          $content: ST-::-loadout/combatant/sebillian_defector.json
           <<: *InventoryTemplateValueType
         $NoLocale: {}
         :Name: Sebillian Defector
-        :Portrait: ST-::-loadout_profile/rifleman.png
+        :Portrait: ST-::-loadout_profile/heavy.png
 
     # Secton Loadout
     secton_defector:
@@ -79,11 +79,11 @@ strategy:
               Variant: Cost
               modifierStorage: null
         :InventoryTemplate:
-          $content: ST-::-loadout/combatant/secton^default^noncom^default.json
+          $content: ST-::-loadout/combatant/secton_defector.json
           <<: *InventoryTemplateValueType
         $NoLocale: {}
         :Name: Secton Defector
-        :Portrait: ST-::-loadout_profile/rifleman.png
+        :Portrait: ST-::-loadout_profile/grenadier.png
 
     # Wraith Loadout
     wraith_defector:
@@ -99,11 +99,11 @@ strategy:
               Variant: Cost
               modifierStorage: null
         :InventoryTemplate:
-          $content: ST-::-loadout/combatant/wraith^default^noncom^default.json
+          $content: ST-::-loadout/combatant/wraith_defector.json
           <<: *InventoryTemplateValueType
         $NoLocale: {}
         :Name: Wraith Defector
-        :Portrait: ST-::-loadout_profile/rifleman.png
+        :Portrait: ST-::-loadout_profile/sniper.png
 
     # Eternal Loadout
     eternal_defector:
@@ -119,7 +119,7 @@ strategy:
               Variant: Cost
               modifierStorage: null
         :InventoryTemplate:
-          $content: ST-::-loadout/combatant/eternal^default^commander^default
+          $content: ST-::-loadout/combatant/eternal_defector.json
           <<: *InventoryTemplateValueType
         $NoLocale: {}
         :Name: Eternal Iconoclast

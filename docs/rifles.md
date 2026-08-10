@@ -110,7 +110,8 @@
     - Mentarch & Advanced/Eternal Amp have 30/45, Mentokyr & High Eternal Amp have 40/60
 - Range: Visual (100% dropoff; High Eternal Amp has unlimited range)
     - This necessitates different amps for different races due to different visual ranges
-- Normal Shot: 40% TU
+- Normal Shot: 51% TU (26% Mentarch)
+- Mind Control: 75% TU (40% Mentarch)
 - Ammo: 999
 - Mind Shields confer 100% Psionic DR (this does not reduce Stun damage)
 - Cannot overwatch

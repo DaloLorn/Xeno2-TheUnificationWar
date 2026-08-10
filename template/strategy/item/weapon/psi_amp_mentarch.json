@@ -1,0 +1,1 @@
+{"version":"0.1.0","asset":{"Parent":{"$content":"ST-::-item/weapon/psi_amp_psyon.json","$t":"ar_Template"},"Name":"psi_amp_mentarch","_components":[{"$content":"Mentarch Brain","$t":"Name"},{"$content":"ExcludeFromBaseStoresSell,ExcludeFromBaseStoresTransfer","$t":"SItemMeta"}],"$t":"4"},"$t":"15"}

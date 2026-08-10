@@ -1,0 +1,1 @@
+{"version":"0.1.0","asset":{"Parent":{"$content":"ST-::-item/weapon/alien_psi_amp.json","$t":"ar_Template"},"Name":"psi_amp_psyon","_components":[{"$content":[],"$t":"LocalizableGUID"},{"$content":"Psyon Psi Amp","$t":"Name"},{"$content":"Transferable,Sellable","$t":"SItemMeta"}],"$t":"4"},"$t":"15"}

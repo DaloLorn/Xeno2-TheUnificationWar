@@ -35,7 +35,7 @@ $builders:
                                     _val: 1
                                     _max: 1
                                   :ItemRequest:
-                                    $valuetypekey: "83"
+                                    $valuetypekey: "82"
                         - :DeltaEnumEffect:
                             ComponentType: Xenonauts.Common.Components.Item.InventorySlotMetaComponent
                             Value:
@@ -61,3 +61,228 @@ $builders:
                             Value:
                               :InventorySlotMeta: Locked
                             OperationType: Remove
+
+  $EquipItem:
+    $args:
+      - $slot
+      - $item
+      - $strategy: "82"
+    :0:
+      parent:
+        screen: GC
+        path: $slot
+      components:
+        :TemplateRelationships:
+          OneLinkTemplates: {}
+          ManyLinkTemplates:
+            Xenonauts.Common.Components.Item.InventoryLink:
+              - :0:
+                  components: &EquipItemBase
+                    :ComposableFormatter: "{$ID} ItemRequest: {ItemID}"
+                    :ItemID:
+                      $content: $item
+                      $valuetypekey: ar_Template
+                    :ItemRequest:
+                      $valuetypekey: $strategy
+                    :ItemRequestStatus: Pending
+                    :Quantity:
+                      _min: 0
+                      _val: 1
+                      _max: Infinity
+          ShallowReferenceTemplates: {}
+          ListTemplates: {}
+
+  $EquipItemWithAmmo:
+    $args:
+      - $slot
+      - $item
+      - $ammo
+      - $strategy: "82"
+    :0:    
+      parent:
+        screen: GC
+        path: $slot
+      components:
+        :TemplateRelationships:
+          OneLinkTemplates: {}
+          ManyLinkTemplates:
+            Xenonauts.Common.Components.Item.InventoryLink:
+              - :0:
+                  components:
+                    <<: *EquipItemBase
+                    :InventoryTemplate:
+                      Value:
+                        _components:
+                          - :TemplateRelationships:
+                              OneLinkTemplates: {}
+                              ManyLinkTemplates:
+                                Xenonauts.Common.Components.Item.InventorySlotsLink:
+                                  - :0:
+                                      components:
+                                        :ComposableFormatter:
+                                          "{$ID} InventorySlot - {InventorySlotType}
+                                          [{InventorySlotOwne\
+                                          r}]"
+                                        :InventorySlotMeta: CanApplyModifiers,WillApplyModifiers
+                                        :InventorySlotSize:
+                                          _min: 0
+                                          _val: 1
+                                          _max: 1
+                                        :InventorySlotType:
+                                          - :FirearmSlots: Ammo
+                                        :TemplateRelationships:
+                                          OneLinkTemplates: {}
+                                          ManyLinkTemplates:
+                                            Xenonauts.Common.Components.Item.InventoryLink:
+                                              - :0:
+                                                  components:
+                                                    :ItemID:
+                                                      $content: $ammo
+                                                      $valuetypekey: ar_Template
+                                                    :ItemRequest:
+                                                      $valuetypekey: $strategy
+                                                    :ItemRequestStatus: Pending
+                                                    :ComposableFormatter: "{$ID} ItemRequest: {ItemID}"
+                                                    :Quantity:
+                                                      _min: 0
+                                                      _val: 1
+                                                      _max: Infinity
+                                          ShallowReferenceTemplates: {}
+                                          ListTemplates: {}
+                              ShallowReferenceTemplates: {}
+                              ListTemplates: {}
+                      $valuetypekey: "0"
+          ShallowReferenceTemplates: {}
+          ListTemplates: {}
+
+  $EquipArmor:
+    $args: $item
+    $EquipItem:
+      $slot: masters/loadout/combatant/structure/slot_armor
+      $item: $item
+
+  $EquipPrimary:
+    $args: 
+      - $item
+      - $ammo
+      - $strategy: "82"
+    $EquipItemWithAmmo:
+      $slot: masters/loadout/combatant/structure/slot_primary
+      $item: $item
+      $ammo: $ammo
+      $strategy: $strategy
+
+  $EquipSecondary:
+    $args:
+      - $item
+      - $ammo
+      - $strategy: "82"
+    $EquipItemWithAmmo:
+      $slot: masters/loadout/combatant/structure/slot_secondary
+      $item: $item
+      $ammo: $ammo
+      $strategy: $strategy
+
+  $EquipPrimaryWithoutAmmo:
+    $args: 
+      - $item
+      - $strategy: "82"
+    $EquipItem:
+      $slot: masters/loadout/combatant/structure/slot_primary
+      $item: $item
+      $strategy: $strategy
+    
+  $EquipSecondaryWithoutAmmo:
+    $args: 
+      - $item
+      - $strategy: "82"
+    $EquipItem:
+      $slot: masters/loadout/combatant/structure/slot_secondary
+      $item: $item
+      $strategy: $strategy
+
+  $EquipBelt:
+    $args: $items
+    :0:
+      parent:
+        screen: GC
+        path: masters/loadout/combatant/structure/slot_belt
+      components:
+        :TemplateRelationships:
+          OneLinkTemplates: {}
+          ManyLinkTemplates:
+            Xenonauts.Common.Components.Item.InventoryLink: $items
+          ShallowReferenceTemplates: {}
+          ListTemplates: {}
+          
+  $BeltItem:
+    $args:
+      - $item
+      - $x: 0
+      - $y: 0
+      - $z: 0
+      - $strategy: "82"
+    :0:
+      components: &BeltItemBase
+        :ItemID:
+          $content: $item
+          $valuetypekey: ar_Template
+        :ItemRequest:
+          $valuetypekey: $strategy
+        :ItemRequestStatus: Pending
+        :ComposableFormatter: "{$ID} ItemRequest: {ItemID}"
+        :Quantity:
+          _min: 0
+          _val: 1
+          _max: Infinity
+        :Position:
+          - $x
+          - $y
+          - $z
+        :Rotation:
+          - 1
+          - 0
+          - 0
+          - 0
+
+  $BeltItemChance:
+    $args:
+      - $item
+      - $chance
+      - $x: 0
+      - $y: 0
+      - $z: 0
+      - $strategy: "82"
+    :0:
+      components:
+        <<: *BeltItemBase
+        :ItemRequest:
+          Chance: 0.3
+          Strategy:
+            $valuetypekey: $strategy
+          $valuetype: Xenonauts.Common.Components.Item.ChanceItemRequestStrategy
+
+  $HasBackpack:
+    :0:
+      parent: GC%masters/loadout/combatant/structure/slot_backpack
+
+  $HasBelt:
+    :0:
+      parent: GC%masters/loadout/combatant/structure/slot_belt
+
+  $HasSecondary:
+    :0:
+      parent: GC%masters/loadout/combatant/structure/slot_secondary
+
+  $HasPrimary:
+    :0:
+      parent: GC%masters/loadout/combatant/structure/slot_primary
+
+  $EquippedItems:
+    $args: $items
+    :TemplateRelationships:
+      OneLinkTemplates: {}
+      ManyLinkTemplates:
+        Xenonauts.Common.Components.Item.InventorySlotsLink: $items
+      ShallowReferenceTemplates: {}
+      ListTemplates: {}

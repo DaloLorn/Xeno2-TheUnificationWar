@@ -1,0 +1,166 @@
+$schemaVersion: 1.0.0
+
+strategy:
+  loadout/combatant:
+    psyon_defector:
+      parent: &LoadoutBase GC-::-masters/loadout/combatant/humanoid_create
+      name: psyon_defector
+      $path: ""
+      components:
+        $EquippedItems:
+          - $EquipArmor: ST-::-item/armour/psyon_noncom.json
+          - $EquipPrimary: &BallRifle
+              $item: ST-::-item/weapon/ballistic_rifle.json
+              $ammo: ST-::-item/ammo/ballistic_rifle.json
+              $strategy: "83"
+          - $EquipSecondaryWithoutAmmo: ST-::-item/weapon/psi_amp_psyon.json
+          - $EquipBelt: &Rifleman
+            - $BeltItem:
+                $item: ST-::-item/weapon/module_accuracy_tier1.json
+                $strategy: "83"
+            - $BeltItem:
+                $item: ST-::-item/ammo/ballistic_rifle.json
+                $strategy: "83"
+                $x: 2
+            - $BeltItem:
+                $item: ST-::-item/weapon/grenade_frag.json
+                $strategy: "83"
+                $x: 3
+            - $BeltItem:
+                $item: ST-::-item/weapon/grenade_smoke.json
+                $strategy: "83"
+                $x: 4
+            - $BeltItem:
+                $item: ST-::-item/weapon/grenade_demolition.json
+                $strategy: "83"
+                $z: 2
+          - $HasBackpack: {}
+
+    mantid_defector:
+      parent: *LoadoutBase
+      name: mantid_defector
+      $path: ""
+      components:
+        $EquippedItems:
+          - $EquipArmor: ST-::-item/armour/mantid_noncom.json
+          - $EquipPrimary: &BallPistol
+              $item: ST-::-item/weapon/ballistic_pistol.json
+              $ammo: ST-::-item/ammo/ballistic_pistol.json
+              $strategy: "83"
+          - $EquipSecondaryWithoutAmmo: ST-::-item/weapon/alien_mantid_melee.json
+          - $EquipBelt: &Scout
+            - $BeltItem:
+                $item: ST-::-item/weapon/module_accuracy_tier1.json
+                $strategy: "83"
+            - $BeltItem:
+                $item: ST-::-item/ammo/ballistic_pistol.json
+                $strategy: "83"
+                $x: 2
+            - $BeltItem:
+                $item: ST-::-item/weapon/grenade_flashbang.json
+                $strategy: "83"
+                $x: 3
+            - $BeltItem:
+                $item: ST-::-item/weapon/grenade_smoke.json
+                $strategy: "83"
+                $x: 4
+            - $BeltItem:
+                $item: ST-::-item/weapon/grenade_demolition.json
+                $strategy: "83"
+                $z: 2
+          - $HasBackpack: {}
+
+    sebillian_defector:
+      parent: *LoadoutBase
+      name: sebillian_defector
+      $path: ""
+      components:
+        $EquippedItems:
+          - $HasBackpack: {}
+          - $EquipArmor: ST-::-item/armour/sebillian_noncom.json
+          - $EquipPrimary: &BallLmg
+              $item: ST-::-item/weapon/ballistic_lmg.json
+              $ammo: ST-::-item/ammo/ballistic_lmg.json
+              $strategy: "83"
+          - $EquipSecondaryWithoutAmmo: ST-::-item/weapon/alien_sebillian_melee.json
+          - $EquipBelt: &Heavy
+            - $BeltItem:
+                $item: ST-::-item/weapon/module_accuracy_tier1.json
+                $strategy: "83"
+            - $BeltItem:
+                $item: ST-::-item/ammo/ballistic_lmg.json
+                $strategy: "83"
+                $x: 2
+            - $BeltItem:
+                $item: ST-::-item/ammo/ballistic_lmg.json
+                $strategy: "83"
+                $x: 3
+            - $BeltItem:
+                $item: ST-::-item/weapon/grenade_demolition.json
+                $strategy: "83"
+                $z: 2
+    
+    secton_defector:
+      parent: *LoadoutBase
+      name: secton_defector
+      $path: ""
+      components:
+        $EquippedItems:
+          - $HasBackpack: {}
+          - $EquipArmor: ST-::-item/armour/secton_noncom.json
+          - $EquipPrimary: *BallPistol
+          - $EquipSecondaryWithoutAmmo:
+              $item: ST-::-item/weapon/medikit.json
+              $strategy: "83"
+          - $EquipBelt: *Scout
+
+    wraith_defector:
+      parent: *LoadoutBase
+      name: wraith_defector
+      $path: ""
+      components:
+        $EquippedItems:
+          - $HasBackpack: {}
+          - $EquipArmor: ST-::-item/armour/wraith_noncom.json
+          - $EquipPrimary: 
+              $item: ST-::-item/weapon/ballistic_sniper.json
+              $ammo: ST-::-item/ammo/ballistic_sniper.json
+              $strategy: "83"
+          - $EquipSecondary: *BallPistol
+          - $EquipBelt:
+            - $BeltItem:
+                $item: ST-::-item/weapon/module_accuracy_tier1.json
+                $strategy: "83"
+            - $BeltItem:
+                $item: ST-::-item/ammo/ballistic_sniper.json
+                $strategy: "83"
+                $x: 2
+            - $BeltItem:
+                $item: ST-::-item/ammo/ballistic_sniper.json
+                $strategy: "83"
+                $x: 3
+            - $BeltItem:
+                $item: ST-::-item/ammo/ballistic_pistol.json
+                $strategy: "83"
+                $x: 4
+            - $BeltItem:
+                $item: ST-::-item/weapon/grenade_smoke.json
+                $strategy: "83"
+                $x: 2
+                $z: 1
+            - $BeltItem:
+                $item: ST-::-item/weapon/grenade_demolition.json
+                $strategy: "83"
+                $z: 2
+    
+    eternal_defector:
+      parent: *LoadoutBase
+      name: eternal_defector
+      $path: ""
+      components:
+        $EquippedItems:
+          - $HasBackpack: {}
+          - $EquipArmor: ST-::-item/armour/eternal.json
+          - $EquipPrimary: *BallPistol
+          - $EquipSecondaryWithoutAmmo: ST-::-item/weapon/psi_amp_eternal.json
+          - $EquipBelt: *Scout

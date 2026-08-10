@@ -1,0 +1,249 @@
+$schemaVersion: 1.0.0
+
+strategy:
+  item/weapon:
+    psi_amp_psyon:
+      parent: ST%item/weapon/alien_psi_amp
+      name: psi_amp_psyon
+      $path: ""
+      components:
+        $NoLocale: {}
+        :Name: Psyon Psi Amp
+        :SItemMeta: Transferable,Sellable
+    
+    psi_amp_psyon_v2:
+      parent: &STPsiAmp ST%item/weapon/psi_amp_psyon
+      name: psi_amp_psyon_v2
+      $path: ""
+      components:
+        :Name: Advanced Psyon Psi Amp
+
+    psi_amp_eternal:
+      parent: *STPsiAmp
+      name: psi_amp_eternal
+      $path: ""
+      components:
+        :Name: Eternal Psi Amp
+    
+    psi_amp_mentarch:
+      parent: *STPsiAmp
+      name: psi_amp_mentarch
+      $path: ""
+      components:
+        :Name: Mentarch Brain
+        :SItemMeta: ExcludeFromBaseStoresSell,ExcludeFromBaseStoresTransfer
+
+    psi_amp_mentarch_v2:
+      parent: ST%item/weapon/psi_amp_mentarch
+      name: psi_amp_mentarch_v2
+      $path: ""
+      components:
+        :Name: Mentokyr Brain
+
+groundcombat:
+  item/ammo:
+    alien_psi_amp:
+      parent: $next
+      $path: ""
+      components:
+        $Shots: 999
+
+  item/weapon:
+    psi_amp_psyon:
+      parent: GC%item/weapon/alien_psi_amp
+      name: psi_amp_psyon
+      $path: ""
+      components:
+        $NoLocale: {}
+        :Name: Psyon Psi Amp
+        :Description: >-
+          Psi amps are a sophisticated psionic tool used by psionic aliens to enhance
+          their psionic powers, transmitting vast amounts of energy across great distances. 
+          Although unable to damage mechanical targets, they possess a number of properties
+          that make them exceptionally effective against organic units.
+          This psi amp has been tailored for Psyon neurology and cannot be used by any
+          other species.
+
+
+          Psi amps can be used against any target within the soldier's visual range,
+          but require great concentration to use, becoming useless if the soldier
+          is suppressed or cannot directly see the enemy.
+          Each psi amp unlocks the Mind Scorch and Mind Control abilities.
+
+
+          Mind Scorch always hits its target, bypassing all armor and inflicting
+          severe brain trauma. A single blast deals enough damage to knock many
+          weaker targets unconscious.
+
+
+          Mind Control instead attempts to take control of an enemy unit
+          for one turn. This is more effective at close range, and easiest
+          against demoralized enemies with low Bravery scores.
+        $Damage: 20
+        $StunDamage: 30
+        $SuppressionDamage: 30
+        $BleedChance: 0
+        $RangeBonus: 0
+        $WeaponRange: 26 # Psyon visual range; Eternals get 30, Mentarchs get 8
+        $RangeDropoff: 1
+        :OverwatchReaction: false
+        :DisableReactionFire: true
+        :GCItemMeta: HideAmmoSlot,NeverGibs
+        :RecoveredItems:
+          - $DropItem: item/weapon/psi_amp_psyon
+        $GCEquipReqs:
+          $SlotOwnerPq:
+            $mode: Any
+            $reqs:
+              - $IsPsyon: {}
+        :GCAbilityDefinitions:
+          - $ShotAbility: &MindScorch
+              $mode: normal
+              $name: Mind Scorch
+              $percentCost: 51
+              $accuracy: 1000
+              $crosshair: GC-::-ui/crosshairs/crosshair_normal
+          - :108: &MindControl
+              CastLimitPerRound:
+                "&v": 1
+              SightRule: LineOfSight360
+              DamageEquivalance: 500
+              AttackerTrigger: false
+              TargetTrigger: false
+              Name: MindControlAttack
+              AbsoluteCostTimeUnits: 0
+              PercentageCostTimeUnits: 75
+              ImportanceScale: 1
+              Crosshair: GC-::-ui/crosshairs/crosshair_aimed
+              Accuracy: 100
+              Tooltip:
+                "&v": Mind Control
+            
+    psi_amp_psyon_v2:
+      parent: GC%item/weapon/psi_amp_psyon
+      name: psi_amp_psyon_v2
+      $path: ""
+      components:
+        :Name: Advanced Psyon Psi Amp
+        :RecoveredItems:
+          - $DropItem: item/weapon/psi_amp_psyon_v2
+        $Damage: 30
+        $StunDamage: 45
+        $SuppressionDamage: 45
+
+    # TODO: Set this up as a replacement for the Mentarch Cannon
+    # instead of a Mentarch-wearable psi pistol!
+    psi_amp_mentarch:
+      parent: &AdvPsiAmp GC%item/weapon/psi_amp_psyon_v2
+      name: psi_amp_mentarch
+      $path: ""
+      components:
+        :Name: Mentarch Brain
+        :Description: >-
+          The brain of a Mentarch possesses considerable psionic power, sufficient to 
+          overwhelm nearby enemies without an external psi amplifier. Unlike
+          psi amps, Mentarch brains can perform multiple psionic actions per turn,
+          and can still be used by a suppressed Mentarch. They have access to
+          the Mind Scorch and Mind Control abilities, which they can use
+          against any target in the Mentarch's meagre visual range.
+
+
+          Mind Scorch always hits its target, bypassing all armor and inflicting
+          severe brain trauma. A single blast deals enough damage to knock many
+          weaker targets unconscious.
+
+
+          Mind Control instead attempts to take control of an enemy unit
+          for one turn. This is more effective at close range, and easiest
+          against demoralized enemies with low Bravery scores.
+        :RecoveredItems: []
+        $WeaponRange: 8
+        $MentarchOnly: {}
+        :GCAbilityDefinitions:
+          - $ShotAbility: 
+              <<: *MindScorch
+              $percentCost: 26
+          - :108:
+              <<: *MindControl
+              CastLimitPerRound:
+                "&v": 2
+              PercentageCostTimeUnits: 40
+
+    psi_amp_mentarch_v2:
+      parent: GC%item/weapon/psi_amp_mentarch
+      $path: ""
+      components:
+        :Name: Mentokyr Brain
+        :Description: >-
+          The brain of a Mentokyr possesses considerable psionic power, sufficient to 
+          overwhelm nearby enemies without an external psi amplifier. Unlike
+          psi amps, Mentokyr brains can perform multiple psionic actions per turn,
+          and can still be used by a suppressed Mentokyr. They have access to
+          the Mind Scorch and Mind Control abilities, which they can use
+          against any target in the Mentokyr's meagre visual range.
+
+
+          Mind Scorch always hits its target, bypassing all armor and inflicting
+          severe brain trauma. A single blast deals enough damage to knock many
+          weaker targets unconscious.
+
+
+          Mind Control instead attempts to take control of an enemy unit
+          for one turn. This is more effective at close range, and easiest
+          against demoralized enemies with low Bravery scores.
+        $HeavyMentarchOnly: {}
+        $Damage: 40
+        $StunDamage: 60
+        $SuppressionDamage: 60
+
+    psi_amp_eternal:
+      parent: *AdvPsiAmp
+      $path: ""
+      components:
+        :Name: Eternal Psi Amp
+        :Description: >-
+          Psi amps are a sophisticated psionic tool used by psionic aliens to enhance
+          their psionic powers, transmitting vast amounts of energy across great distances. 
+          Although unable to damage mechanical targets, they possess a number of properties
+          that make them exceptionally effective against organic units.
+          This psi amp has been tailored for Eternal neurology and cannot be used by any
+          other species.
+
+
+          Psi amps can be used against any target within the soldier's visual range,
+          but require great concentration to use, becoming useless if the soldier
+          is suppressed or cannot directly see the enemy.
+          Each psi amp unlocks the Mind Scorch and Mind Control abilities.
+
+
+          Mind Scorch always hits its target, bypassing all armor and inflicting
+          severe brain trauma. A single blast deals enough damage to knock many
+          weaker targets unconscious.
+
+
+          Mind Control instead attempts to take control of an enemy unit
+          for one turn. This is more effective at close range, and easiest
+          against demoralized enemies with low Bravery scores.
+        :RecoveredItems:
+          - $DropItem: item/weapon/psi_amp_eternal
+        $GCEquipReqs:
+          $SlotOwnerPq:
+            $mode: Any
+            $reqs:
+              - $IsEternal: {}
+        $WeaponRange: 30
+
+    psi_amp_eternal_v2:
+      parent: GC%item/weapon/psi_amp_eternal
+      name: psi_amp_eternal_v2
+      $path: ""
+      components:
+        :Name: High Eternal Psi Amp
+        $Damage: 40
+        $StunDamage: 60
+        $SuppressionDamage: 60
+        :GCAbilityDefinitions:
+          - $ShotAbility: *MindScorch
+          - :108:
+              <<: *MindControl
+              SightRule: SquadSight360

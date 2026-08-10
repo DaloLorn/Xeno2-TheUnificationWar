@@ -8,7 +8,7 @@ $aliases:
     $crosshair: GC-::-ui/crosshairs/crosshair_burst3.prefab
   LongBurst: &LongBurst
     $mode: burst10
-    $name: Short Burst
+    $name: Long Burst
     $shots: 3
     $shotDelay: 0.05
     $percentCost: 75
@@ -402,9 +402,6 @@ groundcombat:
               <<:
                 - *LongBurst
                 - *LongLaser
-              $shots: 12
-              $shotDelay: 0.0125
-              $accuracy: 50
         $WeaponRange: 10
         $RangeBonus: 0.04
         $RangeDropoff: 0.05
