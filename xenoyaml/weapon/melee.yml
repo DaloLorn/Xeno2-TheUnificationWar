@@ -21,6 +21,19 @@ groundcombat:
         $Damage: 15
         $ArmorPenetration: 40
         $ArmorDestruction: 0
+        $GCComplexEquipReqs: &MeleeEquipReqs
+          $cost:
+            $OrPq:
+              - $UnequippedReq: {}
+              - $SlotOwnerPq:
+                  $mode: All
+                  $reqs:
+                    - $NotColossus: {}
+          $unlock:
+            $SlotOwnerPq:
+              $mode: Any
+              $reqs: 
+                - $HasHandsReq: {}
         :Reflexes:
           $MaxInfRange: 2
         :GCAbilityDefinitions:
@@ -53,6 +66,7 @@ groundcombat:
         :Reflexes:
           $MaxInfRange: 1.5
         $Weight: 6
+        $GCComplexEquipReqs: *MeleeEquipReqs
         :GCAbilityDefinitions:
           - $MeleeAbility:
               $name: Melee
