@@ -16,9 +16,16 @@ strategy:
         screen: ST
         path: item/armour/mantid_elite
       $path: ""
-      components: &MantidPraetorian
+      components:
         $NoLocale: {}
         :Name: Mantid Praetorian Armour
+        $MandatoryItem: ST-::-item/weapon/alien_mantid_melee.json
+        
+    sebillian_praetorian:
+      parent: $next
+      $path: ""
+      components:
+        $MandatoryItem: ST-::-item/weapon/alien_sebillian_melee.json
 
 groundcombat:
   item/armour:
@@ -73,7 +80,8 @@ groundcombat:
         path: item/armour/mantid_elite
       $path: ""
       components:
-        <<: *MantidPraetorian
+        $NoLocale: {}
+        :Name: Mantid Praetorian Armour
         $GCEquipReqs:
           $SlotOwnerPq:
             $mode: All

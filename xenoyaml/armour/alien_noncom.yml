@@ -7,18 +7,20 @@ strategy:
         screen: ST
         path: item/armour/mantid_noncom
       $path: ""
-      components: &MantidNoncom
+      components:
         $NoLocale: {}
         :Name: Mantid Carapace
+        $MandatoryItem: ST-::-item/weapon/alien_mantid_melee.json
         
     sebillian_noncom:
       parent:
         screen: ST
         path: item/armour/sebillian_noncom
       $path: ""
-      components: &SebillianNoncom
+      components:
         $NoLocale: {}
         :Name: Sebillian Scales
+        $MandatoryItem: ST-::-item/weapon/alien_sebillian_melee.json
         
     wraith_noncom:
       parent:
@@ -72,7 +74,8 @@ groundcombat:
         path: item/armour/mantid_noncom
       $path: ""
       components:
-        <<: *MantidNoncom
+        $NoLocale: {}
+        :Name: Mantid Carapace
         $MantidRacials: {}
         $GCEquipReqs:
           $SlotOwnerPq:
@@ -89,7 +92,8 @@ groundcombat:
         path: item/armour/sebillian_noncom
       $path: ""
       components:
-        <<: *SebillianNoncom
+        $NoLocale: {}
+        :Name: Sebillian Scales
         $HitPoints: 15
         $SebillianRacials: 0
         $GCEquipReqs:

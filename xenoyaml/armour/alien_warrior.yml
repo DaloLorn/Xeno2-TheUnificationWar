@@ -11,6 +11,24 @@ strategy:
         $NoLocale: {}
         :Name: Tactical Plating
 
+    mantid_warrior:
+      parent: $next
+      $path: ""
+      components:
+        $MandatoryItem: ST-::-item/weapon/alien_mantid_melee.json
+        
+    sebillian_warrior:
+      parent: $next
+      $path: ""
+      components:
+        $MandatoryItem: ST-::-item/weapon/alien_sebillian_melee.json
+        
+    sebillian_officer:
+      parent: $next
+      $path: ""
+      components:
+        $MandatoryItem: ST-::-item/weapon/alien_sebillian_melee.json
+
 groundcombat:
   item/armour:
     psyon_warrior:

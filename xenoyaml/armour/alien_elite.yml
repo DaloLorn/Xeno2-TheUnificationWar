@@ -11,6 +11,24 @@ strategy:
         $NoLocale: {}
         :Name: Assault Plating
 
+    mantid_elite:
+      parent: $next
+      $path: ""
+      components:
+        $MandatoryItem: ST-::-item/weapon/alien_mantid_melee.json
+        
+    sebillian_elite:
+      parent: $next
+      $path: ""
+      components:
+        $MandatoryItem: ST-::-item/weapon/alien_sebillian_melee.json
+        
+    sebillian_leader:
+      parent: $next
+      $path: ""
+      components:
+        $MandatoryItem: ST-::-item/weapon/alien_sebillian_melee.json
+
 groundcombat:
   item/armour:
     psyon_elite:

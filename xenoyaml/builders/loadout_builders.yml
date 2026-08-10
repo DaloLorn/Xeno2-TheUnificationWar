@@ -1,0 +1,63 @@
+$schemaVersion: 1.0.0
+$builders:
+  $MandatoryItem:
+    $args:
+      - $item
+      - $slot: Secondary
+    :InventorySlotAddEffects:
+      - :ForwardBinaryArgsEffect:
+          Forward: Arg0
+          Effects:
+            - :ADelegateEffect:
+                selector:
+                  :OneEntitySe:
+                    OneComponent: Xenonauts.Common.Components.Item.InventorySlotOwnerLink
+                effects:
+                  - :ADelegateEffect:
+                      selector:
+                        :InventorySlotSe:
+                          Slot:
+                            :CombatantSlots: $slot
+                      effects:
+                        - :CreateTemplateEffect:
+                            CopyComponentTypes: []
+                            Link:
+                              "&v": Xenonauts.Common.Components.Item.InventoryLink
+                            TemplateRef:
+                              :0:
+                                components:
+                                  :ItemID:
+                                    $content: $item
+                                    $valuetypekey: ar_Template
+                                  :ItemRequestStatus: Pending
+                                  :Quantity:
+                                    _min: 0
+                                    _val: 1
+                                    _max: 1
+                                  :ItemRequest:
+                                    $valuetypekey: "83"
+                        - :DeltaEnumEffect:
+                            ComponentType: Xenonauts.Common.Components.Item.InventorySlotMetaComponent
+                            Value:
+                              :InventorySlotMeta: Locked
+                            OperationType: Add
+    :InventorySlotRemoveEffects:
+      - :ForwardBinaryArgsEffect:
+          Forward: Arg0
+          Effects:
+            - :ADelegateEffect:
+                selector:
+                  :OneEntitySe:
+                    OneComponent: Xenonauts.Common.Components.Item.InventorySlotOwnerLink
+                effects:
+                  - :ADelegateEffect:
+                      selector:
+                        :InventorySlotSe:
+                          Slot:
+                            :CombatantSlots: $slot
+                      effects:
+                        - :DeltaEnumEffect:
+                            ComponentType: Xenonauts.Common.Components.Item.InventorySlotMetaComponent
+                            Value:
+                              :InventorySlotMeta: Locked
+                            OperationType: Remove

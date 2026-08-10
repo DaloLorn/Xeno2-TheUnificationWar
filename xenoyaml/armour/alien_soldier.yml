@@ -11,6 +11,18 @@ strategy:
         $NoLocale: {}
         :Name: Recon Plating
 
+    mantid_soldier:
+      parent: $next
+      $path: ""
+      components:
+        $MandatoryItem: ST-::-item/weapon/alien_mantid_melee.json
+        
+    sebillian_soldier:
+      parent: $next
+      $path: ""
+      components:
+        $MandatoryItem: ST-::-item/weapon/alien_sebillian_melee.json
+
 groundcombat:
   item/armour:
     psyon_soldier:
