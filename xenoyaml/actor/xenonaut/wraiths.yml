@@ -11,6 +11,29 @@ strategy:
       Target: ST-::-loadout_profiles/wraith_defector.json
       $valuetype: Xenonauts.Strategy.Components.ReferencedDefaultLoadoutProfileStrategy
     $XenonautSpecies: wraith
+    $HearingRange: 20
+    $NightVisionRange:
+      $min: 35
+      $val: 35
+    $VisionRange: 35
+    :BleedWoundHealChance:
+      $PercentileRange: 10
+    :Resistances:
+      energy:
+        $PercentileRange: 25
+      kinetic: &NoDR
+        $PercentileRange: 0
+      shock: *NoDR
+      chemical: *NoDR
+      default: *NoDR
+      thermal: *NoDR
+      gas: *NoDR
+      psionic: *NoDR
+      suppression: *NoDR
+      alien_atmosphere:
+        $Range: 100
+      fall: *NoDR
+      heal: *NoDR
     :InventoryTaxonomy: Loadout/Combatant/Wraith
     :DefaultArmour:
       $content: GC-::-item/armour/wraith_noncom.json

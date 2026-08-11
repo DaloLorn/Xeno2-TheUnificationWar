@@ -10,6 +10,35 @@ strategy:
       Target: ST-::-loadout_profiles/psyon_defector.json
       $valuetype: Xenonauts.Strategy.Components.ReferencedDefaultLoadoutProfileStrategy
     $PsionicStrength: 50
+    $HearingRange: 12
+    $NightVisionRange:
+      $min: 2
+      $val: 26
+    :NightVisionIntensity:
+      $Range:
+        $min: 64
+        $val: 255
+    $VisionCone: 50
+    $VisionRange: 30
+    :GCAbilityDefinitions: &PsyonAbilities
+      - $X2UW_MesmerizeAbility:
+          moraleDamage: 50
+          uses: 1
+          Name: Mesmerize
+          Tooltip: false
+      # I don't want the player to be able to use this directly,
+      # but apparently the actor needs to have a MindControlAbility somewhere
+      # in order to use a MindControlAttackAbility.
+      - :107:
+          AttackerTrigger: false
+          TargetTrigger: false
+          Name: MindControl
+          AbsoluteCostTimeUnits: 0
+          PercentageCostTimeUnits: 0
+          ImportanceScale: 1
+          Crosshair: GC-::-ui/crosshairs/crosshair_mindcontrol
+          Accuracy: 100
+          Tooltip: false
     $DefectorStats: {}
     $XenonautSpecies: psyon
     :InventoryTaxonomy: Loadout/Combatant/Psyon

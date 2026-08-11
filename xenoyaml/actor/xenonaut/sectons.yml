@@ -11,6 +11,23 @@ strategy:
       Target: ST-::-loadout_profiles/secton_defector.json
       $valuetype: Xenonauts.Strategy.Components.ReferencedDefaultLoadoutProfileStrategy
     $XenonautSpecies: secton
+    :BodySize: small
+    $HearingRange: 12
+    $NightVisionRange:
+      $min: 2
+      $val: 26
+    :NightVisionIntensity:
+      $Range:
+        $min: 64
+        $val: 255
+    $VisionCone: 50
+    $VisionRange: 30
+    :GCAbilityDefinitions:
+      - :116:
+          Range: 8
+          AccuracyBonus: 30
+          Name: Psionic Triangulation
+          Tooltip: false
     :InventoryTaxonomy: Loadout/Combatant/Secton
     :DefaultArmour:
       $content: GC-::-item/armour/secton_noncom.json

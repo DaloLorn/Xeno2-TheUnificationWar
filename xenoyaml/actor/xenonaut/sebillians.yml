@@ -11,6 +11,41 @@ strategy:
       Target: ST-::-loadout_profiles/sebillian_defector.json
       $valuetype: Xenonauts.Strategy.Components.ReferencedDefaultLoadoutProfileStrategy
     $XenonautSpecies: sebillian
+    $HearingRange: 12
+    $NightVisionRange:
+      $min: 2
+      $val: 15
+    :NightVisionIntensity:
+      $Range:
+        $min: 64
+        $val: 255
+    $VisionCone: 40
+    $VisionRange: 20
+    :GCAbilityDefinitions: &SebillianAbilities
+      - :118:
+          Regenerate: 50
+          ReduceStun: 0
+          RequiresConsciousness: true
+          SoundFX: null
+          Name: Regenerate HP
+          Tooltip: false
+    :Resistances:
+      energy:
+        $PercentileRange: 15
+      kinetic: &PhysicalDR
+        $PercentileRange: 35
+      shock: &NoDR
+        $PercentileRange: 0
+      chemical: *NoDR
+      default: *NoDR
+      thermal: *PhysicalDR
+      gas: *NoDR
+      psionic: *NoDR
+      suppression: *NoDR
+      alien_atmosphere:
+        $Range: 100
+      fall: *NoDR
+      heal: *NoDR
     :InventoryTaxonomy: Loadout/Combatant/Sebillian
     :DefaultArmour:
       $content: GC-::-item/armour/sebillian_noncom.json
