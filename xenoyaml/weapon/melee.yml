@@ -39,7 +39,7 @@ groundcombat:
           - $MeleeAbility:
               $name: Melee
               $percentCost: 10
-              $accuracy: 100
+              $accuracy: 80
               $tooltip: Slash
         :GCItemMeta: Reloadable,HideAmmoSlot,NeverGibs
       
@@ -69,7 +69,7 @@ groundcombat:
           - $MeleeAbility:
               $name: Melee
               $percentCost: 15
-              $accuracy: 80
+              $accuracy: 60
               $tooltip: Melee (Stun)
         :GCItemMeta: Reloadable,HideAmmoSlot,NeverGibs
 
@@ -77,8 +77,9 @@ groundcombat:
       parent: $next
       $path: ""
       components:
-        $StunDamage: 30
-        $EMPDamage: 45
+        $Damage: 10
+        $StunDamage: 25
+        $EMPDamage: 40
         $ArmorPenetration: 125
         
     melee_colossus:
@@ -94,7 +95,7 @@ groundcombat:
           - $MeleeAbility:
               $name: Melee
               $percentCost: 25
-              $accuracy: 100
+              $accuracy: 80
               $tooltip: Smash
         
     alien_mentarch_melee:
@@ -110,7 +111,7 @@ groundcombat:
           - $MeleeAbility:
               $name: Melee
               $percentCost: 15
-              $accuracy: 100
+              $accuracy: 80
               $tooltip: Smash
         $GCEquipReqs:
           $SlotOwnerPq:
@@ -133,11 +134,13 @@ groundcombat:
         $ArmorPenetration: 40
         $ArmorDestruction: 2
         $Weight: 0
+        :Reflexes:
+          $MaxInfRange: 2
         :GCAbilityDefinitions:
           - $MeleeAbility:
               $name: Melee
               $percentCost: 20
-              $accuracy: 100
+              $accuracy: 80
               $tooltip: Slash
         $GCEquipReqs:
           $SlotOwnerPq:
@@ -159,11 +162,13 @@ groundcombat:
         $ArmorPenetration: 20
         $ArmorDestruction: 1
         $Weight: 0
+        :Reflexes:
+          $MaxInfRange: 2
         :GCAbilityDefinitions:
           - $MeleeAbility:
               $name: Melee
               $percentCost: 15
-              $accuracy: 100
+              $accuracy: 80
               $tooltip: Bite
         $GCEquipReqs:
           $SlotOwnerPq:
@@ -190,7 +195,7 @@ groundcombat:
           - $ReaperMeleeAbility: &ReaperMelee
               $name: Melee
               $percentCost: 15
-              $accuracy: 100
+              $accuracy: 80
               $tooltip: Inject Larva
         :Portrait: *FistImage
         :GCItemMeta: Reloadable,Integrated,NeverGibs,HideAmmoSlot
@@ -220,6 +225,12 @@ groundcombat:
         $ArmorDestruction: 0
         :Portrait: *FistImage
         :GCItemMeta: Reloadable,Integrated,NeverGibs,HideAmmoSlot
+        :GCAbilityDefinitions:
+          - $MeleeAbility:
+              $name: Melee
+              $percentCost: 25
+              $accuracy: 80
+              $tooltip: Smash
 
     alien_biter_melee:
       parent: $next
@@ -236,6 +247,6 @@ groundcombat:
           - $MeleeAbility:
               $name: Melee
               $percentCost: 10
-              $accuracy: 100
+              $accuracy: 90
               $tooltip: Bite
         :GCItemMeta: Reloadable,Integrated,NeverGibs,HideAmmoSlot

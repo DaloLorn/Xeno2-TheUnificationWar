@@ -121,6 +121,7 @@ Semi-sapient mechanical warriors with little sense for self-preservation.
 - Mechanical (but with Morale, and REF/ACC/TU/BRA training)
 - Large
 - Crushing
+- All player units start with the same stats before training (no stat randomization).
 - All units use LMGs and a 50% chance of Gas Detonators. 
 
 ## Reaper

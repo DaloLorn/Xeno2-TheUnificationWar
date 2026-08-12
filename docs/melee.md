@@ -8,17 +8,17 @@ Most melee weapons have the NeverGibs flag. Only Massive weapons such as the Pow
 
 Explosive damage is used as a stand-in for blunt force trauma, and accompanied by heavy stun damage.
 
-Unless specified otherwise, melee attacks always have a 100% ACC modifier.
+Unless specified otherwise, melee attacks always have a 80% ACC modifier, meaning they'll hit 80% of the time against an enemy with the same REF score.
 
 ## Knives
 
-- Combat Knife: 15 Kinetic, 40 Penetration, 10% TU, 2x REF, 100% ACC, 10% Bleed (x3), 4 Weight
+- Combat Knife: 15 Kinetic, 40 Penetration, 10% TU, 2x REF, 10% Bleed (x3), 4 Weight
 - Vibroknife: 25 Kinetic, 60 Penetration, 4 Destruction, Bleed x5
 
 ## Batons
 
-- Stun Baton: 5 Explosive (there is a shock, but not as damaging as the impact), 20 Stun, 30 EMP, 75 Penetration, 15% TU, 1.5x REF, 80% ACC, 6 Weight
-- Electroshock Baton: 5 Shock, 30 Stun, 45 EMP, 125 Penetration
+- Stun Baton: 5 Shock, 20 Stun, 30 EMP, 75 Penetration, 15% TU, 1.5x REF, 60% ACC, 6 Weight
+- Electroshock Baton: 10 Shock, 25 Stun, 40 EMP, 125 Penetration
 
 ## Integrated
 
