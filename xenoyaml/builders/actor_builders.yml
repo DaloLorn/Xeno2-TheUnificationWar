@@ -124,12 +124,19 @@ $builders:
       _max: 75
 
   $SalvagedAndronStats:
-    $DefectorStats: {}
     # The usual builders don't quite fit here.
+    :TimeUnits: 
+      $Range: 60
     :HitPoints:
       $Range: 60
+    :Accuracy:
+      $Range: 52
     :Strength:
       $Range: 80
+    :Reflexes:
+      $Range: 55
+    :Bravery:
+      $Range: 55
 
   # Base statblocks by rank; equipment modifiers are delivered by armor.
   $NoncomStats:

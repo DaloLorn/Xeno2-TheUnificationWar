@@ -188,7 +188,7 @@ strategy:
           $Range: 60
         :KeyedCounter:
           Herald: 0
-        :NameFormatter: Herald {Herald}
+        :NameFormatter: Servitor {Herald}
         :PortraitLayers:
           - ST-::-ui/portraits/character/mars^head.png
         :Reflexes:
@@ -220,5 +220,5 @@ strategy:
           $Range: 90
         :KeyedCounter:
           Harbinger: 0
-        :NameFormatter: Harbinger {Harbinger}
+        :NameFormatter: Herald {Harbinger}
         :SortOrder: 2099

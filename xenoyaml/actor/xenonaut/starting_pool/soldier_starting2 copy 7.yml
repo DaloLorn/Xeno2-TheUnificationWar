@@ -1,0 +1,7 @@
+$schemaVersion: 1.0.0
+strategy:
+  parent:
+    screen: ST
+    path: actor/combatant/andron/xenonauts/andron_defector
+  name: soldier_starting1
+  $path: actor/combatant/human/xenonauts/starting_pool/soldiers/soldier_starting37

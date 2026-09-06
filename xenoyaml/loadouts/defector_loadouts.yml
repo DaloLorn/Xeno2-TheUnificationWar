@@ -99,6 +99,37 @@ strategy:
                 $item: ST-::-item/weapon/grenade_demolition.json
                 $strategy: "83"
                 $z: 2
+
+    andron_defector:
+      parent: *LoadoutBase
+      name: andron_defector
+      $path: ""
+      components:
+        $EquippedItems:
+          - $HasBackpack: {}
+          - $EquipArmor: ST-::-item/armour/andron_soldier.json
+          - $EquipPrimary: *BallLmg
+          - $EquipSecondary: *BallPistol
+          - $EquipBelt:
+            - $BeltItem:
+                $item: ST-::-item/weapon/module_accuracy_tier1.json
+                $strategy: "83"
+            - $BeltItem:
+                $item: ST-::-item/ammo/ballistic_lmg.json
+                $strategy: "83"
+                $x: 2
+            - $BeltItem:
+                $item: ST-::-item/ammo/ballistic_lmg.json
+                $strategy: "83"
+                $x: 3
+            - $BeltItem:
+                $item: ST-::-item/ammo/ballistic_pistol.json
+                $strategy: "83"
+                $x: 4
+            - $BeltItem:
+                $item: ST-::-item/weapon/grenade_demolition.json
+                $strategy: "83"
+                $z: 2
     
     secton_defector:
       parent: *LoadoutBase

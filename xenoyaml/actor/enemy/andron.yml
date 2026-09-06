@@ -12,7 +12,7 @@ groundcombat:
         $NightVisionRange:
           $min: 20
           $val: 20
-        :GCCombatantMeta: Move,Turn,Interact,Crushing,EMPVulnerable,PsionicInvulnerable,InjuryImmune,Suppressable
+        :GCCombatantMeta: Move,Turn,Crouch,Interact,Crushing,EMPVulnerable,PsionicInvulnerable,InjuryImmune,Suppressable
         $VisionCone: 45
         $VisionRange: 20
         :Resistances:

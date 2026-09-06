@@ -65,6 +65,26 @@ strategy:
         :Name: Sebillian Defector
         :Portrait: ST-::-loadout_profile/heavy.png
 
+    # Andron Loadout
+    andron_defector:
+      parent:
+        screen: ST
+        path: masters/loadout_profiles/humanoid
+      name: andron
+      $path: ""
+      components:
+        :Prerequisites:
+          - :InventoryTaxonomyIsAPq:
+              Target: Loadout/Combatant/Andron
+              Variant: Cost
+              modifierStorage: null
+        :InventoryTemplate:
+          $content: ST-::-loadout/combatant/andron_defector.json
+          <<: *InventoryTemplateValueType
+        $NoLocale: {}
+        :Name: Reforged Andron
+        :Portrait: ST-::-loadout_profile/heavy.png
+
     # Secton Loadout
     secton_defector:
       parent:
